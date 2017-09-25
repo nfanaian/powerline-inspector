@@ -1,0 +1,9 @@
+RewriteEngine on
+
+# allows access to files; required to access (direct path) files from source code (css files etc)
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# allows access to directories; better disabled
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ index.php?request=$1 [L,QSA]
