@@ -1,21 +1,29 @@
 <?php
 
 require_once('controllers/Controller.php');
+
 class MarkerController extends Controller
 {
-    public function __construct()
+	// Initiate Marker Model
+	public function __construct()
     {
         require_once('models/Marker.php');
         parent::__construct(new Marker());
     }
-    
-    public function foo()
+
+	/**
+	 *  foo()
+	 */
+	public function foo()
     {
         $this->model->foo();
         $this->view->output();
     }
 
-    public function getMarker()
+	/**
+	 *
+	 */
+	public function getMarker()
     {
         $filename = urlParser::getParam(0);//getPOST('filename');
 
@@ -42,7 +50,10 @@ class MarkerController extends Controller
         $this->view->output();
     }
 
-    public function getAll()
+	/**
+	 *
+	 */
+	public function getAll()
     {
         $this->model->getAll();
         $this->view->output();

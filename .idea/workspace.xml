@@ -2,44 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c167b555-e89c-403e-9b0b-82bfe26a869e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/apiController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/apiController/markerController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controllers/errorController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/categoryView.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/pages/imageViewer/backupViewer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/pages/layout.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/pages/layout.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/pages/ticket/backupTicket.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/pages/ticket/printout.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/pages/utility/mapViewer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/pages/utility/userViewer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/ticketView.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/utilityView.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/controllers/markerController.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/addDB.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/controllers/authController.php" afterPath="$PROJECT_DIR$/controllers/apiController/authController.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/controllers/pagesController.php" afterPath="$PROJECT_DIR$/controllers/tiktikController.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/controllers/userController.php" afterPath="$PROJECT_DIR$/controllers/apiController/userController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/Controller.php" afterPath="$PROJECT_DIR$/controllers/Controller.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/categoryController.php" afterPath="$PROJECT_DIR$/controllers/categoryController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Auth.php" afterPath="$PROJECT_DIR$/models/Auth.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Category.php" afterPath="$PROJECT_DIR$/models/Category.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Marker.php" afterPath="$PROJECT_DIR$/models/Marker.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Model.php" afterPath="$PROJECT_DIR$/models/Model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Test.php" afterPath="$PROJECT_DIR$/models/Test.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/Ticket.php" afterPath="$PROJECT_DIR$/models/Ticket.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/User.php" afterPath="$PROJECT_DIR$/models/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/DB.php" afterPath="$PROJECT_DIR$/resources/DB.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/urlParser.php" afterPath="$PROJECT_DIR$/resources/urlParser.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes.php" afterPath="$PROJECT_DIR$/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/View.php" afterPath="$PROJECT_DIR$/views/View.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/imageViewer/imageView.php" afterPath="$PROJECT_DIR$/views/pages/imageViewer/imageView.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/imageViewer/styles.css" afterPath="$PROJECT_DIR$/views/pages/imageViewer/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/ticket/styles.css" afterPath="$PROJECT_DIR$/views/pages/ticket/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/pages/ticket/ticket.php" afterPath="$PROJECT_DIR$/views/pages/ticket/ticket.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/apiController/authController.php" afterPath="$PROJECT_DIR$/controllers/apiController/authController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/apiController/markerController.php" afterPath="$PROJECT_DIR$/controllers/apiController/markerController.php" />
     </list>
     <ignored path="htdocs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,27 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Marker.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/Marker.php">
+      <file leaf-file-name="markerController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controllers/apiController/markerController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="133" column="5" selection-start-line="133" selection-start-column="5" selection-end-line="133" selection-end-column="5" />
-              <folding>
-                <element signature="e#7#90#0#PHP" expanded="true" />
-                <marker date="1507631681258" expanded="true" signature="2486:2516" ph="SELECT * FRO... Dummy" />
-                <marker date="1507631681258" expanded="true" signature="3196:3248" ph="SELECT * FRO... Dummy" />
-                <marker date="1507631681258" expanded="true" signature="4097:4500" ph="SELECT *, (3... " />
-                <marker date="1507631681258" expanded="true" signature="5206:5235" ph="SELECT * FRO... Dummy" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="authController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/controllers/apiController/authController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+            <state relative-caret-position="391">
+              <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -120,7 +68,6 @@
         <option value="$PROJECT_DIR$/controllers/authController.php" />
         <option value="$PROJECT_DIR$/controllers/markerController.php" />
         <option value="$PROJECT_DIR$/controllers/apiController/apiController.php" />
-        <option value="$PROJECT_DIR$/controllers/apiController/markerController.php" />
         <option value="$PROJECT_DIR$/controllers/pagesController.php" />
         <option value="$PROJECT_DIR$/views/categoryView.php" />
         <option value="$PROJECT_DIR$/controllers/Controller.php" />
@@ -154,6 +101,7 @@
         <option value="$PROJECT_DIR$/resources/DB.php" />
         <option value="$PROJECT_DIR$/models/Auth.php" />
         <option value="$PROJECT_DIR$/controllers/apiController/authController.php" />
+        <option value="$PROJECT_DIR$/controllers/apiController/markerController.php" />
       </list>
     </option>
   </component>
@@ -473,7 +421,7 @@
       <workItem from="1507376091872" duration="6929000" />
       <workItem from="1507482885138" duration="6776000" />
       <workItem from="1507565407266" duration="8949000" />
-      <workItem from="1507608602289" duration="5638000" />
+      <workItem from="1507608602289" duration="5786000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <option name="createChangelist" value="false" />
@@ -481,7 +429,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="255975000" />
+    <option name="totallyTimeSpent" value="256123000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1308" height="784" extended-state="6" />
@@ -576,13 +524,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/apiController/markerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -862,6 +803,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/apiController/authController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/Marker.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -876,10 +825,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/apiController/authController.php">
+    <entry file="file://$PROJECT_DIR$/controllers/apiController/markerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+        <state relative-caret-position="391">
+          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
           <folding />
         </state>
       </provider>

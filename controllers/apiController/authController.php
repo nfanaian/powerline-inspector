@@ -2,7 +2,8 @@
 
 /**
  * API: Auth Controller
- * 
+ * This controller takes care of authenticating users,
+ * registering users, and verifying JSON Web Tokens
  */
 require_once('controllers/Controller.php');
 
