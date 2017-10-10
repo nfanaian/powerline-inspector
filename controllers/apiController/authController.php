@@ -1,10 +1,8 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: nfanaian
- * Date: 8/28/2017
- * Time: 11:55 PM
+ * API: Auth Controller
+ * 
  */
 require_once('controllers/Controller.php');
 
@@ -23,7 +21,7 @@ class AuthController extends Controller
         $pass = urlParser::getParam(1); //urlParser::getPOST('pass');
         
         if (is_null($user) || is_null($pass)) {
-            return call('auth', 'error');
+            return call('error', 'error');
         }
 
         // Authenticate User
@@ -52,33 +50,5 @@ class AuthController extends Controller
 
 	    // Display results
 	    $this->view->output();
-    }
-
-    public function error_auth()
-    {
-        $this->model->http_response_code = 400;
-        $this->model->output["status"] = "Authentication Failed";
-        $this->view->output();
-    }
-
-    public function error_controller_dne()
-    {
-        $this->model->http_response_code = 404;
-        $this->model->output["status"] = "Error: controller does not exist.";
-        $this->view->output();
-    }
-
-    public function error_action_dne()
-    {
-        $this->model->http_response_code = 404;
-        $this->model->output["status"] = "Error: action does not exist.";
-        $this->view->output();
-    }
-
-    public function error_token()
-    {
-        $this->model->http_response_code = 400;
-        $this->model->output["status"] = "Authorization Failed";
-        $this->view->output();
     }
 }

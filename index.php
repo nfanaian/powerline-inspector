@@ -8,16 +8,20 @@ require_once('resources/urlParser.php');
 $controller = $action = null;
 
 // Parse request
-if (urlParser::parseURL() && (urlParser::getController()!== null) &&  (urlParser::getAction())!== null) {
+if (urlParser::parseURL()) {
     $controller = urlParser::getController();
     $action     = urlParser::getAction();
 } else {
-    $controller = 'pages';
+	// Default (this is something old for work)
+    $controller = 'tiktik';
     $action = 'ticket';
 }
 
-require_once('routes.php');
-
-
+// API Requests skip the HTML layout
+if ($controller === 'api')
+	require_once('routes.php');
+else
+	require_once('views/pages/layout.php');
 
 ?>
+

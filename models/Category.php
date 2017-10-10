@@ -1,10 +1,7 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: nfanaian
- * Date: 9/23/2017
- * Time: 2:40 PM
+ * This is for the Image Categorizer 
  */
 
 require_once('models/Model.php');
@@ -193,7 +190,7 @@ class Category extends Model
 
   public function copyImage()
   {
-    if (is_null($this->reviewedFile)) return 0;
+    //if (is_null($this->reviewedFile)) return 0;
 
     if ($this->createDir($this->hash["dir"]) &&
       copy($this->filepath_src, $this->hash["filepath"]))

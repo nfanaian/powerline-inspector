@@ -1,10 +1,7 @@
 <?php
 
 /**
- * Created by PhpStorm.
- * User: nfanaian
- * Date: 8/30/2017
- * Time: 9:15 PM
+ * Model
  */
 class Model
 {
@@ -13,7 +10,7 @@ class Model
 
     public function __construct()
     {
-        $this->http_response_code = 200;
+        $this->http_response_code = 400;
         $this->output = array();
     }
 }

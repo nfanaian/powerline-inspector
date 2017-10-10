@@ -1,5 +1,8 @@
 <?php
 
+//Old ticket thing I don't even use anymore but some co-workers still do
+//IGNORE
+
 require_once('models/Model.php');
 
 class Ticket extends Model
@@ -24,7 +27,7 @@ class Ticket extends Model
     public $customerArr = array("Comcast", "Xfinity", "Charter");
     public $ticketsArr = null;
 
-    public function setTicket($hub_id, $customer, $market, $loc, $job, $start_time, $date, $tech, $xoc)
+    public function setTicket($hub_id, $customer, $market, $loc, $job, $start_time, $tech, $xoc)
     {
         $this->hub_id = $hub_id;
         $this->customer = $customer;
@@ -32,7 +35,7 @@ class Ticket extends Model
         $this->loc = $loc;
         $this->job = $job;
         $this->start_time = $start_time;
-        $this->date = $date;
+        $this->date = date('mm/dd');
         $this->tech = $tech;
         $this->xoc = $xoc;
     }
@@ -128,9 +131,10 @@ class Ticket extends Model
     {
         $to = $this->email_ticket;
         $subject = "Daily%20Work%20".date("m")."/".date("d");
-        str_replace(" ", "%20", $this->email_msg);
+        $this->composeMessage();
         $mailto = "mailto:".$to."?subject=".$subject."&cc=".$this->email_cc."&body=".$this->email_msg;
-        header("Location: ". $mailto);
+        //echo $mailto;
+        //header("Location: ". $mailto);
     }
 
     public function composeMessage()
@@ -141,10 +145,11 @@ class Ticket extends Model
         $msg .= "Location: ".$this->loc."\r\n";
         $msg .= "Work Being Performed: ".$this->job."\r\n";
         $msg .= "Hub Entry Ticket #: ".$this->hub_id."\r\n";
-        $msg .= "Start Time: ".convertHourMode(1,$this->start_time)."\r\n";
+        $msg .= "Start Time: ". $this->convertHourMode(1,$this->start_time)."\r\n";
         $msg .= "Tech: ".$this->tech."\r   n";
         $msg .= "XOC: ".$this->xoc."\r\n";
-        return $msg;
+        $msg = str_replace(" ", "%20", $msg);
+        return ($this->email_msg = $msg);
     }
 
     public function setCookies()

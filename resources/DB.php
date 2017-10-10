@@ -1,7 +1,14 @@
 <?php
 
+/** This is Database connection class
+ * connect() returns mysqli object
+ * Detects if request is local (WAMP)
+ * and connects to local DB
+ **/
+
 class DB
 {
+	// Remote DB
     private static $server = "localhost";
     private static $user = "admin"; //remote
     private static $pass = "d1dc93d2b138cb1ff2eb03e6ca1aa77a22930a8f568812b7";
@@ -10,7 +17,10 @@ class DB
     // Disable object instantiation of this class
     private function __construct() {}
 
-    private static function is_localhost()
+	/**
+	 * @return int
+	 */
+	private static function is_localhost()
     {
       $whitelist = array( '127.0.0.1', '::1' );
       if( in_array( $_SERVER['REMOTE_ADDR'], $whitelist) )
@@ -18,18 +28,32 @@ class DB
       return 0;
     }
 
-    public static function connect($db = null)
+	/**
+	 * If localhost: connect to local DB
+	 * If no parameter: connect to default DB
+	 * If DB parameter passed: connect to that DB on default server
+	 * Return MyQLi connection to Database
+	 * @param null $db
+	 * @return mysqli
+	 */
+	public static function connect($db = null)
     {
+	    // Check if localhost
 	    if (self::is_localhost())
 		    return new mysqli('localhost', 'root', '', 'project_dragon');
 
-        // Default DB: Project_Dragon
+        // Default DB: Project_Dragon (if no DB passed)
         if (is_null($db)) $db = self::$db;
 
         return new mysqli(self::$server, self::$user, self::$pass, $db);
     }
 
-    public static function getTokenKey()
+	/**
+	 * I might move these but the following functions are
+	 * for the Server's Secret Key for JSON Web Tokens
+	 * @return string: Secret Token Key
+	 */
+	public static function getTokenKey()
     {
         $key = "mishu";
 /*
@@ -39,14 +63,18 @@ class DB
         $result = $db->query($sql);
 
         if ($result) {
-            if ($row = $result->fetch_row())
+             if ($row = $result->fetch_row())
                 $key = $row[0];
         }
 */
        return md5($key);
     }
 
-    public static function genTokenKey()
+	/**
+	 * Generate a new Secret Key and add to database
+	 *
+	 */
+	public static function genTokenKey()
     {
         $key = self::generateKey();
 
@@ -56,7 +84,12 @@ class DB
         $db->query($sql);
     }
 
-    private static function generateKey($len = 16)
+	/**
+	 * Generate a very unique and secure string 
+	 * @param int $len
+	 * @return mixed|string|void
+	 */
+	private static function generateKey($len = 16)
     {
         $data = openssl_random_pseudo_bytes($len);
 
