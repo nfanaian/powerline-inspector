@@ -24,4 +24,3 @@ else
 	require_once('views/pages/layout.php');
 
 ?>
-

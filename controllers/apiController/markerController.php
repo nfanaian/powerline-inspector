@@ -12,7 +12,10 @@ class MarkerController extends Controller
     }
 
 	/**
-	 *  API/Marker/foo/
+	 * API/Marker/foo/
+	 * User Input: filename
+	 * Sanitize user input, retrieve resources, and display results
+	 * Return JSON marker if file exists
 	 */
 	public function foo()
     {
@@ -21,7 +24,7 @@ class MarkerController extends Controller
     }
 
 	/**
-	 * API/Marker/getMarker/
+	 * API/Marker/getMarker/filename
 	 * User Input: filename
 	 * Sanitize user input, retrieve resources, and display results
 	 * Return JSON marker if file exists
@@ -36,7 +39,7 @@ class MarkerController extends Controller
 
     /**
      * API/Marker/getNearby/latitude/longitude/distance/
-     * User Input: filename
+     * User Input: latitude, longitude, distance
      * Sanitize user input, retrieve resources, and display results
      * Return JSON array of markers nearby (if any)
      */
