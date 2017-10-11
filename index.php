@@ -18,9 +18,11 @@ if (urlParser::parseURL()) {
 }
 
 // API Requests skip the HTML layout
+require_once('ajaxtest.php');
+/*
 if ($controller === 'api')
 	require_once('routes.php');
 else
 	require_once('views/pages/layout.php');
-
+*/
 ?>

@@ -27,7 +27,7 @@ class AuthController extends Controller
 
         // Authenticate User
         $this->model->userAuth($user, $pass);
-
+	    
         // Display results
         $this->view->output();
     }
@@ -39,8 +39,8 @@ class AuthController extends Controller
 	    $pass = urlParser::getParam(1); //urlParser::getPOST('pass');
 	    $email = urlParser::getParam(2);
 
-	    if (is_null($user) || is_null($pass) || is_null($email)) {
-		    return call('auth', 'error');
+	    if (is_null($user) || is_null($pass)) {// || is_null($email)) {
+		    return call('error', 'error_register');
 	    }
 
 	    // TO DO Sanitize Input

@@ -51,4 +51,11 @@ class ErrorController extends Controller
 		$this->model->output["status"] = "Error: API Function does not exist.";
 		$this->view->output();
 	}
+
+	public function error_register()
+	{
+		$this->model->http_response_code = 404;
+		$this->model->output["status"] = "Error: Missing some registration variables.";
+		$this->view->output();
+	}
 }

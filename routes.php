@@ -19,7 +19,7 @@
     function call($controller, $action)
     {
 	    // Verify Token for API requests
-	    if (!authRequest($controller, $action)) return call('error', 'error_token');
+	    //if (!authRequest($controller, $action)) return call('error', 'error_token');
 
         // Require controller class
         require_once('controllers/'. $controller. 'Controller.php');
