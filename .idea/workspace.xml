@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c167b555-e89c-403e-9b0b-82bfe26a869e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/apiController/authController.php" afterPath="$PROJECT_DIR$/controllers/apiController/authController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/apiController/markerController.php" afterPath="$PROJECT_DIR$/controllers/apiController/markerController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/apiController/userController.php" afterPath="$PROJECT_DIR$/controllers/apiController/userController.php" />
     </list>
     <ignored path="htdocs.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +26,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="userController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controllers/apiController/userController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="markerController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/apiController/markerController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+            <state relative-caret-position="569">
+              <caret line="40" column="51" selection-start-line="37" selection-start-column="5" selection-end-line="40" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -51,7 +62,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/models/model.php" />
         <option value="$PROJECT_DIR$/controllers/userController.php" />
         <option value="$PROJECT_DIR$/classes/addDB.php" />
         <option value="$PROJECT_DIR$/classes/DB.php" />
@@ -101,6 +111,7 @@
         <option value="$PROJECT_DIR$/resources/DB.php" />
         <option value="$PROJECT_DIR$/models/Auth.php" />
         <option value="$PROJECT_DIR$/controllers/apiController/authController.php" />
+        <option value="$PROJECT_DIR$/controllers/apiController/userController.php" />
         <option value="$PROJECT_DIR$/controllers/apiController/markerController.php" />
       </list>
     </option>
@@ -421,7 +432,7 @@
       <workItem from="1507376091872" duration="6929000" />
       <workItem from="1507482885138" duration="6776000" />
       <workItem from="1507565407266" duration="8949000" />
-      <workItem from="1507608602289" duration="5786000" />
+      <workItem from="1507608602289" duration="7632000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <option name="createChangelist" value="false" />
@@ -429,7 +440,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256123000" />
+    <option name="totallyTimeSpent" value="257969000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1308" height="784" extended-state="6" />
@@ -517,13 +528,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="74" column="59" selection-start-line="74" selection-start-column="59" selection-end-line="74" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/apiController/userController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -825,10 +829,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/controllers/apiController/userController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/apiController/markerController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        <state relative-caret-position="569">
+          <caret line="40" column="51" selection-start-line="37" selection-start-column="5" selection-end-line="40" selection-end-column="51" />
           <folding />
         </state>
       </provider>

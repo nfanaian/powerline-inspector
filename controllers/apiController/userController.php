@@ -4,11 +4,21 @@ require_once('controllers/Controller.php');
 
 class UserController extends Controller
 {
+    /**
+     * API/user/foo/
+     * User Input: void
+     * Sanitize user input, retrieve resources, and display results
+     * Return JSON 
+     */
     public function foo()
     {
         $this->model->output["status"] = "WE DID IT!";
         $this->view->output();
     }
+
+    /**
+     * API/
+     */
     public function getUser()
     {
         if (!$this->model->verifyToken())

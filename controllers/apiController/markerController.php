@@ -12,7 +12,7 @@ class MarkerController extends Controller
     }
 
 	/**
-	 *  foo()
+	 *  API/Marker/foo/
 	 */
 	public function foo()
     {
@@ -21,7 +21,10 @@ class MarkerController extends Controller
     }
 
 	/**
-	 *
+	 * API/Marker/getMarker/
+	 * User Input: filename
+	 * Sanitize user input, retrieve resources, and display results
+	 * Return JSON marker if file exists
 	 */
 	public function getMarker()
     {
@@ -32,7 +35,10 @@ class MarkerController extends Controller
     }
 
     /**
-     *
+     * API/Marker/getNearby/latitude/longitude/distance/
+     * User Input: filename
+     * Sanitize user input, retrieve resources, and display results
+     * Return JSON array of markers nearby (if any)
      */
     public function getNearby()
     {
@@ -51,7 +57,10 @@ class MarkerController extends Controller
     }
 
 	/**
-	 *
+	 * API/Marker/getAll/
+	 * User Input: void
+	 * Sanitize user input, retrieve resources, and display results
+	 * Return JSON of all markers in DB
 	 */
 	public function getAll()
     {
@@ -60,5 +69,3 @@ class MarkerController extends Controller
     }
 
 }
-
-
