@@ -9,6 +9,9 @@ require_once('models/Model.php');
 
 class Marker extends Model
 {
+	// Marker's Properties
+	// This model will hold properties of one marker at a time
+	// Therefore, if the retrieved marker is good, we push it to our $output["markers"] array
     public $filename;
     public $latitude;
     public $longitude;
@@ -19,7 +22,7 @@ class Marker extends Model
     public $oversag;
     public $lastModified;
 
-    // Set fields to null
+    // Set fields to null on model construction
     public function __construct()
     {
         parent::__construct();
@@ -34,9 +37,19 @@ class Marker extends Model
         $this->lastModified = null;
     }
 
-    // Set Marker's field for this model
-    public function set($filename, $filedir, $powerline, $powerpole, $overgrowth, $oversag,
-                        $latitude, $longitude, $lastModified)
+	/** Set Marker's field for this model
+	 * @param $filename
+	 * @param $filedir
+	 * @param $powerline
+	 * @param $powerpole
+	 * @param $overgrowth
+	 * @param $oversag
+	 * @param $latitude
+	 * @param $longitude
+	 * @param $lastModified
+	 */
+	public function set($filename, $filedir, $powerline, $powerpole, $overgrowth, $oversag,
+	                    $latitude, $longitude, $lastModified)
     {
         $this->filename = $filename;
         $this->filedir = $filedir;
@@ -49,39 +62,42 @@ class Marker extends Model
         $this->lastModified = $lastModified;
     }
 
-    // Returns an array of the current marker set to the model
-    public function toArray()
+	/** Returns an array of the current marker set to the model
+	 * @return array
+	 */
+	public function toArray()
     {
         return array(   'filename'      =>  $this->filename,
-                        'filedir'       =>  $this->filedir,
+                        //'filedir'       =>  $this->filedir,
                         'powerline'     =>  $this->powerline,
                         'powerpole'     =>  $this->powerpole,
                         'overgrowth'    =>  $this->overgrowth,
                         'oversag'       =>  $this->oversag,
                         'latitude'      =>  $this->latitude,
                         'longitude'     =>  $this->longitude,
-                        'lastModified'  =>  $this->lastModified
+                        //'lastModified'  =>  $this->lastModified
         );
     }
 
-    // Push marker to markers list
-    // If this is the first marker, create an array for output['markers']
-    private function addMarker()
+	/** Push marker to markers list
+	 * If this is the first marker, create an array for output['markers']
+	 */
+	private function addMarker()
     {
         if (is_null($this->output['markers']))
             $this->output['markers'] = array();
         array_push($this->output['markers'], $this->toArray());
     }
 
-    /**
-     * First testing search function
+    /** First testing search function
      * @param $filename | string
      * @return Image
      */
     public function foo()
     {
         $db = DB::connect();
-        $sql = "SELECT * FROM `Dummy` LIMIT 10";
+	    $tbl = DB::getTable();
+        $sql = "SELECT * FROM `{$tbl}` LIMIT 10";
         $result = $db->query($sql);
 
         if (mysqli_num_rows($result) > 0) {
@@ -106,7 +122,9 @@ class Marker extends Model
     public function getMarker($filename)
     {
         $db = DB::connect();
-        $sql = "SELECT * FROM `Dummy` WHERE `filename`='{$filename}'";
+	    $tbl = DB::getTable();
+
+        $sql = "SELECT * FROM `{$tbl}` WHERE `filename`='{$filename}'";
         $result = $db->query($sql);
 
         if (mysqli_num_rows($result) > 0) {
@@ -123,8 +141,7 @@ class Marker extends Model
         return 0;
     }
 
-    /**
-     * Get all images located within the distance of the given lat/long
+    /** Get all images located within the distance of the given lat/long
      * @param $latitude|double
      * @param $longitude|double
      * @param $distance|int - in miles
@@ -133,12 +150,13 @@ class Marker extends Model
     public function getNearby($latitude, $longitude, $distance, $limit = 500)
     {
         $db = DB::connect();
+	    $tbl = DB::getTable();
 
         $sql = "SELECT *,
                     (3959 * acos(cos(radians({$latitude}))) * cos(radians(`latitude`)) * cos(radians(`longitude`) - 
                     radians({$longitude})) + sin(radians({$latitude}) * sin(radians(`latitude`)))) 
                     AS `distance` 
-                FROM `Dummy` 
+                FROM `{$tbl}` 
                 HAVING `distance` < {$distance} 
                 ORDER BY `distance` ASC
                 LIMIT {$limit}";
@@ -161,11 +179,15 @@ class Marker extends Model
         return 0;
     }
 
-    public function getAll()
+	/** Retrieve all markers stored in the DB
+	 * @return int
+	 */
+	public function getAll()
     {
         $db = DB::connect();
+	    $tbl = DB::getTable();
 
-        $sql = "SELECT * FROM `Dummy` WHERE 1";
+        $sql = "SELECT * FROM `{$tbl}` WHERE 1";
         $result = $db->query($sql);
 
         if (!empty($result)) {
@@ -182,6 +204,22 @@ class Marker extends Model
         $this->http_response_code = 400;
         $this->output['status'] = "Failure to retrieve";
         return 0;
+    }
+
+	/**
+	 * @param $filename
+	 */
+	public function updateMarker($filename)
+    {
+
+    }
+
+	/**
+	 * @param $filename
+	 */
+	public function getImage($filename)
+    {
+
     }
 
 }

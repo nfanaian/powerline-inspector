@@ -1,0 +1,7 @@
+var points = 
+[{'status':'yellow','violation':'Google West Campus 13', 'lat':37.423901,'lng': -122.091497, 'url':'59677536cab28_119.jpg'},
+{'status':'red','violation':'Google West Campus 2', 'lat':37.424194,'lng': -122.092699, 'url':'http://localhost/Pictures/erlFt2.jpg'},
+{'status':'yellow','violation':'Google West Campus 3', 'lat':37.423152,'lng': -122.092456, 'url':'Troopers.jpg'},
+{'status':'green','violation':'Google West Campus 1', 'lat':37.523901,'lng': -122.091497, 'url':'https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=0ahUKEwjsk9egnYnWAhWBQCYKHTEsBS0QjBwIBA&url=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2016%2F03%2F28%2F12%2F35%2Fcat-1285634_960_720.png&psig=AFQjCNGyfZcgzyusl7DEH52Vn3uG9Gm-Gg&ust=1504535349463654'}, 
+{'status':'red','violation':'Google West Campus 2', 'lat':37.524194,'lng': -122.092699, 'url':'https://static1.squarespace.com/static/553a8716e4b0bada3c80ca6b/553a9655e4b03939abece18a/58769ca817bffcd222b97846/1484944923131/januaryfourblockhistory.jpg'},
+{'status':'yellow','violation':'Google West Campus 3', 'lat':37.523152,'lng': -122.092456, 'url':'https://www.google.com/search?q=images&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjzuJyInYnWAhVMxCYKHcymDyoQ_AUICigB&biw=1280&bih=676#imgrc=FgQmHRvs4UbLsM:'}]

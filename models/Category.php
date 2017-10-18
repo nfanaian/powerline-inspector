@@ -220,13 +220,11 @@ class Category extends Model
 				}
 				closedir($dh);
 			} else {
-				death("Couldn't open directory.");
+				die("Couldn't open directory.");
 			}
 		} else {
-			death("Invalid Directory.");
+			die("Invalid Directory.");
 		}
 		return $content;
 	}
-	
-	
 }

@@ -10,7 +10,6 @@
 	<body>
 		<div id="container">
 			<div id="header">
-
 			</div>
 			<div id="main">
 				<?= require_once('routes.php'); ?>

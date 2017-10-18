@@ -1,13 +1,9 @@
 <?php
+require_once('controllers/Controller.php');
 
 /**
- * Created by PhpStorm.
- * User: nfanaian
- * Date: 9/26/2017
- * Time: 2:10 PM
+ * Class APIController
  */
-
-require_once('controllers/Controller.php');
 
 class APIController extends Controller
 {
@@ -16,11 +12,14 @@ class APIController extends Controller
 	// Remember: API Has its own controller, therefore its $action is a controller of the API
 	private function validRequest($action)
 	{
-		$api = array(   'auth'      =>  ['login'],
-						'marker'    =>  ['foo', 'getMarker', 'getNearby', 'getAll']
+		$api = array(   'auth'      =>  ['login', 'register'],
+						'marker'    =>  ['foo', 'getMarker', 'getNearby', 'getAll'],
+						'test'      =>  ['hello', 'decode'],
+						'user'      =>  ['foo'],
+						'tf'        =>  ['foo', 'fixhashdirs', 'massagedataset']
 		);
 
-		$func = urlParser::getAPIFunc();
+		$func = requestParser::getAPIFunc();
 
 		// CALL API
 		// Check controller & action are valid and call it
@@ -28,7 +27,7 @@ class APIController extends Controller
 		if (array_key_exists($action, $api))
 		{
 			if (in_array($func, $api[$action]))
-				return 1;
+				return $func;
 			else
 				return 0;
 		}
@@ -40,9 +39,9 @@ class APIController extends Controller
 	public function auth()
 	{
 		require_once('controllers/apiController/authController.php');
-		$func = urlParser::getAPIFunc();
+		$func = requestParser::getAPIFunc();
 
-		if (!$this->validRequest('auth')) return call('error', 'error_api_dne');
+		if (!($func = $this->validRequest('auth'))) return call('error', 'error_api_dne');
 
 		(new AuthController())->{ $func }();
 
@@ -53,17 +52,45 @@ class APIController extends Controller
 	{
 		require_once('controllers/apiController/markerController.php');
 
-		$func = urlParser::getAPIFunc();
+		$func = requestParser::getAPIFunc();
 
-		if (!$this->validRequest('marker')) return call('error', 'error_api_dne');
+		if (!($func = $this->validRequest('marker'))) return call('error', 'error_api_dne');
 
 		(new MarkerController())->{ $func }();
 
 		return 0;
 	}
 
+	public function test()
+	{
+		require_once('controllers/apiController/testController.php');
+
+		if (!($func = $this->validRequest('test'))) return call('error', 'error_api_dne');
+
+		(new TestController())->{ $func }();
+
+		return 0;
+	}
+
 	public function user()
 	{
+		require_once('controllers/apiController/userController.php');
 
+		if (!($func = $this->validRequest('user'))) return call('error', 'error_api_dne');
+
+		(new UserController())->{ $func }();
+
+		return 0;
+	}
+
+	public function tf()
+	{
+		require_once('controllers/apiController/tensorflowController.php');
+
+		if (!($func = $this->validRequest('tf'))) return call('error', 'error_api_dne');
+
+		(new tensorflowController())->{ $func }();
+
+		return 0;
 	}
 }

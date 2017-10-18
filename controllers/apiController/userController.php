@@ -1,6 +1,11 @@
 <?php
-
 require_once('controllers/Controller.php');
+
+/**
+ * API: User Controller
+ * This controller takes care of gathering user information
+ * And returning JSON with requested information
+ */
 
 class UserController extends Controller
 {
@@ -35,4 +40,5 @@ class UserController extends Controller
         $this->view->output();
     }
 
+    // TODO: The following functions are in development; functions above are complete
 }

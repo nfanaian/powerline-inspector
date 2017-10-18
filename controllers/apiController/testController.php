@@ -11,13 +11,13 @@ class TestController extends Controller
     }
 
   public function hello()
-    {
+  {
         $this->model->output["status"] = "Hello World";
-        $this->model->output["token"] = urlParser::getToken();
+        $this->model->output["token"] = requestParser::getToken();
 
         $i = 1;
-        while (urlParser::getParam($i) != null) {
-            $this->model->output["param".$i] = urlParser::getParam($i++);
+        while (requestParser::getParam($i) != null) {
+            $this->model->output["param".$i] = requestParser::getParam($i++);
         }
         $this->view->output();
     }
@@ -25,7 +25,7 @@ class TestController extends Controller
     public function decode()
     {
         //TODO  $token = urlParser::getPOST('token');
-        $token = urlParser::getParam(0);
+        $token = requestParser::getToken();
 
         if (!is_null($token)) {
             try
@@ -44,7 +44,7 @@ class TestController extends Controller
                 $this->model->output["status"] = $e;
             }
         } else {
-            return call('auth', 'error');
+            return call('error', 'error_token');
         }
         $this->view->output();
     }

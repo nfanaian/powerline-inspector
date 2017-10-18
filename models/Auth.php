@@ -7,8 +7,7 @@ require_once('models/Model.php');
 
 class Auth extends Model
 {
-	/**
-	 * Authenticate User
+	/** Authenticate User
 	 * If user/pass are correct: generate JSON Web Token
 	 * Otherwise, return 0
 	 * @param $username
@@ -35,9 +34,8 @@ class Auth extends Model
 	    return 0;
     }
 
-	/**
-	 * Register new user    (Maybe use a special key for
-	 *                      only AJAX calls from our client)
+	/** Register new user   (Maybe use a speci-al key for
+	 *                          only AJAX calls from our client)
 	 * @param $username
 	 * @param $password
 	 * @param $email
@@ -67,10 +65,11 @@ class Auth extends Model
 		return 0;
 	}
 
-	/**
+	/** Generate a new JSON Web Token
 	 * @param $username
 	 * Generate a JSON WEB TOKEN
 	 * Sets output to token
+	 * @return bool: success/failure
 	 */
 	private function generateToken($username)
     {
@@ -79,7 +78,8 @@ class Auth extends Model
             // "aud" => "http://example.com",
             // "iat" => 1356999524,
             // "nbf" => 1357000000,
-            "user" => $username
+            "user" => $username,
+	        "clientIP" => $this->getRealIpAddr()
         );
 
         $this->output = JWT::encode($token, DB::getTokenKey());
@@ -87,9 +87,7 @@ class Auth extends Model
 	    return 1;
     }
 
-	/**
-	 * Verify client's JSON Web Token
-	 *
+	/** Verify client's JSON Web Token
 	 * @return int: Boolean
 	 */
 	public function verifyToken()
@@ -97,7 +95,7 @@ class Auth extends Model
 	    return 1; // Debug-Mode lol
 
 	    // Retrieve token from POST/GET
-        $token = urlParser::getToken();
+        $token = requestParser::getToken();
 
 	    // Check we have a token
         if (!is_null($token))
@@ -113,7 +111,6 @@ class Auth extends Model
                 //if (($this->output["iat"] + $t_expire) >= $time)
                   //  return 0;
 
-                //return $this->output["user"];
 	            return 1;
             }
             catch (UnexpectedValueException $e)

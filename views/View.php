@@ -26,7 +26,7 @@ class View
 	    // Set header type to JSON
         header("Content-Type: application/json; charset=UTF-8");
 
-	    // Reponse code
+	    // Response code
 	    http_response_code($this->model->http_response_code);
 
 	    // Display output

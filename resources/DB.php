@@ -14,6 +14,11 @@ class DB
     private static $pass = "d1dc93d2b138cb1ff2eb03e6ca1aa77a22930a8f568812b7";
     private static $db = 'Project_Dragon';
 
+	//
+	private static $imageTable = 'Dummy';
+
+	public static function getTable() { return self::$imageTable; }
+
     // Disable object instantiation of this class
     private function __construct() {}
 

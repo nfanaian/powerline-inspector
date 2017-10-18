@@ -1,13 +1,13 @@
 <?php
+require_once('controllers/Controller.php');
 
 /**
- * Created by PhpStorm.
- * User: nfanaian
- * Date: 9/23/2017
- * Time: 2:33 PM
+ * Category Controller
+ * This controller takes care of the Image Categorizer
+ * Used for categorizing the training dataset
+ * Renders display of Image Viewer
+ * Responds to POST requests
  */
-
-require_once('controllers/Controller.php');
 
 class CategoryController extends Controller
 {
@@ -48,7 +48,7 @@ class CategoryController extends Controller
 				else
 				{
 					// Copy to hash dir failure
-					$this->model->message = "Image Copy Failed. </br> 
+					$this->model->message = "Image {$this->model->reviewedFile} Copy Failed. </br> 
                       Image marked back as unreviewed. </br>";
 				}
 			}

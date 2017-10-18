@@ -1,6 +1,12 @@
 <?php
-
 require_once('controllers/Controller.php');
+
+/*
+ * API: Marker Controller
+ * This controller takes care of sanitize user input, respond to request
+ * Then gather resources and render results
+ * Return JSON containing marker objects
+ */
 
 class MarkerController extends Controller
 {
@@ -31,14 +37,14 @@ class MarkerController extends Controller
 	 */
 	public function getMarker()
     {
-        $filename = urlParser::getParam(0);//getPOST('filename');
+        $filename = requestParser::getParam(0);//getPOST('filename');
 
         $this->model->getMarker($filename);
         $this->view->output();
     }
 
     /**
-     * API/Marker/getNearby/latitude/longitude/distance/
+     * API/Marker/getNearby/<latitude>/<longitude>/<distance>/
      * User Input: latitude, longitude, distance
      * Sanitize user input, retrieve resources, and display results
      * Return JSON array of markers nearby (if any)
@@ -71,4 +77,30 @@ class MarkerController extends Controller
         $this->view->output();
     }
 
+	// TODO: The following functions are in development; functions above are complete
+	/**
+	 * API/Marker/updateMarker/<filename>/
+	 * User Input: filename
+	 * Returns: JSON stating DB Update result
+	 */
+	public function updateMarker()
+	{
+		$file = null;
+
+		$this->model->updateMarker($file);
+		$this->view->output();
+	}
+
+	/**
+	 * API/Marker/getImage/<filename>/
+	 * User Input: filename
+	 * Returns: Direct URL to image
+	 */
+	public function getImage()
+	{
+		$file = null;
+
+		$this->model->getImage($file);
+		$this->view->output();
+	}
 }

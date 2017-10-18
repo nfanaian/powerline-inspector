@@ -1,41 +1,47 @@
 
 <h1>
-<strong>Hub Access Ticket Receipt</strong>
+<strong>Hub Access Ticket Receipt:    </strong>
 </h1>
 
-<br/>q<strong>
+<table>
+	<tbody>
+	<tr>
+<br/><strong>
 Hub Id
-</strong>
+:    </strong>
 <?= $this->model->hub_id; ?>
 <br/><strong>
 Customer
-</strong>
+:    </strong>
 <?= $this->model->customer; ?>
 <br/><strong>
 Market
-</strong>
+:    </strong>
 <?= $this->model->market; ?>
 <br/><strong>
 Location
-</strong>
+:    </strong>
 <?= $this->model->loc; ?>
 <br/><strong>
 Job
-</strong>
+:    </strong>
 <?= $this->model->job; ?>
 <br/><strong>
 Start Time
-</strong>
+:    </strong>
 <?= $this->model->start_time; ?>
 <br/><strong>
 Date
-</strong>
+:    </strong>
 <?= $this->model->date; ?>
 <br/><strong>
 Team Members
-</strong>
+:    </strong>
 <?= $this->model->tech; ?>
 <br/><strong>
 XOC
-</strong>
+:    </strong>
 <?= $this->model->xoc; ?>
+	</tr>
+	</tbody>
+</table>

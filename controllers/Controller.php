@@ -13,12 +13,20 @@ class Controller
 	protected $model;
 	protected $view;
 
+	/**
+	 * Controller constructor.
+	 * @param null $model
+	 * @param null $view
+	 */
 	public function __construct($model = null, $view = null)
 	{
 		$this->model = $model;
 		$this->setView($view);
 	}
 
+	/**
+	 * @param $model
+	 */
 	protected function setModel($model)
 	{
 		$this->model = $model;
@@ -26,6 +34,9 @@ class Controller
 			$this->view->setModel($model);
 	}
 
+	/**
+	 * @param $view
+	 */
 	protected function setView($view)
 	{
 		$this->view = $view;
@@ -39,6 +50,9 @@ class Controller
 		$this->view->setModel($this->model);
 	}
 
+	/**
+	 *
+	 */
 	public function error()
 	{
 		$this->model->http_response_code = 400;

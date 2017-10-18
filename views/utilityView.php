@@ -10,12 +10,12 @@ class utilityView extends View
 {
 	public function mapView()
 	{
-		require_once('views/utility/mapViewer.php');
+		require_once('views/pages/utility/mapViewer.php');
 	}
 
 	public function userView()
 	{
-		require_once('views/utility/userViewer.php');
+		require_once('views/pages/utility/userViewer.php');
 	}
 	
 }

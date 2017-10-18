@@ -30,15 +30,15 @@
             case 'api':
                 $controller = new APIController();
                 break;
+	        case 'utility':
+		        $controller = new UtilityController();
+		        break;
 	        case 'tiktik':
 		        $controller = new TikTikController();
 		        break;
 	        case 'category':
 		        $controller = new CategoryController();
 		        break;
-            case 'test':
-                $controller = new TestController();
-                break;
 	        case 'error':
 		        $controller = new ErrorController();
 		        break;
@@ -49,10 +49,10 @@
     }
 
     //                    CONTROLLERS                ACTIONS
-    $controllers = array(   'api'       =>  ['auth', 'marker'],
+    $controllers = array(   'api'       =>  ['auth', 'marker', 'user', 'test', 'tf'],
+	                        'utility'   =>  ['mapviewer', 'userviewer'],
                             'tiktik'    =>  ['ticket', 'traffic'],
-	                        'category'  =>  ['imageViewer'],
-                            'test'      =>  ['hello', 'decode'],
+	                        'category'  =>  ['imageviewer'],
 	                        'error'     =>  ['error_auth', 'error_token', 'error_controller_dne', 'error_action_dne']
     );
 
