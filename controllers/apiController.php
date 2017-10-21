@@ -13,10 +13,10 @@ class APIController extends Controller
 	private function validRequest($action)
 	{
 		$api = array(   'auth'      =>  ['login', 'register'],
-						'marker'    =>  ['foo', 'getMarker', 'getNearby', 'getAll'],
-						'test'      =>  ['hello', 'decode'],
+						'marker'    =>  ['foo', 'getmarker', 'getnearby', 'getall', 'getimage', 'updatemarker'],
 						'user'      =>  ['foo'],
-						'tf'        =>  ['foo', 'fixhashdirs', 'massagedataset']
+						'tf'        =>  ['foo', 'fixhashdirs', 'massagedataset'],
+						'test'      =>  ['hello', 'decode']
 		);
 
 		$func = requestParser::getAPIFunc();

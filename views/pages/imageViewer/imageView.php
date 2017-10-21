@@ -11,7 +11,7 @@
 		<?= $this->model->submit_mobile; ?>
 		<div id="details">
 			<div style="<?= $this->model->dets_mobile ?>">
-				<label for="powerline">
+				<label for="powderline">
 					<span class="text">Powerline</span><br/>
 					<input type="checkbox" name="powerline" value="1" />
 				</label>

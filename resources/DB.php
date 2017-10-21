@@ -1,8 +1,9 @@
 <?php
 
 /** This is Database connection class
- * connect() returns mysqli object
- * Detects if request is local (WAMP)
+ * We can specify the database here
+ * and use connect() to return a mysqli object
+ * Detects if request is local (XAMP)
  * and connects to local DB
  **/
 

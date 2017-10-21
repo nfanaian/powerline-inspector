@@ -12,8 +12,8 @@ class Tools
 
 	public static function checkMobile()
 	{
-		// Check if mobile device
-		include 'Mobile_Detect.php';
+		// Check if mobile
+		require_once('resources/Mobile_Detect.php');
 		$detect = new Mobile_Detect();
 		if ($detect->isMobile()){
 			return 1;
@@ -21,13 +21,13 @@ class Tools
 		return 0;
 	}
 
-	public static function getHashDir($file, $folder = "training")
+	public static function getHashDir($file, $folder = "dummy")
 	{
 		$ret = array();
 		$ret["dir"] = self::$root_data. $folder. "/";
 		$ret["filename"] = $file;
 		$ret["filename_raw"] = explode(".", $file)[0];
-		$ret["file_ext"] = "." . explode(".", $file)[1];
+		$ret["file_ext"] = explode(".", $file)[1];
 		$ret["hash"] = md5($ret["filename_raw"]);
 
 		$level = 10;
@@ -35,7 +35,7 @@ class Tools
 			$ret["dir"] .= $ret["hash"][$i]. "/";
 		}
 
-		$ret["filename_hash"] = $ret["hash"] . $ret["file_ext"];
+		$ret["filename_hash"] = $ret["hash"] . ".". $ret["file_ext"];
 		$ret["filepath"] = $ret["dir"]. $ret["filename_hash"];
 
 		return $ret;

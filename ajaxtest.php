@@ -7,16 +7,17 @@
 		var root = 'https://jsonplaceholder.typicode.com';
 		var request = '/posts/1';
 		root = 'http://107.170.23.85/';
-		request = '/api/test/hello/';
+		request = 'api/marker/getimage/';
 
-		var obj;
-		$.get(root+"api/test/hello/", function(data){
+		//59677536bd647_046.jpg
+		var url = root+request;
+		$.get(url, function(data){
 			console.log(data);
-			obj = jQuery.parseJSON(data);
 		});
-		alert(obj);
+
 	</script>
 </head>
 <body>
+<img src="">
 </body>
 </html>

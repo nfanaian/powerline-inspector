@@ -85,9 +85,15 @@ class MarkerController extends Controller
 	 */
 	public function updateMarker()
 	{
-		$file = null;
+		$file = requestParser::getParam(0);
+		$values = array();
+		$values[] = (int)requestParser::getParam(1);
+		$values[] = (int)requestParser::getParam(2);
+		$values[] = (int)requestParser::getParam(3);
+		$values[] = (int)requestParser::getParam(4);
 
-		$this->model->updateMarker($file);
+
+		$this->model->updateMarker($file, $values);
 		$this->view->output();
 	}
 
@@ -98,9 +104,11 @@ class MarkerController extends Controller
 	 */
 	public function getImage()
 	{
-		$file = null;
+		$file = requestParser::getParam();
 
+		//$file = "596a0d35eec05_143.jpg";
 		$this->model->getImage($file);
-		$this->view->output();
+		//$this->view->output();
+		$this->view->image();
 	}
 }

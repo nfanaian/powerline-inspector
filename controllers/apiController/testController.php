@@ -13,6 +13,7 @@ class TestController extends Controller
   public function hello()
   {
         $this->model->output["status"] = "Hello World";
+        $this->model->http_response_code = 200;
         $this->model->output["token"] = requestParser::getToken();
 
         $i = 1;

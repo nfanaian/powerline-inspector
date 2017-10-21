@@ -17,7 +17,8 @@ class requestParser
     private function __construct() {}
     private function __clone() {}
 
-	/**
+	/** Parse HTTP $_GET["request"]
+	 * Which contains the entire URL ("/controller/action/params/")
 	 * @return bool
 	 */
 	public static function parseURL()
@@ -39,8 +40,10 @@ class requestParser
 		        if (!is_null(self::$apiFunc) && !(self::$action === 'auth'))
 		        {
 			        // Check POST, if no token, then the next GET must be token
-			        if (is_null(self::$token = self::getPOST('token')))
-				        self::$token = isset(self::$request[$i]) ? self::$request[$i++] : null;
+			        if (is_null(self::$token = self::getPOST('token'))) {
+				        self::$token = isset(self::$request[$i]) ? self::$request[$i] : null;
+				        $i++;
+			        }
 		        }
 	        }
 
@@ -55,43 +58,40 @@ class requestParser
         return false;
     }
 
-	/**
+	public static function getRequest() { return self::$request; }
+
+	/** Retrieve Controller
 	 * @return null
 	 */
 	public static function getController() { return self::$controller; }
 
-	/**
+	/** Retrieve Action (Controller's method)
 	 * @return null
 	 */
 	public static function getAction() { return self::$action; }
 
-	/**
+	/** Retrieve API Function (if API request)
 	 * @return null
 	 */
 	public static function getAPIFunc() { return self::$apiFunc; }
 
-	/**
+	/** Retrieve Token
 	 * @return null
 	 */
-	public static function getToken()
-	{
-		if (isset(self::$token) && !empty(self::$token))
-			return self::$token;
-		return null;
-	}
+	public static function getToken() { return self::$token; }
 
-	/**
+	/** Retrieve $_GET params
 	 * @param $i
 	 * @return mixed|null
 	 */
-	public static function getParam($i)
+	public static function getParam($i=0)
     {
-        if (!empty(self::$params[$i]) && isset(self::$params[$i]))
-	        return self::$params[$i];
+        if (isset(self::$params[$i]) && !is_null(self::$params[$i]))
+            return self::$params[$i];
         return null;
     }
 
-	/**
+	/** Retrieve $_POST[$key] value, returning NULL if its not set or empty
 	 * @param $key
 	 * @return null
 	 */

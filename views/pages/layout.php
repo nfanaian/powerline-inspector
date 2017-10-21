@@ -12,10 +12,10 @@
 			<div id="header">
 			</div>
 			<div id="main">
-				<?= require_once('routes.php'); ?>
+				<?php require_once('routes.php'); ?>
 			</div>
 			<div id="footer">
-				<label id="navid">Copyright &copy Navid Fanaian</label>
+				<label id="copyright">Copyright &copy Team Dragon</label>
 			</div>
 		</div>
 	</body>

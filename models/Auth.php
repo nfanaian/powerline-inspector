@@ -92,14 +92,13 @@ class Auth extends Model
 	 */
 	public function verifyToken()
     {
-	    return 1; // Debug-Mode lol
-
 	    // Retrieve token from POST/GET
         $token = requestParser::getToken();
 
 	    // Check we have a token
         if (!is_null($token))
         {
+	        return 1; // Debug-Mode: Checks something was passed as 'token'
             try
             {
 	            // Attempt to decode JSON Web Token

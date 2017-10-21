@@ -7,12 +7,22 @@ class Model
 {
     public $http_response_code;
     public $output;
+	public $token = null;
 
     public function __construct()
     {
-        $this->http_response_code = 400;
+        $this->http_response_code = 200;
         $this->output = array();
-        //$this->output["time"] = date("");
+
+	    // HTTP Request Made
+	    $request = implode("/", requestParser::getRequest());
+
+        $this->output["request"] = array(   "request"   => $request,
+	                                        "time"   =>   date("h:i:s A",time()),
+											"date"  =>   date("m/d/Y",time()));
+
+	    $this->output["token"] = requestParser::getToken();
+	    $this->output["status"] = requestParser::getParam();
         //$this->output["clientIP"] = $this->getRealIpAddr();
     }
 

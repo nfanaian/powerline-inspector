@@ -19,7 +19,7 @@
     function call($controller, $action)
     {
 	    // Verify Token for API requests
-	    //if (!authRequest($controller, $action)) return call('error', 'error_token');
+	    if (!authRequest($controller, $action)) return call('error', 'error_token');
 
         // Require controller class
         require_once('controllers/'. $controller. 'Controller.php');
@@ -46,6 +46,7 @@
 	    
         // call the action
         $controller->{ $action }();
+	    return 0;
     }
 
     //                    CONTROLLERS                ACTIONS
@@ -61,10 +62,11 @@
     // Otherwise, redirect to corresponding error
     if (array_key_exists($controller, $controllers))
     {
-        if (in_array($action, $controllers[$controller]))
-            call($controller, $action);
-        else
-            call('error', 'error_action_dne');
+        if (in_array($action, $controllers[$controller])) {
+	        call($controller, $action);
+        } else {
+	        call('error', 'error_action_dne');
+        }
+    } else {
+	    call('error', 'error_controller_dne');
     }
-    else
-        call('error', 'error_controller_dne');

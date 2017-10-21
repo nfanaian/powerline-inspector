@@ -1,7 +1,7 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: nfanaian
- * Date: 10/8/2017
- * Time: 2:25 PM
- */
+<meta name="description" content="Project Dragon - Map Viewer">
+
+<link href="/views/pages/utility/styles.css" rel="stylesheet" type="text/css">
+
+<!-- Javascripts -->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+

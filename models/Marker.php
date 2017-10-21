@@ -49,14 +49,14 @@ class Marker extends Model
 	 * @param $lastModified
 	 */
 	public function set($filename, $filedir, $powerline, $powerpole, $overgrowth, $oversag,
-	                    $latitude, $longitude, $lastModified)
+	                    $longitude, $latitude, $lastModified)
     {
         $this->filename = $filename;
         $this->filedir = $filedir;
-        $this->powerline = $powerline;
-        $this->powerpole = $powerpole;
-        $this->overgrowth = $overgrowth;
-        $this->oversag = $oversag;
+        $this->powerline = ($powerline)? true: false;
+        $this->powerpole = ($powerpole)? true: false;
+        $this->overgrowth = ($overgrowth)? true: false;
+        $this->oversag = ($oversag)? true: false;
         $this->latitude = $latitude;
         $this->longitude = $longitude;
         $this->lastModified = $lastModified;
@@ -68,14 +68,13 @@ class Marker extends Model
 	public function toArray()
     {
         return array(   'filename'      =>  $this->filename,
-                        //'filedir'       =>  $this->filedir,
                         'powerline'     =>  $this->powerline,
                         'powerpole'     =>  $this->powerpole,
                         'overgrowth'    =>  $this->overgrowth,
                         'oversag'       =>  $this->oversag,
                         'latitude'      =>  $this->latitude,
                         'longitude'     =>  $this->longitude,
-                        //'lastModified'  =>  $this->lastModified
+                        'lastModified'  =>  $this->lastModified
         );
     }
 
@@ -197,7 +196,7 @@ class Marker extends Model
                     $this->addMarker();
                 }
                 $this->http_response_code = 200;
-                $this->output['status'] = "Nearby markers retrieved";
+                $this->output['status'] = "All markers retrieved";
                 return 1;
             }
         }
@@ -206,20 +205,53 @@ class Marker extends Model
         return 0;
     }
 
-	/**
+	/** Updates filename's category values 
 	 * @param $filename
 	 */
-	public function updateMarker($filename)
+	public function updateMarker($filename, $values = [-1,-1,-1,-1])
     {
-
+	    $this->output["status"] = "Hello World!";
+	    $this->output["filename"] = $filename;
+	    $this->output["values"] = array("powerline"     =>  $values[0],
+		                                "powerpole"     =>  $values[1],
+	                                    "overgrowth"    =>  $values[2],
+		                                "oversag"       =>  $values[3]);
     }
 
-	/**
+	/** Retrieve physical location of requested filename
+	 *  Ensuring image exists and is correct format, otherwise providing fallback image
+	 *  Set up array with image filename, type, and full filepath for the View
 	 * @param $filename
 	 */
 	public function getImage($filename)
     {
+	    require_once 'resources/tools.php';
+	    $hash = Tools::getHashDir($filename, 'dummy');
+	    $file = $hash["filepath"];
 
+	    // Fallback/Error Image
+	    $fallback = "/usr/local/project_dragon/data/sadkermit.jpg";
+
+
+//	    $file = "/usr/local/project_dragon/data/dummy/5/d/3/7/b/5/5/5/6/d/5d37b5556d3f7d3e491693b1983b4140.jpg";
+
+		//DETERMINE TYPE
+		//$ext = array_pop(explode ('.', $file));
+	    $ext = $hash["file_ext"];
+		$allowed['gif'] = 'image/gif';
+		$allowed['png'] = 'image/png';
+		$allowed['jpg'] = 'image/jpeg';
+		$allowed['jpeg'] = 'image/jpeg';
+		
+		if(file_exists($file) && $ext != '' && isset($allowed[strtolower($ext)])) {
+			$type = $allowed[strtolower($ext)];
+		} else {
+			$file = $fallback;
+			$type = 'image/jpeg';
+		}
+	    $this->output["type"] = $type;
+	    $this->output["image"] = end(explode("/", $file));
+	    $this->output["file"] = $file;
     }
-
 }
+

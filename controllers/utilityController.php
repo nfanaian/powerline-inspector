@@ -9,7 +9,7 @@ class UtilityController extends Controller
 {
 	public function __construct()
 	{
-		require_once('models/utility.php');
+		require_once('models/Utility.php');
 		require_once('views/utilityView.php');
 		parent::__construct(new Utility(), new utilityView());
 	}
@@ -18,5 +18,4 @@ class UtilityController extends Controller
 	{
 		$this->view->mapView();
 	}
-	
 }
