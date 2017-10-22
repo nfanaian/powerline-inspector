@@ -12,7 +12,7 @@ class APIController extends Controller
 	// Remember: API Has its own controller, therefore its $action is a controller of the API
 	private function validRequest($action)
 	{
-		$api = array(   'auth'      =>  ['login', 'register'],
+		$api = array(   'auth'      =>  ['login', 'register', 'authpage'],
 						'marker'    =>  ['foo', 'getmarker', 'getnearby', 'getall', 'getimage', 'updatemarker'],
 						'user'      =>  ['foo'],
 						'tf'        =>  ['foo', 'fixhashdirs', 'massagedataset'],
@@ -29,11 +29,10 @@ class APIController extends Controller
 			if (in_array($func, $api[$action]))
 				return $func;
 			else
-				return 0;
+				return call('error', 'error_api_function_dne');
 		}
 		else
-			return 0;
-
+			return call('error', 'error_api_function_dne');
 	}
 
 	public function auth()
@@ -41,7 +40,7 @@ class APIController extends Controller
 		require_once('controllers/apiController/authController.php');
 		$func = requestParser::getAPIFunc();
 
-		if (!($func = $this->validRequest('auth'))) return call('error', 'error_api_dne');
+		if (!($func = $this->validRequest('auth'))) return 0;
 
 		(new AuthController())->{ $func }();
 
@@ -54,7 +53,7 @@ class APIController extends Controller
 
 		$func = requestParser::getAPIFunc();
 
-		if (!($func = $this->validRequest('marker'))) return call('error', 'error_api_dne');
+		if (!($func = $this->validRequest('marker'))) return 0;
 
 		(new MarkerController())->{ $func }();
 
@@ -65,7 +64,7 @@ class APIController extends Controller
 	{
 		require_once('controllers/apiController/testController.php');
 
-		if (!($func = $this->validRequest('test'))) return call('error', 'error_api_dne');
+		if (!($func = $this->validRequest('test'))) return 0;
 
 		(new TestController())->{ $func }();
 
@@ -76,7 +75,7 @@ class APIController extends Controller
 	{
 		require_once('controllers/apiController/userController.php');
 
-		if (!($func = $this->validRequest('user'))) return call('error', 'error_api_dne');
+		if (!($func = $this->validRequest('user'))) return 0;
 
 		(new UserController())->{ $func }();
 
@@ -87,7 +86,7 @@ class APIController extends Controller
 	{
 		require_once('controllers/apiController/tensorflowController.php');
 
-		if (!($func = $this->validRequest('tf'))) return call('error', 'error_api_dne');
+		if (!($func = $this->validRequest('tf'))) return 0;
 
 		(new tensorflowController())->{ $func }();
 

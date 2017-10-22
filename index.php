@@ -1,7 +1,9 @@
 <?php
 
+// DEFAULT TIMEZONE
+date_default_timezone_set('America/New_York');
+
 // Global Resources
-require_once('resources/jwt.php');
 require_once('resources/DB.php');
 require_once('resources/requestParser.php');
 
@@ -12,17 +14,13 @@ function is_ajax() {
 }
 
 // Parse request
-if (requestParser::parseURL()) {
-    $controller = requestParser::getController();
-    $action     = requestParser::getAction();
-} else {
-	// Default (this is something old for work)
-    $controller = 'tiktik';
-    $action = 'ticket';
+if (!requestParser::parseURL()) {
+	requestParser::setController("utility");
+	requestParser::setAction("userviewer");
 }
 
 // API Requests skip the HTML layout
-if ($controller === 'api')
+if (requestParser::getController() === 'api')
 	require_once('routes.php');
 else
 	require_once('views/pages/layout.php');

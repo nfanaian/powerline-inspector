@@ -170,6 +170,7 @@ class Marker extends Model
                 }
                 $this->http_response_code = 200;
                 $this->output['status'] = "Nearby markers retrieved";
+	            $this->output["success"] = true;
                 return 1;
             }
         }
@@ -197,6 +198,7 @@ class Marker extends Model
                 }
                 $this->http_response_code = 200;
                 $this->output['status'] = "All markers retrieved";
+	            $this->output["success"] = true;
                 return 1;
             }
         }
@@ -210,7 +212,10 @@ class Marker extends Model
 	 */
 	public function updateMarker($filename, $values = [-1,-1,-1,-1])
     {
+	    //TODO Actually update marker in DB
+
 	    $this->output["status"] = "Hello World!";
+	    $this->output["success"] = true;
 	    $this->output["filename"] = $filename;
 	    $this->output["values"] = array("powerline"     =>  $values[0],
 		                                "powerpole"     =>  $values[1],

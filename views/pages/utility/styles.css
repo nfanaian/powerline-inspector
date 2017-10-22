@@ -5,11 +5,6 @@ html {
 #header {
     text-align: center;
 }
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
 
 #map {
     width: 50%;
@@ -82,22 +77,13 @@ html {
     float: right;
 }
 
-#info .details {
+#info .block {
     padding-top: 10px;
     padding-bottom: 10px;
     width: 100%;
     text-align: center;
     clear: both;
     display: block;
-}
-
-#info .updateRecord {
-    text-align: center;
-    display: block;
-    clear: both;
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 .btn {
@@ -115,7 +101,7 @@ html {
     -moz-box-shadow: 0px 1px 3px #666666;
     box-shadow: 0px 1px 3px #666666;
     color: #888;
-    font-size: 24px;
+    font-size: 18px;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
 }
@@ -179,6 +165,24 @@ input[type="checkbox"]:focus:checked:not(:disabled):after{
 
 input[type="checkbox"]:disabled{
     opacity:0.5;
+}
+
+/** INPUT TEXT BOX **/
+.input {
+    border-color:#cccccc;
+    border-style:solid;
+    font-size:18px;
+    padding:10px;
+    text-align:left;
+    border-width:1px;
+    border-radius:14px;
+    background-color:#f2f8fc;
+    color:#888888;
+    box-shadow: 3px 1px 7px 0px rgba(42,42,42,.45); text-shadow:0px 0px 0px rgba(42,42,42,.75);
+}
+
+.input:focus {
+    outline:none;
 }
 
 /* The Modal (background) */

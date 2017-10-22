@@ -190,8 +190,6 @@ class TF extends Model
 
 	public function copyCategory($category = 'powerline')
 	{
-		require_once('resources/tools.php');
-
 		$this->getCategoryFiles($category);
 
 		$this->output["files"] = array();
@@ -201,6 +199,8 @@ class TF extends Model
 			$file_src = $hash["filepath"];
 			$dir = $this->root_dest. $category. "/";
 			$file_dest = $dir. $file;
+
+			require_once('resources/tools.php');
 			if (Tools::copyImage($file_src, $file_dest, $dir))
 				array_push($this->output["files"], $file_dest);
 		}

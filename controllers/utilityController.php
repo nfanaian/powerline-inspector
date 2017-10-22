@@ -16,6 +16,15 @@ class UtilityController extends Controller
 
 	public function mapViewer()
 	{
+		if (!$this->model->authenticate())
+			return call('error', 'error_authPage');
+
 		$this->view->mapView();
+	}
+
+	public function userViewer()
+	{
+		$this->model->clearKeys();
+		$this->view->userView();
 	}
 }

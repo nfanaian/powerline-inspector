@@ -16,20 +16,28 @@ class Auth extends Model
 	 */
 	public function userAuth($username, $password)
     {
+	 //   return $this->generateJWT($username); // DEBUG
+
         $db = DB::connect(); //New MySQLi Object
 
 	    // Authenticate proposed user with database
         $sql = "SELECT * FROM `User` WHERE `username`='{$username}' AND `password`='{$password}'";
 
 	    // Check result
-        if ($result = $db->query($sql))
+        $result = $db->query($sql);
+
+        if ($result->num_rows > 0)
         {
 	        // Generate JWT if user is authenticated
             if ($row = $result->fetch_assoc())
-	            return $this->generateToken($username);
+            {
+	            if ($this->generateJWT($username))
+	            {
+		            //
+	            }
+            }
             $result->free();
        }
-        $this->http_response_code = 400;
         $this->output["status"] = "Authentication failure.";
 	    return 0;
     }
@@ -46,7 +54,6 @@ class Auth extends Model
 		if (is_null($username) || is_null($password) || is_null($email)) {
 
 			$this->output['status'] = "Missing variables to register user";
-			$this->http_response_code = 400;
 		}
 
 		$db = DB::connect();
@@ -57,11 +64,10 @@ class Auth extends Model
 		$db->query($sql);
 		if (mysqli_affected_rows($db)){
 			$this->output['status'] = $username . " has been added";
-			$this->http_response_code = 202; //SUCCESS
+			$this->output["success"] = true;
 			return 1;
 		}
 		$this->output['status'] = "Failed to register user";
-		$this->http_response_code = 400;
 		return 0;
 	}
 
@@ -71,19 +77,22 @@ class Auth extends Model
 	 * Sets output to token
 	 * @return bool: success/failure
 	 */
-	private function generateToken($username)
+	private function generateJWT($username)
     {
         $token = array(
             // "iss" => "http://example.org",
             // "aud" => "http://example.com",
-            // "iat" => 1356999524,
-            // "nbf" => 1357000000,
+            // "iat" => 1356999524,     // idk the format, but its issued time of token
+            // "nbf" => 1357000000,     // and this is life of token
             "user" => $username,
+	        "request" => $this->output["request"],
 	        "clientIP" => $this->getRealIpAddr()
         );
 
-        $this->output = JWT::encode($token, DB::getTokenKey());
-        $this->http_response_code = 202; //SUCCESS
+	    require_once('resources/jwt.php');
+        $this->output["jwt"] = JWT::encode($token, DB::getTokenKey());
+
+	    $this->output["success"] = true;
 	    return 1;
     }
 
@@ -93,36 +102,35 @@ class Auth extends Model
 	public function verifyToken()
     {
 	    // Retrieve token from POST/GET
-        $token = requestParser::getToken();
+	    $jwt = requestParser::getToken();
 
-	    // Check we have a token
-        if (!is_null($token))
-        {
-	        return 1; // Debug-Mode: Checks something was passed as 'token'
-            try
-            {
-	            // Attempt to decode JSON Web Token
-                $this->output = (array)JWT::decode($token, DB::getTokenKey(), array('HS256'));
+	    if (!is_null($jwt)) {
+		    try
+		    {
+			    $key = DB::getTokenKey();
+			    require_once('resources/jwt.php');
+			    $jwt_decoded = (array)JWT::decode($jwt, $key, array('HS256')); // We just need the function to not throw errors
+			    $this->output["success"] = true;
 
+			    // TODO Check iat (jwt issued time) & if jwt is older than t, return 0
+			    // This is additional feature to check if token has expired
+			    //if (($this->output["iat"] + $t_expire) >= $time)
+			    //  return 0;
 
-                // TODO Check iat (jwt issued time) & if jwt is older than t, return 0
-	            // This is additional feature to check if token has expired
-                //if (($this->output["iat"] + $t_expire) >= $time)
-                  //  return 0;
-
-	            return 1;
-            }
-            catch (UnexpectedValueException $e)
-            {
-                $this->http_response_code = 400; // error with token
-                $this->output["status"] = $e;
-            }
-            catch (DomainException $e)
-            {
-                $this->http_response_code = 400; // error with token
-                $this->output["status"] = $e;
-            }
-        }
+			    return 1;
+		    }
+		    catch (UnexpectedValueException $e)
+		    {
+			    $this->model->output["status"] = $e->getMessage();
+		    }
+		    catch (DomainException $e)
+		    {
+			    $this->model->output["status"] = $e->getMessage();
+		    }
+	    } else {
+		    return call('error', 'error_token');
+	    }
+	    //return 1; // Debug-Mode: Checks something was passed as 'token'
         return 0;
     }
 }

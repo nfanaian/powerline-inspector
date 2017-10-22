@@ -35,6 +35,8 @@ class View
 	    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
 	    header('Access-Control-Max-Age: 1000');
 	    header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
+	    header("Cache-Control: no-cache, must-revalidate");
+	    header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 	    header("Content-Type: application/json");
 
 	    // Response code
@@ -44,7 +46,7 @@ class View
 	    if (is_array($this->model->output))
             echo json_encode($this->model->output); // Encode arrays as JSON
         else
-            echo $this->model->output; // (token)
+            echo json_encode(array("Response" => $this->model->output)); // (token)
     }
 
 
@@ -81,6 +83,11 @@ class View
 		 */
 		@readfile($this->model->output["file"]);
 		exit();
+	}
+
+	public function error()
+	{
+		require_once('views/pages/error_page.php');
 	}
 }
 ?>

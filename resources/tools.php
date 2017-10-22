@@ -100,5 +100,23 @@ class Tools
 		}
 		return $content;
 	}
-	
+
+	/** Make an HTTP CALL TO API
+	 * Using PHP CURL methods
+	 * @param $url
+	 * @param $postIt
+	 * @return array (associative) of json result
+	 */
+	public static function apiCall($url, $postIt)
+	{
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postIt);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$json = json_decode(curl_exec($ch));
+		curl_close($ch);
+
+		return $json;
+	}
 }

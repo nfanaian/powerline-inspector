@@ -49,14 +49,4 @@ class Controller
 
 		$this->view->setModel($this->model);
 	}
-
-	/**
-	 *
-	 */
-	public function error()
-	{
-		$this->model->http_response_code = 400;
-		$this->model->output["status"] = "Unexpected Error";
-		$this->view->output();
-	}
 }

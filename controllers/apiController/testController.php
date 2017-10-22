@@ -25,24 +25,22 @@ class TestController extends Controller
 
     public function decode()
     {
-        //TODO  $token = urlParser::getPOST('token');
-        $token = requestParser::getToken();
+	    $key = DB::getTokenKey();
 
-        if (!is_null($token)) {
+	    $jwt = requestParser::getToken();
+        if (!is_null($jwt)) {
             try
             {
-                $this->model->output = (array)JWT::decode($token, DB::getTokenKey(), array('HS256'));
-                $this->http_response_code = 200; // error with token
+                $this->model->output["token"] = (array)JWT::decode($jwt, $key, array('HS256'));
+                $this->output["success"] = true;
             }
             catch (UnexpectedValueException $e)
             {
-                $this->http_response_code = 400; // error with token
-                $this->model->output["status"] = $e;
+                $this->model->output["status"] = $e->getMessage();
             }
             catch (DomainException $e)
             {
-                $this->http_response_code = 400; // error with token
-                $this->model->output["status"] = $e;
+                $this->model->output["status"] = $e->getMessage();
             }
         } else {
             return call('error', 'error_token');

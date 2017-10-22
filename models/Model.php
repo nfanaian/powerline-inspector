@@ -9,21 +9,33 @@ class Model
     public $output;
 	public $token = null;
 
+	/* This is the parent constructor() for all Models
+	 *
+	 */
     public function __construct()
     {
         $this->http_response_code = 200;
         $this->output = array();
 
 	    // HTTP Request Made
-	    $request = implode("/", requestParser::getRequest());
+	    if (!is_null($request = requestParser::getRequest()))
+	    {
+		    $request = implode("->", $request);
+		    // Let's make it look nice
+		    $this->output["request"] = array("request" => $request,
+			    "time" => date("h:i:s A", time()),
+			    "date" => date("m-d-Y", time()));
+	    }
 
-        $this->output["request"] = array(   "request"   => $request,
-	                                        "time"   =>   date("h:i:s A",time()),
-											"date"  =>   date("m/d/Y",time()));
+	    // Add Token only if passed (This is just to keep track of the token used on the request)
+	    // CLIENT DOES NOT REALLY NEED THIS (DEBUG)
+	    if (!is_null($t = requestParser::getToken()))
+	        $this->output["token_passed"] = $t;
 
-	    $this->output["token"] = requestParser::getToken();
-	    $this->output["status"] = requestParser::getParam();
-        //$this->output["clientIP"] = $this->getRealIpAddr();
+		$this->output["user-pass"] = requestParser::getPOST('user'). "|". requestParser::getPOST('pw');
+	    $this->output["status"] = "Model created"; // Debug
+	    $this->output["success"] = false; //default false, so only upon a successful request is it set to true
+        //$this->output["clientIP"] = $this->getRealIpAddr(); // If you want it
     }
 
 	protected function getRealIpAddr()

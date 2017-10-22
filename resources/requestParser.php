@@ -37,7 +37,7 @@ class requestParser
 		            self::$apiFunc = !empty(self::$request[$i]) ? strtolower(self::$request[$i++]) : null;
 
 		        // Check for JWToken only for non-authentication API requests
-		        if (!is_null(self::$apiFunc) && !(self::$action === 'auth'))
+		        if (!is_null(self::$apiFunc) && ((self::$apiFunc === 'authpage') || !(self::$action === 'auth')))
 		        {
 			        // Check POST, if no token, then the next GET must be token
 			        if (is_null(self::$token = self::getPOST('token'))) {
@@ -61,14 +61,23 @@ class requestParser
 	public static function getRequest() { return self::$request; }
 
 	/** Retrieve Controller
-	 * @return null
+	 * @return Controller
 	 */
 	public static function getController() { return self::$controller; }
 
+	/** Set Controller
+	 */
+	public static function setController($str) { self::$controller = $str; }
+
 	/** Retrieve Action (Controller's method)
-	 * @return null
+	 * @return Action
 	 */
 	public static function getAction() { return self::$action; }
+
+	/** Set Action
+	 */
+	public static function setAction($str) { self::$action = $str; }
+
 
 	/** Retrieve API Function (if API request)
 	 * @return null
@@ -79,6 +88,10 @@ class requestParser
 	 * @return null
 	 */
 	public static function getToken() { return self::$token; }
+
+	/** Set Token
+	 */
+	public static function setToken($str) { self::$token = $str; }
 
 	/** Retrieve $_GET params
 	 * @param $i
@@ -101,49 +114,4 @@ class requestParser
             return $_POST[$key];
         return null;
     }
-
-	/**
-	 * @return mixed|null
-	 */
-	public static function getUsername()
-	{
-		if (!is_null($ret = self::getPOST('user')))
-			return $ret;
-		if (!is_null($ret = self::getParam(0)))
-			return $ret;
-		return null;
-	}
-
-	// Get password from POST (check 'password', 'pass', then 'code' POST for passwords)
-	/**
-	 * @return mixed|null
-	 */
-	public static function getCode()
-	{
-		if (!is_null($ret = self::getPOST('password')) || !is_null($ret = self::getPOST('pass')) || !is_null($ret = self::getPOST('code')))
-			return $ret;
-		if (!is_null($ret = self::getParam(1)))
-			return $ret;
-		return null;
-	}
-
-	/**
-	 * @return null
-	 */
-	public static function getFilename()
-    {
-	    if (!is_null($ret = self::getPOST('filename')))
-		    return $ret;
-	    return null;
-    }
-
-	/**
-	 * @return array|null
-	 */
-	public static function getCoords()
-	{
-		if (!is_null($lat = self::getPOST('latitude')) && !is_null($lng = self::getPOST('longitude')))
-			return array( 'latitude' => $lat, 'longitude' => $lng );
-		return null;
-	}
 }
