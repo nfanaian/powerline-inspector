@@ -7,50 +7,6 @@ var selectedMarker;
 var markers = [];
 var map;
 
-/** Disabling line below, better done server-side instead
- * this way the server will check for jwt cookie
- * and authenticate the jwt
- * before serving any HTML/JavaScript to begin with
- */
-//window.onload = authenticateUser();
-
-/* Authenticates user
- * Upon failure of authentication
- * User is redirected to login screen
- * (this function is called when the window loads => window.onload = authenticateUser();
- */
-function authenticateUser()
-{
-    var we_good = false;
-
-    var apiController = "api/auth/";
-    var func = "authpage";
-
-    var key = window.getCookie('token');
-
-
-    // AJAX POST REQUEST
-    var url = window.root + apiController + func + "/";
-
-    console.log("authenticating..");
-    $.post(
-        url,
-        {
-            token: key
-        },
-        function(data){
-            if (data.success == true)
-            {
-                // User Authenticated
-                we_good = true;
-                console.log(data);
-            } else {
-                window.location.href = window.root_self;
-            }
-        }
-    );
-}
-
 /* Load Google Maps
  *
  */
@@ -76,33 +32,6 @@ function loadMap() {
 
 function initMarkers()
 {
-    /*
-    // AJAX REQUEST for /getimage/ JSON debug (it is set to @readfile() now)
-    var root = "http://107.170.23.85/api/marker/";
-    var key = "WTF";
-    var func = "getimage";
-
-    // Get filename from hidden label
-    var filename = document.getElementById("filename").getAttribute("value").toString();
-
-    // AJAX POST REQUEST
-    var url = root + func + "/" + filename + "/";
-
-    $.post(
-        url,
-        {
-            token: key
-        },
-        function (data) {
-            console.log(data);
-        }
-    ); */
-
-    /* AJAX REQUEST
-     * After loading Google Maps, make AJAX request for
-     * All Markers and load on map
-     */
-
     var apiController = "api/marker/";
     var key = window.getCookie('token');
     var func = "getall";
@@ -147,13 +76,6 @@ function addMarkers(data)
             lastModified: data[i].lastModified,
             id: i
         });
-        /*
-         var infowindow = new google.maps.InfoWindow({
-         content: data[i].filename
-         });
-
-         infowindow.open(map, markers[i]);
-         */
 
         // EVENT LISTENER: Marker.OnClick()
         // Here we define the function that is called upon clicking a marker
@@ -165,7 +87,6 @@ function addMarkers(data)
 
             // Log Click (debugging)
             console.log("Marker Selected: " + window.markers[this.id].filename);
-            console.log("Key: " + key);
 
             // Update selected marker
             window.selectedMarker = window.markers[this.id];
@@ -182,7 +103,7 @@ function addMarkers(data)
             document.getElementById("update-btn").setAttribute("value", "Update Record");
 
             // MOBILE ONLY: Scroll Page to Image upon clicking marker
-            if (0 || typeof window.orientation !== 'undefined')
+            if (typeof window.orientation !== 'undefined')
             {
                 document.getElementById('box').scrollIntoView({
                     block: "start",
