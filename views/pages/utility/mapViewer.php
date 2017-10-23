@@ -22,39 +22,16 @@ if (Tools::checkMobile()) { } */
 <script type="text/javascript" src="/views/pages/utility/methods/utils.js"></script>
 <script type="text/javascript" src="/views/pages/utility/methods/map.js"></script>
 
-<!-- Title -->
-<!--<h3 id="header">Project Dragon Demo</h3>-->
-
-
-	<!-- Google Maps -->
-<div id="map"></div>
-
-<!-- TODO: Future feature
-<div id="headerHolder">
-	<nav id="filter-group" class="filter-group">
-		<input type="checkbox" id="poi-Green">
-		<label for="poi-Green">Green</label>
-		<input type="checkbox" id="poi-Yellow">
-		<label for="poi-Yellow">Yellow</label>
-		<input type="checkbox" id="poi-Red">
-		<label for="poi-Red">red</label>
-		<input type="checkbox" id="poi-dontKnow">
-		<label for="poi-dontKnow">Dont know yet</label>
-	</nav>
+<!-- Google Maps -->
+<div id="map">
 </div>
--->
 
-<!-- Update Marker -->
+<!-- UTILITY IMAGE -->
 <div id="box">
-	<!--
-		TODO: add a PHP echo to 'src=', upon initial load PHP can take care of first image
-		TODO: AJAX can take care of image updates,
-
-	 -->
-	<img id="utilityImage" src="http://via.placeholder.com/600x500?text=Click+a+Marker">
+	<img id="utilityImage" onclick="imageClick()" src="http://via.placeholder.com/600x500?text=Click+a+Marker">
 </div>
 
-<!-- AJAX action="api/marker/updatemarker/" -->
+<!-- Info Box -->
 <div id="info">
 	<div class="left">
 		<div>
@@ -84,6 +61,7 @@ if (Tools::checkMobile()) { } */
 			</label>
 		</div>
 	</div>
+	<!-- Geo Coords -->
 	<div class="block">
 		<label for="latitude">
 			<span class="text">Latitude</span>
@@ -96,20 +74,24 @@ if (Tools::checkMobile()) { } */
 			<span id="longitude"></span>
 		</label>
 	</div>
+
+	<!-- Update Button -->
 	<div class="block">
 		<input id="update-btn" class="btn" type="button" value="Update Record" onclick="updateMarker()">
 	</div>
 
+	<!-- Logout Button -->
 	<div class="block logout">
 		<input id="logout-btn" class="btn logout" type="button" value="Logout" onclick="logout()">
 	</div>
 </div>
 
+<!-- Full Screen  Image -->
+<div id="myModal" class="modal">
 
-<!-- TODO: Modal
-		<!--- Fullscreen image onClick()
-		<div id="myModal" class="modal">
-			<span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
-			<img class="modal-content" id="utilityImage">
-		</div>
-		-->
+	<!-- The Close Button -->
+	<span class="close" onclick="closeClick()">&times;</span>
+
+	<!-- Modal Content (The Image) -->
+	<img class="modal-content" id="modalImage">
+</div>

@@ -26,7 +26,14 @@ html {
     height: 100%;
     object-fit: contain;
     object-position: center;
+
+    /* modal stuff */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
 }
+
+
 
 #box img:hover {opacity: 0.7;}
 
@@ -116,14 +123,9 @@ html {
 }
 
 .btn.logout {
-    font-size: 10px;
+    font-size: 12px;
     padding: 5px 10px 5px 10px;
 }
-
-.block.logout {
-    padding-top: 50px;
-}
-
 
 /* INPUT */
 input[type="checkbox"]{
@@ -193,6 +195,8 @@ input[type="checkbox"]:disabled{
     outline:none;
 }
 
+
+
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -213,12 +217,7 @@ input[type="checkbox"]:disabled{
     margin: auto;
     display: block;
     width: 80%;
-    height:80%;
-    /*max-width: 700px;*/
-}
-
-/* Add Animation - Zoom in the Modal */
-.modal-content {
+    max-width: 700px;
     -webkit-animation-name: zoom;
     -webkit-animation-duration: 0.6s;
     animation-name: zoom;
@@ -254,11 +253,8 @@ input[type="checkbox"]:disabled{
 }
 
 /* 100% Image Width on Smaller Screens */
-@media only screen {
+@media only screen and (max-width: 700px){
     .modal-content {
-        width: 90%;
-        height: 90%;
+        width: 100%;
     }
 }
-
-/* End of modal stuff */

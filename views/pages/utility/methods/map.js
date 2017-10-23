@@ -1,6 +1,8 @@
 /** map
  * Javascript file used by /utility/mapViewer/
  */
+
+/* GLOBALS */
 var selectedMarker;
 var markers = [];
 var map;
@@ -244,4 +246,20 @@ function updateMarker()
             document.getElementById("update-btn").setAttribute("value", "Updated Successfully");
         }
     );
+}
+
+/* Image Full Screen */
+function imageClick(){
+    // Get the modal
+    var modal = document.getElementById('myModal');
+    var img = document.getElementById("utilityImage");
+    var modalImg = document.getElementById("modalImage");
+    modal.style.display = "block";
+    modalImg.src = img.src;
+}
+
+// When the user clicks on <span> (x), close the modal
+function closeClick() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = "none";
 }
