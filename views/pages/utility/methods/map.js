@@ -1,40 +1,16 @@
-/** Utility
+/** map
  * Javascript file used by /utility/mapViewer/
  */
-
-
-// ** GLOBAL VARIABLES
-//var root = "http://107.170.23.85/";
-var root = window.location.href.split("/")[0] + "//" + window.location.href.split("/")[2] + "/";
-console.log(root);
 var selectedMarker;
 var markers = [];
 var map;
 
-
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-//window.onload = authenticateUser();
-/** Disabling line above, better done server-side instead
+/** Disabling line below, better done server-side instead
  * this way the server will check for jwt cookie
  * and authenticate the jwt
  * before serving any HTML/JavaScript to begin with
  */
+//window.onload = authenticateUser();
 
 /* Authenticates user
  * Upon failure of authentication
@@ -67,19 +43,21 @@ function authenticateUser()
                 we_good = true;
                 console.log(data);
             } else {
-                window.location.href = window.root;
+                window.location.href = window.root_self;
             }
         }
     );
 }
 
+/* Load Google Maps
+ *
+ */
 function loadMap() {
     var mapProp = {
         // Center of UCF - DEMO
         center: new google.maps.LatLng(28.602427, -81.200060),
         zoom: 14,
         styles: [
-            //Bussiness off (1 google search, 1st link, jorge lied and didn't even try)
             {
                 featureType: "poi",
                 stylers: [
@@ -142,7 +120,7 @@ function initMarkers()
                 console.log(data);
                 window.addMarkers(data.markers);
             } else {
-                //window.location.href = window.root;
+                //window.location.href = window.root_self;
             }
         }
     );
@@ -178,13 +156,14 @@ function addMarkers(data)
         // EVENT LISTENER: Marker.OnClick()
         // Here we define the function that is called upon clicking a marker
         google.maps.event.addListener(window.markers[i], 'click', function () {
-            // Log Click (debugging)
-            console.log("Marker Selected: " + window.markers[this.id].filename);
-
             // API GET IMAGE BUILDER
             var filename = window.markers[this.id].filename;
-            var key = window.getCookie("token");
+            var key = window.getCookie();
             var url = window.root + "api/marker/getimage/" + key + "/" + filename + "/";
+
+            // Log Click (debugging)
+            console.log("Marker Selected: " + window.markers[this.id].filename);
+            console.log("Key: " + key);
 
             // Update selected marker
             window.selectedMarker = window.markers[this.id];
@@ -197,11 +176,11 @@ function addMarkers(data)
             document.getElementById("oversag").checked = window.markers[this.id].oversag;
             document.getElementById("latitude").innerHTML = window.markers[this.id].latitude;
             document.getElementById("longitude").innerHTML = window.markers[this.id].longitude;
-            document.getElementById("button").disabled = false;
-            document.getElementById("button").setAttribute("value", "Update Record");
+            document.getElementById("update-btn").disabled = false;
+            document.getElementById("update-btn").setAttribute("value", "Update Record");
 
             // MOBILE ONLY: Scroll Page to Image upon clicking marker
-            if (typeof window.orientation !== 'undefined')
+            if (0 || typeof window.orientation !== 'undefined')
             {
                 document.getElementById('box').scrollIntoView({
                     block: "start",
@@ -214,8 +193,8 @@ function addMarkers(data)
 
 function enableButton()
 {
-    document.getElementById("button").disabled = false;
-    document.getElementById("button").setAttribute("value", "Update Record");
+    document.getElementById("update-btn").disabled = false;
+    document.getElementById("update-btn").setAttribute("value", "Update Record");
 }
 
 function updateMarker()
@@ -261,8 +240,8 @@ function updateMarker()
             console.log(data);
             // CHANGE BUTTON COLOR
             // SUCCESS
-            document.getElementById("button").disabled = true;
-            document.getElementById("button").setAttribute("value", "Updated Successfully");
+            document.getElementById("update-btn").disabled = true;
+            document.getElementById("update-btn").setAttribute("value", "Updated Successfully");
         }
     );
 }

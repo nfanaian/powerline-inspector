@@ -35,12 +35,13 @@ class tensorflowController extends Controller
 	 */
 	public function massageDataset()
 	{
+		$this->model->output["status"] = "Made it";
 		$this->model->output["images"] = array();
 		$this->model->copyCategory('no_powerline');
-		$this->model->copyCategory('powerpole');
-		$this->model->copyCategory('overgrowth');
-		$this->model->copyCategory('oversag');
-		$this->model->copyCategory('powerline');
+		//$this->model->copyCategory('powerpole');
+		//$this->model->copyCategory('overgrowth');
+		//$this->model->copyCategory('oversag');
+		//$this->model->copyCategory('powerline');
 		$this->view->output();
 	}
 	

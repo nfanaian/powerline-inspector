@@ -115,6 +115,14 @@ html {
     clear: both;
 }
 
+.btn.logout {
+    font-size: 10px;
+    padding: 5px 10px 5px 10px;
+}
+
+.block.logout {
+    padding-top: 50px;
+}
 
 
 /* INPUT */

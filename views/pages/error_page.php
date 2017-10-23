@@ -1,4 +1,8 @@
 <?php
+
+// DEBUG Console.log() of error message
+// You could instead use an HTML template to provide the error to the user
+// But as of now this is just a redirect page
 if (true)
 {
 	?>

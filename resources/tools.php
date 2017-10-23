@@ -21,7 +21,7 @@ class Tools
 		return 0;
 	}
 
-	public static function getHashDir($file, $folder = "dummy")
+	public static function getHashDir($file, $folder = "testing")
 	{
 		$ret = array();
 		$ret["dir"] = self::$root_data. $folder. "/";

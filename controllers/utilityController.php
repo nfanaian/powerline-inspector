@@ -24,7 +24,12 @@ class UtilityController extends Controller
 
 	public function userViewer()
 	{
-		$this->model->clearKeys();
 		$this->view->userView();
+	}
+
+	public function logout()
+	{
+		$this->model->clearKeys();
+		return call('utility', 'userview');
 	}
 }

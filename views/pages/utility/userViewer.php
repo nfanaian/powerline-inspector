@@ -5,7 +5,9 @@
 
 <!-- Javascripts-->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript" src="/views/pages/utility/user.js"></script>
+<script src = "http://www.myersdaily.org/joseph/javascript/md5.js"></script>
+<script type="text/javascript" src="/views/pages/utility/methods/utils.js"></script>
+<script type="text/javascript" src="/views/pages/utility/methods/user.js"></script>
 
 <div id="info">
 	<div id="header">
@@ -15,10 +17,12 @@
 		<input class="input" type="text" id="username" name="username" placeholder="Username" maxlength="20" autocomplete="on" autofocus required>
 	</div>
 	<div class="block">
-		<input class="input" type="text" id="psw" name="psw" placeholder="Password" maxlength="20" required>
+		<input class="input" type="password" id="psw" name="psw" placeholder="Password" maxlength="20" required>
 		<!-- For later: pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" -->
 	</div>
 	<div class="block">
-		<input id="button" class="btn" type="button" value="Log In" onclick="login()">
+		<form>
+			<input id="login-btn" class="btn" type="submit" value="Log In" onclick="login()">
+		</form>
 	</div>
 </div>

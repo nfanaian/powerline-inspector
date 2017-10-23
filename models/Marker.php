@@ -97,9 +97,10 @@ class Marker extends Model
         $db = DB::connect();
 	    $tbl = DB::getTable();
         $sql = "SELECT * FROM `{$tbl}` LIMIT 10";
-        $result = $db->query($sql);
 
-        if (mysqli_num_rows($result) > 0) {
+	    $result = $db->query($sql);
+	    if ($result->num_rows > 0)
+	    {
             while($r = $result->fetch_row())
             {
                 $this->set($r[0], $r[1], $r[2], $r[3], $r[4], $r[5], $r[6], $r[7], $r[8]);
@@ -124,9 +125,10 @@ class Marker extends Model
 	    $tbl = DB::getTable();
 
         $sql = "SELECT * FROM `{$tbl}` WHERE `filename`='{$filename}'";
-        $result = $db->query($sql);
 
-        if (mysqli_num_rows($result) > 0) {
+	    $result = $db->query($sql);
+	    if ($result->num_rows > 0)
+	    {
             if ($r = $result->fetch_row())
             {
                 $this->set($r[0], $r[1], $r[2], $r[3], $r[4], $r[5], $r[6], $r[7], $r[8]);
@@ -160,11 +162,11 @@ class Marker extends Model
                 ORDER BY `distance` ASC
                 LIMIT {$limit}";
 
-        $result = $db->query($sql);
-
-        if (!empty($result)) {
-            if (mysqli_num_rows($result) > 0) {
-                while ($r = $result->fetch_row()) {
+	    $result = $db->query($sql);
+	    if ($result->num_rows > 0)
+	    {
+                while ($r = $result->fetch_row())
+                {
                     $this->set($r[0], $r[1], $r[2], $r[3], $r[4], $r[5], $r[6], $r[7], $r[8]);
                     $this->addMarker();
                 }
@@ -172,8 +174,7 @@ class Marker extends Model
                 $this->output['status'] = "Nearby markers retrieved";
 	            $this->output["success"] = true;
                 return 1;
-            }
-        }
+	    }
         $this->http_response_code = 400;
         $this->output['status'] = "Failure to retrieve";
         return 0;
@@ -188,11 +189,11 @@ class Marker extends Model
 	    $tbl = DB::getTable();
 
         $sql = "SELECT * FROM `{$tbl}` WHERE 1";
-        $result = $db->query($sql);
-
-        if (!empty($result)) {
-            if (mysqli_num_rows($result) > 0) {
-                while ($r = $result->fetch_row()) {
+	    $result = $db->query($sql);
+	    if ($result->num_rows > 0)
+	    {
+                while ($r = $result->fetch_row())
+                {
                     $this->set($r[0], $r[1], $r[2], $r[3], $r[4], $r[5], $r[6], $r[7], $r[8]);
                     $this->addMarker();
                 }
@@ -200,7 +201,6 @@ class Marker extends Model
                 $this->output['status'] = "All markers retrieved";
 	            $this->output["success"] = true;
                 return 1;
-            }
         }
         $this->http_response_code = 400;
         $this->output['status'] = "Failure to retrieve";

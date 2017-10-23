@@ -3,7 +3,7 @@ require_once('models/Model.php');
 class TF extends Model
 {
 	private $root_src = "/usr/local/project_dragon/data/";
-	private $root_dest = "/usr/local/project_dragon/tensorflow/data/powerlines/powerline_photos/";
+	private $root_dest = "/usr/local/project_dragon/tensorflow/testing_data/";
 	private $dataset_table;
 	private $dataset_folder;
 
@@ -14,7 +14,7 @@ class TF extends Model
 		$this->setDB();
 	}
 
-	public function setDB($table = "Images", $folder = "training")
+	public function setDB($table = "Images", $folder = "testing")
 	{
 		// Sanitize input variables
 		$table = trim(ucwords(strtolower($table)));
@@ -167,13 +167,13 @@ class TF extends Model
 		if ($category === 'no_powerline') {
 			$sql = "
 			SELECT `filename`, `filedir`
-			FROM `Images`
-			WHERE `reviewed`=1 AND `powerline`=0 AND `powerpole`=0 AND `overgrowth`=0 AND `oversag`=0";
+			FROM `Testing`
+			WHERE 1";
 		} else {
 			$sql = "
 			SELECT `filename`
-			FROM `Images`
-			WHERE `reviewed`=1 AND `{$category}`=1";
+			FROM `Testing`
+			WHERE `{$category}`=1";
 		}
 
 		$result = $db->query($sql);
@@ -190,9 +190,11 @@ class TF extends Model
 
 	public function copyCategory($category = 'powerline')
 	{
+		require_once('resources/tools.php');
 		$this->getCategoryFiles($category);
 
 		$this->output["files"] = array();
+		$this->output["attempt"] = array();
 		foreach(($this->output["images"][$category]) as $file)
 		{
 			$hash = Tools::getHashDir($file, $this->dataset_folder);
@@ -200,7 +202,8 @@ class TF extends Model
 			$dir = $this->root_dest. $category. "/";
 			$file_dest = $dir. $file;
 
-			require_once('resources/tools.php');
+			array_push($this->output["attempt"], $file_dest);
+
 			if (Tools::copyImage($file_src, $file_dest, $dir))
 				array_push($this->output["files"], $file_dest);
 		}

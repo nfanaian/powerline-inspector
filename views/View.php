@@ -35,8 +35,6 @@ class View
 	    header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
 	    header('Access-Control-Max-Age: 1000');
 	    header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
-	    header("Cache-Control: no-cache, must-revalidate");
-	    header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 	    header("Content-Type: application/json");
 
 	    // Response code

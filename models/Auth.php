@@ -16,9 +16,7 @@ class Auth extends Model
 	 */
 	public function userAuth($username, $password)
     {
-	 //   return $this->generateJWT($username); // DEBUG
-
-        $db = DB::connect(); //New MySQLi Object
+	    $db = DB::connect(); //New MySQLi Object
 
 	    // Authenticate proposed user with database
         $sql = "SELECT * FROM `User` WHERE `username`='{$username}' AND `password`='{$password}'";
@@ -30,19 +28,14 @@ class Auth extends Model
         {
 	        // Generate JWT if user is authenticated
             if ($row = $result->fetch_assoc())
-            {
-	            if ($this->generateJWT($username))
-	            {
-		            //
-	            }
-            }
+	            return $this->generateJWT($username);
             $result->free();
        }
         $this->output["status"] = "Authentication failure.";
 	    return 0;
     }
 
-	/** Register new user   (Maybe use a speci-al key for
+	/** Register new user   (Maybe use a special key for
 	 *                          only AJAX calls from our client)
 	 * @param $username
 	 * @param $password
@@ -61,8 +54,7 @@ class Auth extends Model
 		$sql = "INSERT INTO `User`(`username`, `password`, `email`) 
 				VALUES ('{$username}', '{$password}', '{$email}')";
 
-		$db->query($sql);
-		if (mysqli_affected_rows($db)){
+		if ($db->query($sql) === TRUE){
 			$this->output['status'] = $username . " has been added";
 			$this->output["success"] = true;
 			return 1;
@@ -130,7 +122,6 @@ class Auth extends Model
 	    } else {
 		    return call('error', 'error_token');
 	    }
-	    //return 1; // Debug-Mode: Checks something was passed as 'token'
-        return 0;
+	    return 0;
     }
 }

@@ -19,7 +19,8 @@ if (Tools::checkMobile()) { } */
 <!-- Javascripts -->
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdPg8LC3599sor7juj6q6Tbgl_RcqbaK4&callback=loadMap" async defer></script>
-<script type="text/javascript" src="/views/pages/utility/utility.js"></script>
+<script type="text/javascript" src="/views/pages/utility/methods/utils.js"></script>
+<script type="text/javascript" src="/views/pages/utility/methods/map.js"></script>
 
 <!-- Title -->
 <!--<h3 id="header">Project Dragon Demo</h3>-->
@@ -96,7 +97,11 @@ if (Tools::checkMobile()) { } */
 		</label>
 	</div>
 	<div class="block">
-		<input id="button" class="btn" type="button" value="Update Record" onclick="updateMarker()">
+		<input id="update-btn" class="btn" type="button" value="Update Record" onclick="updateMarker()">
+	</div>
+
+	<div class="block logout">
+		<input id="logout-btn" class="btn logout" type="button" value="Logout" onclick="logout()">
 	</div>
 </div>
 

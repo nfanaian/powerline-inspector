@@ -32,8 +32,7 @@ class Model
 	    if (!is_null($t = requestParser::getToken()))
 	        $this->output["token_passed"] = $t;
 
-		$this->output["user-pass"] = requestParser::getPOST('user'). "|". requestParser::getPOST('pw');
-	    $this->output["status"] = "Model created"; // Debug
+		$this->output["status"] = "Hello World!"; // Debug
 	    $this->output["success"] = false; //default false, so only upon a successful request is it set to true
         //$this->output["clientIP"] = $this->getRealIpAddr(); // If you want it
     }
