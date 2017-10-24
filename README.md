@@ -1,3 +1,3 @@
 # UTILITY INSPECTION SYSTEM
 
-Model-View-Controller PHP Web Framework with a built in JSON RESTful API
+Model-View-Controller PHP mini Web Framework with a built in JSON RESTful API
