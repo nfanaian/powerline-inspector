@@ -25,10 +25,6 @@ class View
 	 */
 	public function output()
     {
-	    // If view has no model, then there's nothing to render
-	    if (is_null($this->model))
-		    return;
-
 	    // Set header type to JSON
 	    header('Access-Control-Allow-Origin: *');
 	    header("Access-Control-Allow-Credentials: true");
@@ -36,6 +32,12 @@ class View
 	    header('Access-Control-Max-Age: 1000');
 	    header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token , Authorization');
 	    header("Content-Type: application/json");
+
+	    // If view has no model, then there's nothing to render
+	    if (is_null($this->model)) {
+		    echo json_encode(array("Response" => "No Model Loaded"));
+		    return;
+	    }
 
 	    // Response code
 	    http_response_code($this->model->http_response_code);
@@ -85,7 +87,37 @@ class View
 
 	public function error()
 	{
-		require_once('views/pages/error_page.php');
+		require_once('views/layout/error_page.php');
+	}
+
+
+	/** HTML LAYOUT TEMPLATE
+	 *  These can be overwritted on child Views
+	 */
+
+	// This contains everything up until <body>
+	protected function HTMLprefix()
+	{
+		require_once('views/layout/layout_prefix.php');
+	}
+
+	// Header tag (optional)
+	protected function HTMLheader()
+	{
+		require_once('views/layout/layout_header.php');
+	}
+
+	// Just the main div
+	protected function HTMLmain()
+	{
+		// Site Main
+		echo "<div class=\"site-main\">";
+	}
+
+	// Closes main div, footer div, and closes <body> & <html> tags
+	protected function HTMLpostfix()
+	{
+		require_once('views/layout/layout_postfix.php');
 	}
 }
 ?>

@@ -9,6 +9,12 @@ require_once('controllers/Controller.php');
 
 class UserController extends Controller
 {
+
+    public function __construct()
+    {
+	    require_once("models/api/User.php");
+	    parent::__construct(new User());
+    }
     /**
      * API/user/foo/
      * User Input: void

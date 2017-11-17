@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function __construct()
     {
-        require_once('models/Auth.php');
+        require_once('models/api/Auth.php');
         parent::__construct(new Auth());
     }
 

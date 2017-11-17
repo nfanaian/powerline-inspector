@@ -15,13 +15,10 @@ function is_ajax() {
 
 // Parse request
 if (!requestParser::parseURL()) {
-	requestParser::setController("utility");
-	requestParser::setAction("userviewer");
+	requestParser::setController("api");
+	requestParser::setAction("test");
+	requestParser::setAPIFunc("hello");
 }
 
-// API Requests skip the HTML layout
-if (requestParser::getController() === 'api')
-	require_once('routes.php');
-else
-	require_once('views/pages/layout.php');
-?>
+// ROUTE THE REQUEST
+require_once('routes.php');

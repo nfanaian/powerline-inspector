@@ -67,7 +67,7 @@ class requestParser
 
 	/** Set Controller
 	 */
-	public static function setController($str) { self::$controller = $str; }
+	public static function setController($str) { self::$controller = strtolower($str); }
 
 	/** Retrieve Action (Controller's method)
 	 * @return Action
@@ -76,13 +76,18 @@ class requestParser
 
 	/** Set Action
 	 */
-	public static function setAction($str) { self::$action = $str; }
+	public static function setAction($str) { self::$action = strtolower($str); }
 
 
 	/** Retrieve API Function (if API request)
 	 * @return null
 	 */
 	public static function getAPIFunc() { return self::$apiFunc; }
+
+	/** Retrieve API Function (if API request)
+	 * @return null
+	 */
+	public static function setAPIFunc($str) { self::$apiFunc = strtolower($str); }
 
 	/** Retrieve Token
 	 * @return null

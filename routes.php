@@ -14,7 +14,7 @@ function authRequest($controller, $action)
 {
 	// Only authorization required is for 'API' calls, and not required for 'auth' function
 	if (($controller === 'api') && !($action === 'auth')) {
-		require_once('models/Auth.php');
+		require_once('models/api/Auth.php');
 		if ((new Auth())->verifyToken())
 			return 1;
 		return 0;
@@ -36,14 +36,11 @@ function call($controller, $action)
         case 'api':
             $controller = new APIController();
             break;
-        case 'utility':
-	        $controller = new UtilityController();
+        case 'seniordesign':
+	        $controller = new SeniorDesignController();
 	        break;
         case 'tiktik':
 	        $controller = new TikTikController();
-	        break;
-        case 'category':
-	        $controller = new CategoryController();
 	        break;
         case 'error':
 	        $controller = new ErrorController();
@@ -56,10 +53,11 @@ function call($controller, $action)
 }
 
 //                    CONTROLLERS                ACTIONS
-$controllers = array(   'api'       =>  ['auth', 'marker', 'user', 'test', 'tf'],
-                        'utility'   =>  ['mapviewer', 'userviewer'],
-                        'tiktik'    =>  ['ticket', 'traffic'],
-                        'category'  =>  ['imageviewer']
+$controllers = array(   'api'           =>  ['auth', 'marker', 'upload', 'tf', 'user', 'test'],
+                        'seniordesign'  =>  ['mapviewer', 'userviewer', 'imageviewer'],
+						'utility'       =>  ['mapviewer', 'login', 'log'],
+                        'tiktik'        =>  ['ticket', 'traffic'],
+						'navid'         =>  ['home', 'about', 'contact', 'projects']
 );
 
 // Retrieve Controller/Action from requestParser
@@ -78,6 +76,8 @@ if (array_key_exists($controller, $controllers))
     } else {
         call('error', 'error_action_dne');
     }
-} else {
+}
+else
+{
     call('error', 'error_controller_dne');
 }

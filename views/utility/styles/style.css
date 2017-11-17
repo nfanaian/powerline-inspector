@@ -1,0 +1,295 @@
+body{
+		margin: 0 !important;
+		padding: 0 !important;
+		background-color:#D3D3D3; 
+	  }
+
+	  #map {
+        height: 80%;
+        width: 52%;
+        display: inline-block;
+        float:left;
+      }
+      #box{
+        height: 45%;
+        width: 45%;
+        margin-right: 3%;
+        float:left;
+        display: inline-block;
+
+      }
+      #header{
+        background-color:#D3D3D3; 
+		    height: 47px; 
+				margin: 0 !important;
+        padding: 0 !important;		
+      }
+      #theImage{
+        padding:1px;
+        border:1px solid #021a40;
+        max-width: 100%;
+        max-height: 100%;
+        margin-right: 3%;
+        display: inline-block;
+      }
+      #button {
+    
+      box-shadow: rgb(84, 163, 247) 0px 1px 0px 0px inset;
+      background: linear-gradient(rgb(0, 125, 193) 5%, rgb(0, 97, 167) 100%) rgb(0, 125, 193);
+      border-radius: 8px;
+      border: 1px solid rgb(18, 77, 119);
+      display: inline-block;
+      cursor: pointer;
+      color: rgb(255, 255, 255);
+      font-family: Arial;
+      font-size: 13px;
+      padding: 6px 24px;
+      text-decoration: none;
+      text-shadow: rgb(21, 70, 130) 0px 1px 1px;
+      margin-bottom: 6px;
+    }
+      #commentArea{
+        resize: none;
+        width: 98%;
+        font-size:15px;
+        font-family: sans-serif;
+       /* color: white;*/
+        /*background: rgba(0,0,0,0.1);*/
+        outline:none;
+      border:1px solid rgba(0,0,0,0.3);
+      }
+
+
+      .selectButtons{
+        position: absolute;
+        box-shadow: rgb(41, 187, 255) -1px -4px 7px 1px inset;
+        background: linear-gradient(rgb(45, 171, 249) 5%, rgb(6, 136, 250) 100%) rgb(45, 171, 249); 
+        border-radius: 3px; 
+        border: 1px solid rgb(11, 14, 7); 
+        
+        cursor: pointer; color: rgb(255, 255, 255); 
+        font-family: Arial; 
+        font-size: 10px; 
+        padding: 12px 6px; 
+        text-decoration: none; 
+        text-shadow: rgb(38, 54, 102) 0px 1px 0px;"
+        
+      }
+      #nextGreenButton{
+        margin-left: 83%;
+        margin-top:-102.5%; 
+        float:left;
+        display:inline;
+        z-index: 2;
+
+      }
+      #previousGreenButton{
+      /*  margin-top: 5px; */
+      margin-left: 67%;
+      margin-top:-102.5%;
+      float:left;
+        display:inline;
+        z-index: 2;
+        
+      }
+
+      #nextYellowButton{
+        margin-left: 83%;
+        margin-top:-68%; 
+        float:left;
+        display:inline;
+        z-index: 2;
+      }
+      #previousYellowButton{
+      /*  margin-top: 5px; */
+      margin-left: 67%;
+      margin-top:-68%;
+      float:left;
+        display:inline;
+        z-index: 2;
+      }
+       #nextRedButton{
+        margin-left: 83%;
+        margin-top:-33.8%; 
+        float:left;
+        display:inline;
+        z-index: 2;
+      }
+      #previousRedButton{
+      /*  margin-top: 5px; */
+      margin-left: 67%;
+      margin-top:-33.8%;
+      float:left;
+        display:inline;
+        z-index: 2;
+        
+      }
+
+      /* Modal */
+      #myImg {
+          border-radius: 5px;
+          cursor: pointer;
+          transition: 0.3s;
+          margin-right: 3%;
+        display: inline-block;
+        width: 100%;
+
+      }
+
+      #myImg:hover {opacity: 0.7;}
+
+      #infoBox{
+        border-style: double;
+        border-radius: 10px;
+        padding-left: 6px;
+
+      }
+      #powerline{
+        margin-top: 6px;
+
+      }
+
+      /* The Modal */
+      .modal {
+          display: none; /* Hidden by default */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Sit on top */
+          padding-top: 100px; /* Location of the box */
+          left: 0;
+          top: 0;
+          width: 100%; /* Full width */
+          height: 100%; /* Full height */
+          overflow: auto; /* Enable scroll if needed */
+          background-color: rgb(0,0,0); /* Fallback color */
+          background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+      }
+
+      /* Modal Content (Image) */
+      .modal-content {
+          margin: auto;
+          display: block;
+          width: 80%;
+          height:80%;
+          /*max-width: 700px;*/
+      }
+
+      /* Caption of Modal Image (Image Text)*/
+      #caption {
+          margin: auto;
+          display: block;
+          width: 80%;
+          height: 80%;
+          /*max-width: 700px; */
+          text-align: center;
+          color: #ccc;
+          padding: 10px 0;
+          height: 150px;
+      }
+
+      /* Add Animation - Zoom in the Modal */
+      .modal-content, #caption { 
+          -webkit-animation-name: zoom;
+          -webkit-animation-duration: 0.6s;
+          animation-name: zoom;
+          animation-duration: 0.6s;
+      }
+
+      @-webkit-keyframes zoom {
+          from {-webkit-transform:scale(0)} 
+          to {-webkit-transform:scale(1)}
+      }
+
+      @keyframes zoom {
+          from {transform:scale(0)} 
+          to {transform:scale(1)}
+      }
+
+      /* The Close Button */
+      .close {
+          position: absolute;
+          top: 15px;
+          right: 35px;
+          color: #f1f1f1;
+          font-size: 40px;
+          font-weight: bold;
+          transition: 0.3s;
+      }
+
+      .close:hover,
+      .close:focus {
+          color: #bbb;
+          text-decoration: none;
+          cursor: pointer;
+      }
+
+      /* Image Width on Smaller Screens */
+      @media only screen {
+          .modal-content {
+              width: 90%;
+              height: 90%;
+          }
+      }
+
+      /* End of modal */
+
+      /* Needed for the map to appear */
+      html, body {
+        height: 100%;
+        margin-left: 5px;
+		    margin-right: 5px;
+		    margin-to`p: 0px;
+        padding: 0;
+
+      }
+      
+      
+    /* Filter Styling */
+    .filter-group {
+        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        position: absolute;
+        top: 47px;
+        right: 5px;
+        z-index: 1;
+        border-radius: 3px;
+        width: 120px;
+        color: #fff;
+    }
+
+    .filter-group input[type=checkbox]:first-child + label {
+        border-radius: 3px 3px 0 0;
+    }
+
+    .filter-group label:last-child {
+        border-radius: 0 0 3px 3px;
+        border: none;
+    }
+
+    .filter-group input[type=checkbox] {
+        display: none;
+    }
+
+    .filter-group input[type=checkbox] + label {
+        background-color: #3386c0;
+        display: block;
+        cursor: pointer;
+        padding: 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    }
+
+    .filter-group input[type=checkbox] + label {
+        background-color: #3386c0;
+        text-transform: capitalize;
+    }
+
+    .filter-group input[type=checkbox] + label:hover,
+    .filter-group input[type=checkbox]:checked + label {
+        background-color: #4ea0da;
+    }
+
+    .filter-group input[type=checkbox]:checked + label:before {
+        content: '✔';
+        margin-right: 5px;
+    }
+
+    

@@ -10,17 +10,6 @@ class Tools
 {
 	private static $root_data = "/usr/local/project_dragon/data/";
 
-	public static function checkMobile()
-	{
-		// Check if mobile
-		require_once('resources/Mobile_Detect.php');
-		$detect = new Mobile_Detect();
-		if ($detect->isMobile()){
-			return 1;
-		}
-		return 0;
-	}
-
 	public static function getHashDir($file, $folder = "testing")
 	{
 		$ret = array();
@@ -102,7 +91,7 @@ class Tools
 	}
 
 	/** Make an HTTP CALL TO API
-	 * Using PHP CURL methods
+	 * Using PHP CURL js
 	 * @param $url
 	 * @param $postIt
 	 * @return array (associative) of json result

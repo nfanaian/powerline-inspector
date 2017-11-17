@@ -9,8 +9,8 @@ class tensorflowController extends Controller
 {
 	public function __construct()
 	{
-		require_once('models/TF.php');
-		parent::__construct((new TF()));
+		require_once('models/api/TensorFlowMassager.php');
+		parent::__construct((new TensorFlowMassager()));
 	}
 
 	/** This function will fix the file directory for all image files

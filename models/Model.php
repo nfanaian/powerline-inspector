@@ -14,7 +14,7 @@ class Model
 	 */
     public function __construct()
     {
-        $this->http_response_code = 200;
+        $this->http_response_code = 200; // Auto-good; becareful as any 400 code aborts request
         $this->output = array();
 
 	    // HTTP Request Made

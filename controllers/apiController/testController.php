@@ -4,14 +4,9 @@ require_once('controllers/Controller.php');
 
 class TestController extends Controller
 {
-    public function __construct()
-    {
-	    require_once('models/Test.php');
-	    parent::__construct(new Test());
-    }
 
-  public function hello()
-  {
+    public function hello()
+    {
         $this->model->output["status"] = "Hello World";
         $this->model->http_response_code = 200;
         $this->model->output["token"] = requestParser::getToken();
@@ -25,9 +20,9 @@ class TestController extends Controller
 
     public function decode()
     {
-	    $key = DB::getTokenKey();
+        $key = DB::getTokenKey();
 
-	    $jwt = requestParser::getToken();
+        $jwt = requestParser::getToken();
         if (!is_null($jwt)) {
             try
             {
@@ -48,4 +43,4 @@ class TestController extends Controller
         $this->view->output();
     }
 
-}
+    }

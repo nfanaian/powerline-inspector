@@ -13,7 +13,7 @@ class MarkerController extends Controller
 	// Initiate Marker Model
 	public function __construct()
     {
-        require_once('models/Marker.php');
+        require_once('models/api/Marker.php');
         parent::__construct(new Marker());
     }
 
@@ -77,6 +77,21 @@ class MarkerController extends Controller
         $this->view->output();
     }
 
+	/**
+	 * API/Marker/getImage/<filename>/
+	 * User Input: filename
+	 * Returns: Direct URL to image
+	 */
+	public function getImage()
+	{
+		$file = requestParser::getParam();
+
+		//$file = "596a0d35eec05_143.jpg";
+		$this->model->getImage($file);
+		//$this->view->output();
+		$this->view->image();
+	}
+
 	// TODO: The following functions are in development; functions above are complete
 	/**
 	 * API/Marker/updateMarker/<filename>/
@@ -98,17 +113,31 @@ class MarkerController extends Controller
 	}
 
 	/**
-	 * API/Marker/getImage/<filename>/
-	 * User Input: filename
-	 * Returns: Direct URL to image
+	 * API/Marker/addComment/<filename>/<comment>/
+	 * User Input: filename, comment
+	 * Sanitize user input, add comment, and display results
+	 * Return JSON of success of the comment insertion
 	 */
-	public function getImage()
+	public function addComment()
 	{
-		$file = requestParser::getParam();
+		$filename = requestParser::getParam(0);
+		$comment = requestParser::getParam(1);
 
-		//$file = "596a0d35eec05_143.jpg";
-		$this->model->getImage($file);
-		//$this->view->output();
-		$this->view->image();
+		$this->model->addComment($filename, $comment);
+		$this->view->output();
+	}
+
+	/**
+	 * API/Marker/getComment/<filename>/
+	 * User Input: filename
+	 * Sanitize user input, add comment, and display results
+	 * Return JSON of success of the comment insertion
+	 */
+	public function getComment()
+	{
+		$filename = requestParser::getParam(0);
+
+		$this->model->getComment($filename);
+		$this->view->output();
 	}
 }

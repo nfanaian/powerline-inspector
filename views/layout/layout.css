@@ -1,0 +1,47 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:800,300);
+
+html {
+    background: linear-gradient(180deg, #ffffff 0%,#f2f8fc 100%);
+}
+
+body {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    height: auto;
+    width: auto;
+}
+
+.site-header {
+
+}
+
+.site-main {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    min-height: 80%;
+}
+
+
+.site-main:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.site-footer {
+    min-height: 5%;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    clear: both;
+}
+
+#copyright
+{
+    font-family: 'Quicksand', sans-serif;
+    color:#888;
+    text-align: right;
+}

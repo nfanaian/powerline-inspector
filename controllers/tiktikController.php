@@ -7,16 +7,16 @@ class TikTikController extends Controller
 	public function __construct()
 	{
 		require_once('models/Ticket.php');
-		require_once('views/ticketView.php');
-		parent::__construct(new Ticket(), new ticketView());
+		require_once('views/TicketView.php');
+		parent::__construct(new Ticket(), new TicketView());
 	}
 
 	public function ticket()
     {
         require_once('models/Ticket.php');
-	    require_once('views/ticketView.php');
+	    require_once('views/TicketView.php');
         $this->setModel(new Ticket());
-	    $this->setView(new ticketView());
+	    $this->setView(new TicketView());
 
         // POST
         if ($_SERVER["REQUEST_METHOD"] == "POST")

@@ -7,18 +7,24 @@
  * Time: 4:28 PM
  */
 require_once('views/View.php');
-class ticketView extends View
+class TicketView extends View
 {
 	public function ticket()
 	{
 		http_response_code($this->model->http_response_code);
-		require_once('views/pages/ticket/ticket.php');
+		$this->HTMLprefix();
+		$this->HTMLmain();
+		require_once('views/ticket/ticket.php');
+		$this->HTMLpostfix();
 
-		require_once('views/pages/ticket/printout.php');
+		require_once('views/ticket/printout.php');
 	}
 	public function traffic()
 	{
 		http_response_code($this->model->http_response_code);
-		require_once('views/pages/ticket/traffic.php');
+		$this->HTMLprefix();
+		$this->HTMLmain();
+		require_once('views/ticket/traffic.php');
+		$this->HTMLpostfix();
 	}
 }

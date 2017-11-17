@@ -6,16 +6,34 @@
 
 require_once('views/View.php');
 
-class utilityView extends View
+class UtilityView extends View
 {
 	public function mapView()
 	{
-		require_once('views/pages/utility/mapViewer.php');
+		http_response_code($this->model->http_response_code);
+		$this->HTMLprefix();
+		$this->HTMLheader();
+		$this->HTMLmain();
+		//require_once('views/utility/mapViewer.php');
+		$this->HTMLpostfix();
 	}
 
-	public function userView()
+	public function loginView()
 	{
-		require_once('views/pages/utility/userViewer.php');
+		http_response_code($this->model->http_response_code);
+		$this->HTMLprefix();
+		$this->HTMLmain();
+		//require_once('views/seniordesign/userViewer.php');
+		$this->HTMLpostfix();
 	}
-	
+
+	public function logView()
+	{
+		http_response_code($this->model->http_response_code);
+		$this->HTMLprefix();
+		$this->HTMLheader();
+		$this->HTMLmain();
+		//require_once('views/utility/.php');
+		$this->HTMLpostfix();
+	}
 }

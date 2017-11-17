@@ -14,8 +14,9 @@ class APIController extends Controller
 	{
 		$api = array(   'auth'      =>  ['login', 'register', 'authpage'],
 						'marker'    =>  ['foo', 'getmarker', 'getnearby', 'getall', 'getimage', 'updatemarker'],
-						'user'      =>  ['foo'],
+						'upload'    =>  ['upload'],
 						'tf'        =>  ['foo', 'fixhashdirs', 'massagedataset'],
+						'user'      =>  ['foo'],
 						'test'      =>  ['hello', 'decode']
 		);
 
