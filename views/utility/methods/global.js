@@ -40,7 +40,8 @@ var currentOversag;
 var maxZoom = 11;
 
 // Get All AJAX Call
-var root = 'http://107.170.23.85/';
+//var root = 'http://107.170.23.85/';
+var root = 'http://squibotics.com/';
 var url = root + 'API/Marker/getAll/'
 var token = readToken();
 console.log(token);

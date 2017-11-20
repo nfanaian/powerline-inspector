@@ -203,7 +203,7 @@ function previousRedMarker(){
 function nextEvent(index){
 		console.log(markerArray[index].url);
 		var url = markerArray[index].url;
-       	document.getElementById("myImg").src="http://107.170.23.85/api/marker/getimage/"+ token + "/"+ url +"/";
+       	document.getElementById("myImg").src="http://squibotics.com/api/marker/getimage/"+ token + "/"+ url +"/";
         
         infoPanelChange(markerArray[index].powerline, markerArray[index].powerpole, markerArray[index].overgrowth, markerArray[index].oversag, markerArray[index].latitude, markerArray[index].longitude, markerArray[index].locationComment)
         

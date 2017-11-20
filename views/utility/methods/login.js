@@ -7,7 +7,7 @@ function checkLogin(){
 	passHash = md5(pWord);
 	
 	//console.log(something);
-	var root = 'http://107.170.23.85/api/auth/login/';
+	var root = 'http://squibotics.com/api/auth/login/';
 	var url = root// + 'API/Marker/getAll/'
 	
 
@@ -26,8 +26,8 @@ function checkLogin(){
 			//console.log(data.jwt);
 			setToken(data.jwt);
 			//console.log(readToken());
-			//window.location.href = "index10.html";
-			window.location.href = "table2.html";
+			window.location.href = "index10.html";
+			//window.location.href = "navbar.html";
 		}
 	  }
 	);
@@ -38,11 +38,30 @@ function checkLogin(){
 
 // Sets Token returned by server
 function setToken(tValue) {
+	var exdays = 1;
+	var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = "token=" + tValue + ";" + expires + ";";
 
-    document.cookie = "token=" + tValue + ";";
+    //document.cookie = "token=" + tValue + ";";
 }
 // Reads Token returned by server
 function readToken(){
+	var name = "token" + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+    /*
 	var name = "token" + "=";
 	// used for special characters
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -57,6 +76,7 @@ function readToken(){
     	// else return no Token
     	return "No Token Found";
     }
-    
+    */
     
 }
+

@@ -237,7 +237,7 @@ for(var x in markers) {
           params += val[0] + val[1] + val[2] + val[3];
 
 
-          var root = "http://107.170.23.85/api/marker/";
+          var root = "http://squibotics.com/api/marker/";
           var key = "API_TOKEN_KEY_GOES_HERE";
           var func = "updatemarker";
           
