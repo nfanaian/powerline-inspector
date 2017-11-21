@@ -133,6 +133,11 @@ function filterMarkers(){
 );
 }
 
+function createDate(fullDate){
+    var justDate = fullDate.split(" ");
+      return justDate[0];
+}
+
 function updateMarkerRow(index)
         { console.log("Starting Update");          
         
@@ -169,7 +174,9 @@ function updateMarkerRow(index)
           
           // NEED TO CHANGE .comment to actual column name in database
           var comment = document.getElementById("commentArea"+index).value;
-          //markerPages[markerIndex][index].comment = comment;
+          var placeholder = document.getElementById("commentArea"+index).placeholder;
+          markerPages[markerIndex][index].comment = comment+ "\n-----------\n" + placeholder;
+          
           
           // Need to add updatedComment to AJAX call when database and call updated              
           var filename =  filteredMarkers[index].filename;
@@ -228,7 +235,7 @@ function updateMarkerRow(index)
         }
 
 // End of post
-function markerRowChange(index, powerline, powerpole, overgrowth, oversag, Latitude, Longitude, comment)
+function markerRowChange(index, powerline, powerpole, overgrowth, oversag, Latitude, Longitude, comment, date)
 { 
   console.log("powerpole"+index);
   if(powerline == true){
@@ -252,10 +259,11 @@ function markerRowChange(index, powerline, powerpole, overgrowth, oversag, Latit
     document.getElementById("oversag"+index).checked = false;
   }
 
-
+  var justDate = createDate(date);
   document.getElementById("Latitude"+index).innerHTML = Latitude;
   document.getElementById('Longitude'+index).innerHTML = Longitude;
-  //document.getElementById('commentArea'+index).value = comment;
+  document.getElementById('time'+index).innerHTML = justDate;
+  document.getElementById('commentArea'+index).placeholder = comment;
   //console.log("Comment is " + comment);
 
 }
@@ -286,12 +294,15 @@ function generateTable() {
     	'<input class="css-checkbox" type="checkbox" name="oversag" id="oversag'+i+'" value="False">'+
     	'<label for="oversag'+i+'" class="css-label">Oversag</label>'+
     	'<br>'+
-        '<label>Latitude: </label>'+
+      '<label>Latitude: </label>'+
     	'<label id="Latitude'+i+'">29.32226</label>'+
     	'<br>'+
     	'<label>Longitude: </label>'+
     	'<label id="Longitude'+i+'">-81.29545646</label>'+
     	'<br>'+
+      '<label>Date Added: </label>'+
+      '<label id="time'+i+'"></label>'+
+      '<br>'+
     	'<textarea class="commentArea" id="commentArea'+i+'" rows="3" placeholder="Enter notes about the current location"></textarea>'+
         '<br>'+
     	'<button type="button" class="button" id="button" onclick="updateMarkerRow('+i+')">Update</button>'+
@@ -301,7 +312,7 @@ function generateTable() {
     	'</div>'+
     	'</div>';
     	
-    	 markerRowChange(i, currentPage[i].powerline, currentPage[i].powerpole, currentPage[i].overgrowth, currentPage[i].oversag, currentPage[i].latitude, currentPage[i].longitude, 1/*currentPage[i].comment*/);
+    	 markerRowChange(i, currentPage[i].powerline, currentPage[i].powerpole, currentPage[i].overgrowth, currentPage[i].oversag, currentPage[i].latitude, currentPage[i].longitude, currentPage[i].comment, currentPage[i].timeAdded);
 
     	   // Get the modal
     		var modal = document.getElementById('myModal');
@@ -379,6 +390,9 @@ function nextPage() {
           '<label>Longitude: </label>'+
           '<label id="Longitude'+i+'">-81.29545646</label>'+
           '<br>'+
+          '<label>Date Added: </label>'+
+          '<label id="time'+i+'"></label>'+
+          '<br>'+
           '<textarea class="commentArea" id="commentArea'+i+'" rows="3" placeholder="Enter notes about the current location"></textarea>'+
             '<br>'+
           '<button type="button" class="button" id="button" onclick="updateMarkerRow('+i+')">Update</button>'+
@@ -388,7 +402,7 @@ function nextPage() {
           '</div>'+
           '</div>';
           
-           markerRowChange(i, currentPage[i].powerline, currentPage[i].powerpole, currentPage[i].overgrowth, currentPage[i].oversag, currentPage[i].latitude, currentPage[i].longitude, 1/*currentPage[i].comment*/);
+           markerRowChange(i, currentPage[i].powerline, currentPage[i].powerpole, currentPage[i].overgrowth, currentPage[i].oversag, currentPage[i].latitude, currentPage[i].longitude, currentPage[i].comment, currentPage[i].timeAdded);
 
              // Get the modal
             var modal = document.getElementById('myModal');
@@ -478,6 +492,9 @@ function prevPage() {
           '<label>Longitude: </label>'+
           '<label id="Longitude'+i+'">-81.29545646</label>'+
           '<br>'+
+          '<label>Date Added: </label>'+
+          '<label id="time'+i+'"></label>'+
+          '<br>'+
           '<textarea class="commentArea" id="commentArea'+i+'" rows="3" placeholder="Enter notes about the current location"></textarea>'+
             '<br>'+
           '<button type="button" class="button" id="button" onclick="updateMarkerRow('+i+')">Update</button>'+
@@ -487,7 +504,7 @@ function prevPage() {
           '</div>'+
           '</div>';
           
-           markerRowChange(i, currentPage[i].powerline, currentPage[i].powerpole, currentPage[i].overgrowth, currentPage[i].oversag, currentPage[i].latitude, currentPage[i].longitude, 1/*currentPage[i].comment*/);
+           markerRowChange(i, currentPage[i].powerline, currentPage[i].powerpole, currentPage[i].overgrowth, currentPage[i].oversag, currentPage[i].latitude, currentPage[i].longitude, currentPage[i].comment, currentPage[i].timeAdded);
 
              // Get the modal
             var modal = document.getElementById('myModal');

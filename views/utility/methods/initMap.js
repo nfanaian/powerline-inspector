@@ -99,7 +99,7 @@ for(var x in markers) {
   // Will delete when comments are enabled in Database.
   //console.log(markers[x]);
   var testComment = "";
-  addMarker(map, markers[x].powerline, markers[x].powerpole, markers[x].overgrowth, markers[x].oversag, markers[x].latitude, markers[x].longitude,/*markers[x].comment, */testComment, markers[x].filename); 
+  addMarker(map, markers[x].powerline, markers[x].powerpole, markers[x].overgrowth, markers[x].oversag, markers[x].latitude, markers[x].longitude,markers[x].comment, markers[x].filename, markers[x].timeAdded); 
   
   }
 
@@ -108,7 +108,8 @@ for(var x in markers) {
     google.maps.event.addListener(map, 'click', function(){
         console.log(selMarker);
           if (selected == 1){
-            document.getElementById('commentArea').value= "";
+            document.getElementById('commentArea').placeholder= "Enter notes about the current location.";
+            document.getElementById('commentArea').value="";
             document.getElementById("myImg").src="images/awaitingImage.jpg";
             document.getElementById("powerline").checked = false;
             document.getElementById("powerpole").checked = false;
@@ -116,6 +117,7 @@ for(var x in markers) {
             document.getElementById("oversag").checked = false;
             document.getElementById('Latitude').innerHTML = '';
             document.getElementById('Longitude').innerHTML = '';
+            document.getElementById('time').innerHTML = '';
             selMarker.setIcon(originalIcon); 
             //selMarker.icon = originalIcon;
             selected = 0;

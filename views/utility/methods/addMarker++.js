@@ -59,13 +59,17 @@
     }
 
     // Used to create single marker object
-    function addMarker(map, powerline, powerpole, overgrowth, oversag, latitude, longitude, comment, url){
+    function addMarker(map, powerline, powerpole, overgrowth, oversag, latitude, longitude, comment, url,timeAdded){
      
       // checks to see if comment was entered.
       /*if(comment == null){
         comment = "";
       }*/
       var status = createStatus(powerline,powerpole,overgrowth,oversag);
+      var justDate = timeAdded.split(" ");
+      var date = justDate[0].split("-");
+
+      //console.log(date);
     /*
       var status = "yellow";
       // creates "Status" based on received data
@@ -80,7 +84,7 @@
     */
 
       // creates google map location from lat and long
-      var location = new google.maps.LatLng(longitude,latitude);
+      var location = new google.maps.LatLng(latitude,longitude);
 
       var marker = new google.maps.Marker({
       position: location,
@@ -94,6 +98,10 @@
       //shape: shape,
       //icon: greenimage,
       locationComment: comment,
+      date: justDate[0],
+      year: date[0],
+      month: date[1],
+      day: date[2],
       powerline: powerline,
       powerpole: powerpole,
       overgrowth: overgrowth,
@@ -111,7 +119,7 @@
         //document.getElementById('box').innerHTML = marker.index;
         console.log(marker.url);
         pictureChange(marker.url);
-        infoPanelChange(marker.powerline, marker.powerpole, marker.overgrowth, marker.oversag, marker.latitude, marker.longitude, marker.locationComment)
+        infoPanelChange(marker.powerline, marker.powerpole, marker.overgrowth, marker.oversag, marker.latitude, marker.longitude, marker.locationComment, marker.date)
         if (selected == 0) {originalIcon = marker.getIcon();
         marker.setIcon(blueimage);
         selected = 1;
@@ -145,7 +153,7 @@ function pictureChange(url)
   document.getElementById("myImg").src="http://squibotics.com/api/marker/getimage/"+ token + "/"+ url +"/";
 }
 
-function infoPanelChange(powerline, powerpole, overgrowth, oversag, Latitude, Longitude, comment)
+function infoPanelChange(powerline, powerpole, overgrowth, oversag, Latitude, Longitude, comment, timeAdded)
 { 
   
   if(powerline == 1){
@@ -172,7 +180,9 @@ function infoPanelChange(powerline, powerpole, overgrowth, oversag, Latitude, Lo
 
   document.getElementById('Latitude').innerHTML = Latitude;
   document.getElementById('Longitude').innerHTML = Longitude;
-  document.getElementById('commentArea').value = comment;
+  document.getElementById('commentArea').placeholder = comment;
+  document.getElementById('commentArea').value="";
+  document.getElementById('time').innerHTML = timeAdded;
   console.log("Comment is " + comment);
 
 }
