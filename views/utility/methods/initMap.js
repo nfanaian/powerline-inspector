@@ -110,6 +110,8 @@ for(var x in markers) {
           if (selected == 1){
             document.getElementById('commentArea').placeholder= "Enter notes about the current location.";
             document.getElementById('commentArea').value="";
+            document.getElementById('prevCommentArea').placeholder= "Enter notes about the current location.";
+            document.getElementById('prevCommentArea').value="";
             document.getElementById("myImg").src="images/awaitingImage.jpg";
             document.getElementById("powerline").checked = false;
             document.getElementById("powerpole").checked = false;
@@ -204,17 +206,33 @@ for(var x in markers) {
           markerArray[selMarker.index].powerpole = selMarker.powerpole;
           markerArray[selMarker.index].overgrowth = selMarker.overgrowth;
           markerArray[selMarker.index].oversag = selMarker.oversag;
-          markerArray[selMarker.index].locationComment = document.getElementById("commentArea").value;
+          //markerArray[selMarker.index].locationComment = document.getElementById("commentArea").value;
           markerArray[selMarker.index].status = newStatus;
           markerArray[selMarker.index].icon = 'http://maps.google.com/mapfiles/ms/icons/' + newStatus + '-dot.png';
           markerArray[selMarker.index].setIcon(markerArray[selMarker.index].icon);
           
+          var comment = document.getElementById("commentArea").value;
+          var prevCommentEntry = document.getElementById("prevCommentArea").value;
+          var newComment;
+
+          if(prevCommentEntry.includes("Log Empty.")){
+            newComment = prevCommentEntry.replace("Log Empty.", comment);
+            console.log(newComment);
+            markerArray[selMarker.index].locationComment = newComment;
+            document.getElementById("prevCommentArea").value = newComment;
+          } else{
+            newComment = prevCommentEntry + "\n" + comment + "\n-------------------------------\n";
+            markerArray[selMarker.index].locationComment = newComment;
+            document.getElementById("prevCommentArea").value = newComment;
+          }
 
           //selMarker.locationComment = document.getElementById("commentArea").value;
           //addMarker(map, selMarker.powerline, selMarker.powerpole, selMarker.overgrowth, selMarker.oversag, selMarker.latitude, selMarker.longitude, selMarker.locationComment, selMarker.url);
           
           // Need to add updatedComment to AJAX call when database and call updated              
-          var updatedComment = selMarker.locationComment;
+          //var updatedComment = selMarker.locationComment;
+          var updatedComment = comment;
+          console.log("updated Comment is: " + updatedComment);
           var filename = selMarker.url;
           var params = filename + "/";
 
@@ -231,7 +249,7 @@ for(var x in markers) {
           if (document.getElementById("overgrowth").checked) {
               val[2] = '1/';
           }
-
+          
           if (document.getElementById("oversag").checked) {
               val[3] = '1/';
           }
@@ -244,7 +262,7 @@ for(var x in markers) {
           var func = "updatemarker";
           
           // AJAX POST REQUEST
-          var url = root + func + "/" + params;
+          var url = root + func + "/" + params + "/" + updatedComment;
           $.post(
               url,
               {
@@ -252,7 +270,7 @@ for(var x in markers) {
                     token: token
               },
               function(data){
-                  //console.log(data);
+                  console.log(data);
                   //console.log("Finished Updating");
                   if(data.success == true){
                   alert("Marker was successfully updated");
@@ -268,6 +286,7 @@ for(var x in markers) {
           
           // This code resets global variables after marker update (resets picture viewer)
             document.getElementById('commentArea').value= "";
+            document.getElementById('prevCommentArea').value="";
             document.getElementById("myImg").src="images/awaitingImage.jpg";
             document.getElementById("powerline").checked = false;
             document.getElementById("powerpole").checked = false;

@@ -63,6 +63,18 @@ function filter(){
 	var overgrowthFilter;
 	var oversagFilter;
 	var hasCommentFilter;
+  var timechecked;
+  var date;
+  var year;
+  var month;
+  var day;
+  var markerDate;
+  var markerYear;
+  var markerMonth;
+  var markerDay;
+  var halfDate;
+  var markerHalfDate;
+  var incrementer = 0;
 
   if(document.getElementById("powerlineFilter").checked){
     powerlineFilter = 1;
@@ -84,11 +96,43 @@ function filter(){
   } else {
     oversagFilter = 0;
   }
-  if(document.getElementById("hasCommentFilter").checked){
+ /* if(document.getElementById("hasCommentFilter").checked){
     hasCommentFilter = 1;
   } else {
     hasCommentFilter = 0;
+  }*/
+  if(document.getElementById("hasDateFilter").checked){
+    timechecked = true;
+  } else {
+    timechecked = false;
   }
+
+  halfDate = createDate(document.getElementById("dateText").value);
+if(timechecked == true && halfDate != ""){
+  console.log("First ="+ document.getElementById("dateText").value);
+    var regex = /^[0-9]{4}.[0-9]{2}.[0-9]{2}$/i;
+    console.log("answer is "+ regex.test(halfDate));
+
+    if(regex.test(halfDate) == false){
+      alert("Please enter the date in the correct format. YYYY-MM-DD");
+      return;
+    }
+
+  
+ date = halfDate.split("-");
+ year = date[0];
+ month = date[1];
+ day = date[2];
+ console.log("this="+ day);
+ if(month>12||day>31){
+      alert("Please enter a correct date.");
+      return;
+    }
+}else{
+  day = 0;
+  year = 0;
+  month = 0;
+}
 
 var resultsTable = document.getElementById("table");
 	  for(var i = 0; i < resultsTable.rows.length;)
@@ -102,16 +146,53 @@ var resultsTable = document.getElementById("table");
   		if(powerpoleFilter == 0 || (powerpoleFilter == 1 && markers[x].powerpole == true) ){
   			if(overgrowthFilter == 0 || (overgrowthFilter == 1 && markers[x].overgrowth == true) ){
   				if(oversagFilter == 0 || (oversagFilter == 1 && markers[x].oversag == true) ){
-  					// ADD COMMENT FILTER WHEN IMPLEMENTED IN GET ALL POST CALL
-  					filteredMarkers.push(markers[x]);
+    					// ADD COMMENT FILTER WHEN IMPLEMENTED IN GET ALL POST CALL
+              if(timechecked == true){
+               // console.log("second=" +markers[x].timeAdded);
+                  markerHalfDate = createDate(markers[x].timeAdded);
+              //    console.log("markerHalfDate=" +markerHalfDate);
+                  markerDate = markerHalfDate.split("-");
+                  markerYear = markerDate[0];
+                  markerMonth = markerDate[1];
+                  markerDay = markerDate[2];
+                //  console.log("markerDate=" +markerDate);
+                    if(markerYear==year)
+                    {
+                 //     console.log("Passed Year");
+                        if(markerMonth==month)
+                        {
+                   //       console.log("Passed Month");
+                            if(markerDay>=day)
+                            {
+                     //         console.log("Passed Day");
+                              filteredMarkers.push(markers[x]);
+                            }
+                        }
+                        if(markerMonth > month)
+                        {
+                          filteredMarkers.push(markers[x]);
+                        }
+                    }
+
+                    if(markerYear>year)
+                    {
+                        filteredMarkers.push(markers[x]);
+                    }
+              }
+              if(timechecked == false){
+    					filteredMarkers.push(markers[x]);
+              }
+
   				}
   			}
   		}
   	}
 
   }
+  document.getElementById("numberFound").innerHTML = filteredMarkers.length;
   console.log(filteredMarkers);
   console.log("Filter Complete");
+  //console.log("# of markers is:" + markers.length);
 
 
 
@@ -129,6 +210,7 @@ function filterMarkers(){
     //filteredMarkers = markers;
     sepPages(filteredMarkers);
     generateTable();
+
   }
 );
 }
@@ -174,8 +256,26 @@ function updateMarkerRow(index)
           
           // NEED TO CHANGE .comment to actual column name in database
           var comment = document.getElementById("commentArea"+index).value;
-          var placeholder = document.getElementById("commentArea"+index).placeholder;
-          markerPages[markerIndex][index].comment = comment+ "\n-----------\n" + placeholder;
+          var prevCommentEntry = document.getElementById("prevComment"+index).value;
+          var newComment;
+          var editedComment;
+
+          if(prevCommentEntry.includes("Log Empty.")){
+            newComment = prevCommentEntry.replace("Log Empty.", comment);
+            console.log(newComment);
+            markerPages[markerIndex][index].comment = newComment;
+            document.getElementById("prevComment"+index).value = newComment;
+          } else{
+            newComment = prevCommentEntry + "\n" + comment + "\n------------------------------\n";
+            markerPages[markerIndex][index].comment = newComment;
+            document.getElementById("prevComment"+index).value = newComment;
+          }
+
+
+          //var newComment = comment+ "\n------------------------------\n\n" + prevCommentEntry;
+
+         // markerPages[markerIndex][index].comment = newComment;
+         // document.getElementById("prevComment"+index).value = newComment;
           
           
           // Need to add updatedComment to AJAX call when database and call updated              
@@ -208,7 +308,7 @@ function updateMarkerRow(index)
           var func = "updatemarker";
           
           // AJAX POST REQUEST
-          var url = root + func + "/" + params;
+          var url = root + func + "/" + params + "/" + comment;
           $.post(
               url,
               {
@@ -263,7 +363,7 @@ function markerRowChange(index, powerline, powerpole, overgrowth, oversag, Latit
   document.getElementById("Latitude"+index).innerHTML = Latitude;
   document.getElementById('Longitude'+index).innerHTML = Longitude;
   document.getElementById('time'+index).innerHTML = justDate;
-  document.getElementById('commentArea'+index).placeholder = comment;
+  document.getElementById('prevComment'+index).value = comment;
   //console.log("Comment is " + comment);
 
 }
@@ -304,9 +404,14 @@ function generateTable() {
       '<label id="time'+i+'"></label>'+
       '<br>'+
     	'<textarea class="commentArea" id="commentArea'+i+'" rows="3" placeholder="Enter notes about the current location"></textarea>'+
-        '<br>'+
+      '<br>'+
     	'<button type="button" class="button" id="button" onclick="updateMarkerRow('+i+')">Update</button>'+
     	'</div>'+
+      '<div id="prevCommentDiv">'+
+      '<label id="prevCommentLabel">Previous Comments: </label>'+
+      '<br>'+
+      '<textarea class="prevComment" id="prevComment'+i+'"  placeholder="" readonly></textarea>'+
+      '</div>'+
     	'<div id="imgDiv">'+
     	'<img src= '+image+' id="image'+i+'" class="image" >'+
     	'</div>'+
@@ -343,6 +448,8 @@ function generateTable() {
       break;
     }
   } 
+  console.log("I made it ");
+    document.getElementById("numberFound").innerHTML = filteredMarkers.length;
 }
 
 function nextPage() {
@@ -397,6 +504,13 @@ function nextPage() {
             '<br>'+
           '<button type="button" class="button" id="button" onclick="updateMarkerRow('+i+')">Update</button>'+
           '</div>'+
+
+          '<div id="prevCommentDiv">'+
+          '<label id="prevCommentLabel">Previous Comments: </label>'+
+          '<br>'+
+          '<textarea class="prevComment" id="prevComment'+i+'"  placeholder="" readonly></textarea>'+
+          '</div>'+
+
           '<div id="imgDiv">'+
           '<img src= '+image+' id="image'+i+'" class="image" >'+
           '</div>'+
@@ -498,6 +612,11 @@ function prevPage() {
           '<textarea class="commentArea" id="commentArea'+i+'" rows="3" placeholder="Enter notes about the current location"></textarea>'+
             '<br>'+
           '<button type="button" class="button" id="button" onclick="updateMarkerRow('+i+')">Update</button>'+
+          '</div>'+
+          '<div id="prevCommentDiv">'+
+          '<label id="prevCommentLabel">Previous Comments: </label>'+
+          '<br>'+
+          '<textarea class="prevComment" id="prevComment'+i+'" placeholder="" readonly></textarea>'+
           '</div>'+
           '<div id="imgDiv">'+
           '<img src= '+image+' id="image'+i+'" class="image" >'+

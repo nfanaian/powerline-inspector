@@ -1,9 +1,9 @@
 body{
 		margin: 0 !important;
 		padding: 0 !important;
-		//background-color:#D3D3D3; 
+		/*background-color:#D3D3D3; 
     //background-image: url("PowerLinesBackgroundColor.jpg");
-    //background: url('/images/PowerLinesBackgroundColor.jpg');
+    //background: url('/images/PowerLinesBackgroundColor.jpg');*/
 	  }
 img.source-image {
   z-index: -1000;
@@ -32,19 +32,21 @@ img.source-image {
         height: 81%;
         width: 52%;
         display: inline-block;
-        float:left;
+        float:right;
       }
       #box{
         height: 45%;
         width: 45%;
+        /* max-width: 500px; */
         margin-right: 3%;
         float:left;
         display: inline-block;
-        //background-color:#D3D3D3; 
+        /* background-color:#D3D3D3; */
       }
       #header{
-        //background-color:#D3D3D3; 
-		    height: 47px; /*DELETE WHEN ADDING NAV MENU*/
+        /*background-color:#D3D3D3; */
+		    /*height: 47px; /*DELETE WHEN ADDING NAV MENU*/
+        height:10px;
 				margin: 0 !important;
         padding: 0 !important;		
       }
@@ -75,7 +77,8 @@ img.source-image {
     }
       #commentArea{
         resize: none;
-        width: 98%;
+        width: 100%;
+        height:110px;
         font-size:15px;
         font-family: sans-serif;
        /* color: white;*/
@@ -83,12 +86,37 @@ img.source-image {
         outline:none;
       border:1px solid rgba(0,0,0,0.3);
       }
-
+      #prevCommentArea{
+        resize: none;
+        margin-left: 6.7%;
+        width: 100%;
+        height:110px;
+        font-size:15px;
+        font-family: sans-serif;
+       /* color: white;*/
+        /*background: rgba(0,0,0,0.1);*/
+        outline:none;
+      border:1px solid rgba(0,0,0,0.3);
+      }
+      #prevCommentLabel{
+        margin-left: 7%;
+        
+      }
+      #commentDiv{
+        float: left;
+        width:45%;
+      }
+      #prevCommentDiv{
+        margin-left: 5%;
+        float: left;
+        width: 45%;
+      }
 
       .selectButtons{
         position: absolute;
         box-shadow: rgb(41, 187, 255) -1px -4px 7px 1px inset;
-        background: linear-gradient(rgb(45, 171, 249) 5%, rgb(6, 136, 250) 100%) rgb(45, 171, 249); 
+        /*background: linear-gradient(rgb(45, 171, 249) 5%, rgb(6, 136, 250) 100%) rgb(45, 171, 249); */
+        background-color: #3386c0;
         border-radius: 3px; 
         border: 1px solid rgb(11, 14, 7); 
         
@@ -100,6 +128,17 @@ img.source-image {
         text-shadow: rgb(38, 54, 102) 0px 1px 0px;"
         
       }
+      .selectButtons:hover{
+        background: linear-gradient(rgb(45, 171, 249) 100%, rgb(6, 136, 250) 100%) rgb(45, 171, 249); 
+      }
+      #timeFilterButton{
+        margin-left: 83%;
+        margin-top:-135%; 
+        float:left;
+        display:inline;
+        z-index: 2;
+      }
+      
       #nextGreenButton{
         margin-left: 83%;
         margin-top:-102.5%; 
@@ -164,8 +203,7 @@ img.source-image {
       #myImg:hover {opacity: 0.7;}
 
       #infoBox{
-       // border-style: double;
-       // border-radius: 10px;
+       
        padding-left: 6px;
         background-color:#e1f5fe; 
       }
@@ -272,7 +310,26 @@ img.source-image {
         padding: 0;
 
       }
-      
+      #timeEntryLabel{
+        background-color: #3386c0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+        padding: 5px;
+      }
+      #dateArea{
+        display: absolute;
+        resize: none;
+        width: 70%;
+        /*right:10px; */
+        margin-left: 2%;
+        
+        height:20px;
+        font-size:14px;
+        font-family: sans-serif;
+       /* color: white;*/
+        /*background: rgba(0,0,0,0.1);*/
+        outline:none;
+      border:1px solid rgba(0,0,0,0.3);
+      }
       
     /* Filter Styling */
     .filter-group {
@@ -280,7 +337,7 @@ img.source-image {
         font-weight: 600;
         position: absolute;
         top: 47px;
-        /*top: 80px; SET THIS WHEN ADDING NAV MENU*/
+        top: 90px; /*SET THIS WHEN ADDING NAV MENU*/
         right: 5px;
         z-index: 1;
         border-radius: 3px;
@@ -323,6 +380,8 @@ img.source-image {
         content: '✔';
         margin-right: 5px;
     }
+
+
 
 /* Checkbox Styling*/ 
 input[type=checkbox].css-checkbox {

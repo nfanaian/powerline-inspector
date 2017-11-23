@@ -3,10 +3,9 @@ function checkLogin(){
 	var uName = document.getElementById("username").value;
 	var pWord = document.getElementById("password").value;
 	var passHash;
-	//window.location.href = "index8.html"; //delete after AJAX is implemented
+	
 	passHash = md5(pWord);
 	
-	//console.log(something);
 	var root = 'http://squibotics.com/api/auth/login/';
 	var url = root// + 'API/Marker/getAll/'
 	
@@ -23,10 +22,10 @@ function checkLogin(){
 			alert("Username or Password is incorrect!");
 			console.log(data);
 		}else{
-			//console.log(data.jwt);
+			console.log(data);
 			setToken(data.jwt);
 			//console.log(readToken());
-			window.location.href = "index10.html";
+			window.location.href = "Mapview2.html";
 			//window.location.href = "navbar.html";
 		}
 	  }
@@ -61,22 +60,7 @@ function readToken(){
         }
     }
     return "";
-    /*
-	var name = "token" + "=";
-	// used for special characters
-    var decodedCookie = decodeURIComponent(document.cookie);
-    // Converts string to array
-    var cookieString = decodedCookie.split(';');
-    // We only need to check 1st index 
-    var c = cookieString[0];
-    // If cookie name is token, return it
-    if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-    } else{
-    	// else return no Token
-    	return "No Token Found";
-    }
-    */
+    
     
 }
 

@@ -29,9 +29,13 @@
         <br>
         <input class='css-checkbox' type="checkbox" name="oversag" id="oversagFilter" value="False">
         <label for='oversagFilter' class='css-label'>Oversag?</label>
-        <br>
+       <!-- <br>
         <input class='css-checkbox' type="checkbox" name="hasComment" id="hasCommentFilter" value="False">
-        <label for='hasCommentFilter' class='css-label' >Location Comment?</label>
+        <label for='hasCommentFilter' class='css-label' >Location Comment?</label> -->
+        <br>
+        <input class='css-checkbox' type="checkbox" name="hasDate" id="hasDateFilter" value="False">
+        <label for='hasDateFilter' class='css-label' id="dateLabel" >Date:</label>
+        <textarea class="commentArea" id="dateText" rows="1" columns="1" placeholder="yyyy-mm-dd"></textarea>
         <br>
         <button class="button" id="button" type="button" onclick="filterMarkers()" style="margin-top:8px;">Filter Selection</button>
         <br>
@@ -39,6 +43,8 @@
       
       <div id="pageControls">
         <button class="button" id="prevButton" type="button" onclick="prevPage()">Prev Page</button>
+        <label class='' id="numberLabel" >Number of Markers Found:<label  class='' id="numberFound"></label></label>
+        
           <button class="button" id="nextButton" type="button" onclick="nextPage()">Next Page</button>
       </div>
 

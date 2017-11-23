@@ -102,6 +102,7 @@
       year: date[0],
       month: date[1],
       day: date[2],
+      timeFiltered:false,
       powerline: powerline,
       powerpole: powerpole,
       overgrowth: overgrowth,
@@ -180,7 +181,7 @@ function infoPanelChange(powerline, powerpole, overgrowth, oversag, Latitude, Lo
 
   document.getElementById('Latitude').innerHTML = Latitude;
   document.getElementById('Longitude').innerHTML = Longitude;
-  document.getElementById('commentArea').placeholder = comment;
+  document.getElementById('prevCommentArea').value = comment;
   document.getElementById('commentArea').value="";
   document.getElementById('time').innerHTML = timeAdded;
   console.log("Comment is " + comment);
