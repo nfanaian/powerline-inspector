@@ -1,14 +1,13 @@
 # utility_inspection
 Front End to Project Dragon
 
-index8.html
+(NOTE: Blue Filter on MapView2.html will not look correct until navbar.html is added to map page)
 
-Updated map Interface page and seperated Styling and Javascript to seperate pages.
+The pages have been edited. I have added the time filters for both the map and table pages. I also changed the look of both pages to support previous comments as discussed in our last meeting.
 
-Currently every feature needed for demo is implemented except for update AJAX call.(Just need to ask Navid what "func" is).
-
-Will update "Awaiting image" picture size to match collected images and edit submit button styling before demo.
-
-Later, I'll need to redo the image zoom(modal) and edit the filter. Then I'll start working on Login page with Navid.
+Once a plan for comments has been figured out and implemented, the only things left are:
+	Change "Awaiting Image" picture
+	Test Upload Files
+	Minor styling updates
 
 Jorge
