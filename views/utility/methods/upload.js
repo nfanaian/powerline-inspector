@@ -15,6 +15,10 @@ function submitFile(){
 		//have to change url
 		var url = root + 'API/Marker/getAll/'+ "/" + submittedFile;
 		var token = readToken();
+		//send user back to login if token is empty
+		if(token == ""){
+      		document.location.href = "login2.html";
+		}
 		//console.log(token);
 		
 

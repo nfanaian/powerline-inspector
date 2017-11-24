@@ -99,7 +99,7 @@ for(var x in markers) {
   // Will delete when comments are enabled in Database.
   //console.log(markers[x]);
   var testComment = "";
-  addMarker(map, markers[x].powerline, markers[x].powerpole, markers[x].overgrowth, markers[x].oversag, markers[x].latitude, markers[x].longitude,markers[x].comment, markers[x].filename, markers[x].timeAdded); 
+  addMarker(map, markers[x].powerline, markers[x].powerpole, markers[x].overgrowth, markers[x].oversag, markers[x].latitude, markers[x].longitude,markers[x].log, markers[x].filename, markers[x].timeAdded); 
   
   }
 
@@ -212,7 +212,7 @@ for(var x in markers) {
           markerArray[selMarker.index].setIcon(markerArray[selMarker.index].icon);
           
           var comment = document.getElementById("commentArea").value;
-          var prevCommentEntry = document.getElementById("prevCommentArea").value;
+       /*   var prevCommentEntry = document.getElementById("prevCommentArea").value;
           var newComment;
 
           if(prevCommentEntry.includes("Log Empty.")){
@@ -226,6 +226,7 @@ for(var x in markers) {
             document.getElementById("prevCommentArea").value = newComment;
           }
 
+          */
           //selMarker.locationComment = document.getElementById("commentArea").value;
           //addMarker(map, selMarker.powerline, selMarker.powerpole, selMarker.overgrowth, selMarker.oversag, selMarker.latitude, selMarker.longitude, selMarker.locationComment, selMarker.url);
           
@@ -233,7 +234,8 @@ for(var x in markers) {
           //var updatedComment = selMarker.locationComment;
           var updatedComment = comment;
           console.log("updated Comment is: " + updatedComment);
-          var filename = selMarker.url;
+          //var filename = selMarker.url;
+          var filename = markerArray[selMarker.index].url;
           var params = filename + "/";
 
           var val = ['0/','0/','0/','0/'];
@@ -260,6 +262,7 @@ for(var x in markers) {
           var root = "http://squibotics.com/api/marker/";
           var key = "API_TOKEN_KEY_GOES_HERE";
           var func = "updatemarker";
+          var updatedMarker = selMarker;
           
           // AJAX POST REQUEST
           var url = root + func + "/" + params + "/" + updatedComment;
@@ -271,9 +274,16 @@ for(var x in markers) {
               },
               function(data){
                   console.log(data);
-                  //console.log("Finished Updating");
                   if(data.success == true){
                   alert("Marker was successfully updated");
+                  
+                  var recievedComment = data.log; 
+                  console.log(markerArray[updatedMarker.index]);
+                  markerArray[updatedMarker.index].locationComment = recievedComment;
+
+                  conosole.log("New Marker Comment is " + markerArray[updatedMarker.index]);
+                  document.getElementById("prevCommentArea").value= markerArray[updatedMarker.index].locationComment;
+
                   console.log("Update complete");
                   } else {
                     console.log(data);
@@ -294,6 +304,7 @@ for(var x in markers) {
             document.getElementById("oversag").checked = false;
             document.getElementById('Latitude').innerHTML = '';
             document.getElementById('Longitude').innerHTML = '';
+            document.getElementById('time').innerHTML = '';
             //selMarker.setIcon(originalIcon);  I dont think its needed...
             selected = 0;
             selMarker = null;

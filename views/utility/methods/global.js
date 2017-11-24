@@ -54,10 +54,14 @@ $.post(
       token: token
   },
   function(data) {
+    if(data.status == "Authorization Failed"){
+      document.location.href = "login2.html";
+    }else{
     console.log(data);
     markers = data.markers;
     console.log(markers);
-	 initMap();
+	  initMap();
+    }
   }
 );
 

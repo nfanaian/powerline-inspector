@@ -15,22 +15,26 @@ var root = 'http://squibotics.com/';
 var url = root + 'API/Marker/getAll/'
 //var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoidGVzdCIsInJlcXVlc3QiOnsicmVxdWVzdCI6ImFwaS0-YXV0aC0-bG9naW4tPnRlc3QtPjVmNGRjYzNiNWFhNzY1ZDYxZDgzMjdkZWI4ODJjZjk5LT4iLCJ0aW1lIjoiMDg6MDE6MDMgUE0iLCJkYXRlIjoiMTAtMjMtMjAxNyJ9LCJjbGllbnRJUCI6eyJpcCI6IjczLjI0Ljk5LjUxIiwiaG9zdG5hbWUiOiJjLTczLTI0LTk5LTUxLmhzZDEuZmwuY29tY2FzdC5uZXQiLCJjaXR5IjoiS2lzc2ltbWVlIiwicmVnaW9uIjoiRmxvcmlkYSIsImNvdW50cnkiOiJVUyIsImxvYyI6IjI4LjMyNjAsLTgxLjM1MTMiLCJvcmciOiJBUzc5MjIgQ29tY2FzdCBDYWJsZSBDb21tdW5pY2F0aW9ucywgTExDIiwicG9zdGFsIjoiMzQ3NDMifX0.LNcIO5MKP5hPUtoy17Ccwren3cbMI6wMeagWa2Ssyp8";
 var token = readToken();
-console.log(token);
+//console.log(token);
 var markers;
 
 
 $.post(
   url,
   {
-   	token: token
+    token: token
   },
   function(data) {
     console.log(data);
+    if(data.status == "Authorization Failed"){
+      document.location.href = "login2.html";
+    }else{
     markers = data.markers;
-    console.log(markers);
+    //console.log(markers);
     filteredMarkers = markers;
     sepPages(filteredMarkers);
     generateTable();
+    }
   }
 );
 
@@ -58,11 +62,11 @@ function sepPages(filteredMarkerList){
 }
 
 function filter(){
-	var powerlineFilter;
-	var powerpoleFilter;
-	var overgrowthFilter;
-	var oversagFilter;
-	var hasCommentFilter;
+  var powerlineFilter;
+  var powerpoleFilter;
+  var overgrowthFilter;
+  var oversagFilter;
+  var hasCommentFilter;
   var timechecked;
   var date;
   var year;
@@ -109,9 +113,9 @@ function filter(){
 
   halfDate = createDate(document.getElementById("dateText").value);
 if(timechecked == true && halfDate != ""){
-  console.log("First ="+ document.getElementById("dateText").value);
+  //console.log("First ="+ document.getElementById("dateText").value);
     var regex = /^[0-9]{4}.[0-9]{2}.[0-9]{2}$/i;
-    console.log("answer is "+ regex.test(halfDate));
+   // console.log("answer is "+ regex.test(halfDate));
 
     if(regex.test(halfDate) == false){
       alert("Please enter the date in the correct format. YYYY-MM-DD");
@@ -123,7 +127,7 @@ if(timechecked == true && halfDate != ""){
  year = date[0];
  month = date[1];
  day = date[2];
- console.log("this="+ day);
+ //console.log("this="+ day);
  if(month>12||day>31){
       alert("Please enter a correct date.");
       return;
@@ -135,18 +139,18 @@ if(timechecked == true && halfDate != ""){
 }
 
 var resultsTable = document.getElementById("table");
-	  for(var i = 0; i < resultsTable.rows.length;)
-	{   
-	   resultsTable.deleteRow(i);
-	}
+    for(var i = 0; i < resultsTable.rows.length;)
+  {   
+     resultsTable.deleteRow(i);
+  }
 
   filteredMarkers = [];
   for(var x in markers){
-  	if(powerlineFilter == 0 || (powerlineFilter == 1 && markers[x].powerline == true) ){
-  		if(powerpoleFilter == 0 || (powerpoleFilter == 1 && markers[x].powerpole == true) ){
-  			if(overgrowthFilter == 0 || (overgrowthFilter == 1 && markers[x].overgrowth == true) ){
-  				if(oversagFilter == 0 || (oversagFilter == 1 && markers[x].oversag == true) ){
-    					// ADD COMMENT FILTER WHEN IMPLEMENTED IN GET ALL POST CALL
+    if(powerlineFilter == 0 || (powerlineFilter == 1 && markers[x].powerline == true) ){
+      if(powerpoleFilter == 0 || (powerpoleFilter == 1 && markers[x].powerpole == true) ){
+        if(overgrowthFilter == 0 || (overgrowthFilter == 1 && markers[x].overgrowth == true) ){
+          if(oversagFilter == 0 || (oversagFilter == 1 && markers[x].oversag == true) ){
+              // ADD COMMENT FILTER WHEN IMPLEMENTED IN GET ALL POST CALL
               if(timechecked == true){
                // console.log("second=" +markers[x].timeAdded);
                   markerHalfDate = createDate(markers[x].timeAdded);
@@ -180,17 +184,17 @@ var resultsTable = document.getElementById("table");
                     }
               }
               if(timechecked == false){
-    					filteredMarkers.push(markers[x]);
+              filteredMarkers.push(markers[x]);
               }
 
-  				}
-  			}
-  		}
-  	}
+          }
+        }
+      }
+    }
 
   }
   document.getElementById("numberFound").innerHTML = filteredMarkers.length;
-  console.log(filteredMarkers);
+  //console.log(filteredMarkers);
   console.log("Filter Complete");
   //console.log("# of markers is:" + markers.length);
 
@@ -198,7 +202,7 @@ var resultsTable = document.getElementById("table");
 
 }
 function filterMarkers(){
-	$.post(
+  $.post(
   url,
   {
     token: token
@@ -256,10 +260,11 @@ function updateMarkerRow(index)
           
           // NEED TO CHANGE .comment to actual column name in database
           var comment = document.getElementById("commentArea"+index).value;
-          var prevCommentEntry = document.getElementById("prevComment"+index).value;
+          //var prevCommentEntry = document.getElementById("prevComment"+index).value;
+          /*
           var newComment;
           var editedComment;
-
+          
           if(prevCommentEntry.includes("Log Empty.")){
             newComment = prevCommentEntry.replace("Log Empty.", comment);
             console.log(newComment);
@@ -270,7 +275,7 @@ function updateMarkerRow(index)
             markerPages[markerIndex][index].comment = newComment;
             document.getElementById("prevComment"+index).value = newComment;
           }
-
+          */
 
           //var newComment = comment+ "\n------------------------------\n\n" + prevCommentEntry;
 
@@ -279,7 +284,9 @@ function updateMarkerRow(index)
           
           
           // Need to add updatedComment to AJAX call when database and call updated              
-          var filename =  filteredMarkers[index].filename;
+          //var filename =  filteredMarkers[index].filename;
+
+          var filename =  markerPages[markerIndex][index].filename;
           var params = filename + "/";
 
           var val = ['0/','0/','0/','0/'];
@@ -319,6 +326,13 @@ function updateMarkerRow(index)
                   //console.log("Finished Updating");
                   if(data.success == true){
                   alert("Marker was successfully updated");
+
+                  var recievedComment = data.log; 
+
+                  markerPages[markerIndex][index].log = recievedComment;
+                  console.log("New Marker Comment is " + markerPages[markerIndex][index].log);
+                  document.getElementById("prevComment"+index).value=recievedComment;
+                  document.getElementById("commentArea"+index).value="";
                   console.log("Update complete");
                   console.log(filteredMarkers[index]);
 
@@ -337,7 +351,7 @@ function updateMarkerRow(index)
 // End of post
 function markerRowChange(index, powerline, powerpole, overgrowth, oversag, Latitude, Longitude, comment, date)
 { 
-  console.log("powerpole"+index);
+  //console.log("powerpole"+index);
   if(powerline == true){
     document.getElementById("powerline"+index).checked = true;
   } else {
@@ -370,75 +384,75 @@ function markerRowChange(index, powerline, powerpole, overgrowth, oversag, Latit
 
 // generates table elements
 function generateTable() {
-  console.log(markerPages);
+  //console.log(markerPages);
   markerIndex = 0;
-	var currentPage = markerPages[markerIndex];
+  var currentPage = markerPages[markerIndex];
   var i;
-	for(i=0;i<currentPage.length;i++){
+  for(i=0;i<currentPage.length;i++){
     try{
-    	//console.log(markers[i]);
-    	var filename = currentPage[i].filename;
+      //console.log(markers[i]);
+      var filename = currentPage[i].filename;
         var table = document.getElementById("table");
         var row = table.insertRow(0);
         var cell1 = row.insertCell(0);
         var image = "http://squibotics.com/api/marker/getimage/"+ token + "/"+ filename +"/";
         cell1.innerHTML = 
         '<div id="infoRow">'+
-    	'<div id="info">'+
+      '<div id="info">'+
       '<input class="css-checkbox" type="checkbox" name="powerline" id="powerline'+i+'" value="False">'+
-    	'<label for="powerline'+i+'" class="css-label">Powerline</label>'+
-    	'<input class="css-checkbox" type="checkbox" name="powerpole" id="powerpole'+i+'" value="False">'+
+      '<label for="powerline'+i+'" class="css-label">Powerline</label>'+
+      '<input class="css-checkbox" type="checkbox" name="powerpole" id="powerpole'+i+'" value="False">'+
       '<label for="powerpole'+i+'" class="css-label">Powerpole</label>'+
       '<input class="css-checkbox" type="checkbox" name="overgrowth" id="overgrowth'+i+'" value="False">'+
-    	'<label for="overgrowth'+i+'" class="css-label">Overgrowth</label>'+
-    	'<input class="css-checkbox" type="checkbox" name="oversag" id="oversag'+i+'" value="False">'+
-    	'<label for="oversag'+i+'" class="css-label">Oversag</label>'+
-    	'<br>'+
+      '<label for="overgrowth'+i+'" class="css-label">Overgrowth</label>'+
+      '<input class="css-checkbox" type="checkbox" name="oversag" id="oversag'+i+'" value="False">'+
+      '<label for="oversag'+i+'" class="css-label">Oversag</label>'+
+      '<br>'+
       '<label>Latitude: </label>'+
-    	'<label id="Latitude'+i+'">29.32226</label>'+
-    	'<br>'+
-    	'<label>Longitude: </label>'+
-    	'<label id="Longitude'+i+'">-81.29545646</label>'+
-    	'<br>'+
+      '<label id="Latitude'+i+'">29.32226</label>'+
+      '<br>'+
+      '<label>Longitude: </label>'+
+      '<label id="Longitude'+i+'">-81.29545646</label>'+
+      '<br>'+
       '<label>Date Added: </label>'+
       '<label id="time'+i+'"></label>'+
       '<br>'+
-    	'<textarea class="commentArea" id="commentArea'+i+'" rows="3" placeholder="Enter notes about the current location"></textarea>'+
+      '<textarea class="commentArea" id="commentArea'+i+'" rows="3" placeholder="Enter notes about the current location"></textarea>'+
       '<br>'+
-    	'<button type="button" class="button" id="button" onclick="updateMarkerRow('+i+')">Update</button>'+
-    	'</div>'+
+      '<button type="button" class="button" id="button" onclick="updateMarkerRow('+i+')">Update</button>'+
+      '</div>'+
       '<div id="prevCommentDiv">'+
       '<label id="prevCommentLabel">Previous Comments: </label>'+
       '<br>'+
       '<textarea class="prevComment" id="prevComment'+i+'"  placeholder="" readonly></textarea>'+
       '</div>'+
-    	'<div id="imgDiv">'+
-    	'<img src= '+image+' id="image'+i+'" class="image" >'+
-    	'</div>'+
-    	'</div>';
-    	
-    	 markerRowChange(i, currentPage[i].powerline, currentPage[i].powerpole, currentPage[i].overgrowth, currentPage[i].oversag, currentPage[i].latitude, currentPage[i].longitude, currentPage[i].comment, currentPage[i].timeAdded);
+      '<div id="imgDiv">'+
+      '<img src= '+image+' id="image'+i+'" class="image" >'+
+      '</div>'+
+      '</div>';
+      
+       markerRowChange(i, currentPage[i].powerline, currentPage[i].powerpole, currentPage[i].overgrowth, currentPage[i].oversag, currentPage[i].latitude, currentPage[i].longitude, currentPage[i].log, currentPage[i].timeAdded);
 
-    	   // Get the modal
-    		var modal = document.getElementById('myModal');
+         // Get the modal
+        var modal = document.getElementById('myModal');
 
-    		// Get the image and insert it inside the modal
-    		var img = document.getElementById("image"+i);
-    		var modalImg = document.getElementById("img01");
-    		var captionText = document.getElementById("caption");
-    		img.onclick = function(){
-    		    modal.style.display = "block";
-    		    modalImg.src = this.src;
-    		    captionText.innerHTML = this.alt;
-    		}
+        // Get the image and insert it inside the modal
+        var img = document.getElementById("image"+i);
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        img.onclick = function(){
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            captionText.innerHTML = this.alt;
+        }
 
-    		// Get the <span> element that closes the modal
-    		var span = document.getElementsByClassName("close")[0];
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
 
-    		// When the user clicks on <span> (x), close the modal
-    		span.onclick = function() { 
-    		    modal.style.display = "none";
-    		}
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() { 
+            modal.style.display = "none";
+        }
         //cell1.innerHTML = "NEW CELL1";
         //cell1.innerHTML = '<button type="button">Click Me!</button>';
         //markerIndex = 1;
@@ -515,8 +529,8 @@ function nextPage() {
           '<img src= '+image+' id="image'+i+'" class="image" >'+
           '</div>'+
           '</div>';
-          
-           markerRowChange(i, currentPage[i].powerline, currentPage[i].powerpole, currentPage[i].overgrowth, currentPage[i].oversag, currentPage[i].latitude, currentPage[i].longitude, currentPage[i].comment, currentPage[i].timeAdded);
+          console.log(currentPage[i].comment);
+           markerRowChange(i, currentPage[i].powerline, currentPage[i].powerpole, currentPage[i].overgrowth, currentPage[i].oversag, currentPage[i].latitude, currentPage[i].longitude, currentPage[i].log, currentPage[i].timeAdded);
 
              // Get the modal
             var modal = document.getElementById('myModal');
@@ -623,7 +637,7 @@ function prevPage() {
           '</div>'+
           '</div>';
           
-           markerRowChange(i, currentPage[i].powerline, currentPage[i].powerpole, currentPage[i].overgrowth, currentPage[i].oversag, currentPage[i].latitude, currentPage[i].longitude, currentPage[i].comment, currentPage[i].timeAdded);
+           markerRowChange(i, currentPage[i].powerline, currentPage[i].powerpole, currentPage[i].overgrowth, currentPage[i].oversag, currentPage[i].latitude, currentPage[i].longitude, currentPage[i].log, currentPage[i].timeAdded);
 
              // Get the modal
             var modal = document.getElementById('myModal');
