@@ -1,7 +1,7 @@
 // creates map
 function initMap() {
 
-	console.log(markers);
+	//console.log(markers);
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: {lat: 28.6024, lng: -81.2001},
@@ -104,9 +104,9 @@ for(var x in markers) {
   }
 
     // on click of map, revert previously selected marker to original color, deselect marker.
-    console.log(selected);
+   // console.log(selected);
     google.maps.event.addListener(map, 'click', function(){
-        console.log(selMarker);
+       // console.log(selMarker);
           if (selected == 1){
             document.getElementById('commentArea').placeholder= "Enter notes about the current location.";
             document.getElementById('commentArea').value="";
@@ -127,7 +127,7 @@ for(var x in markers) {
             originalIcon = null;
           }
           if(selected == 0){
-            console.log(markerArray);
+            //console.log(markerArray);
           }
     });
 
