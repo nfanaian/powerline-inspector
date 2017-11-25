@@ -2,8 +2,9 @@ body{
 	margin:0;
 }
 .container{
-	width: 95%;
+	width: 98%;
 	margin: 0 auto;
+
 
 }
 
@@ -24,6 +25,7 @@ header::after{
 .logo{
 	float: left;
 	padding: 10px 0;
+	
 }
 
 nav{

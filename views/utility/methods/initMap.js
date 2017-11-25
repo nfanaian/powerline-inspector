@@ -110,7 +110,7 @@ for(var x in markers) {
           if (selected == 1){
             document.getElementById('commentArea').placeholder= "Enter notes about the current location.";
             document.getElementById('commentArea').value="";
-            document.getElementById('prevCommentArea').placeholder= "Enter notes about the current location.";
+            document.getElementById('prevCommentArea').placeholder= "Previous entries for location will be found here.";
             document.getElementById('prevCommentArea').value="";
             document.getElementById("myImg").src="images/awaitingImage.jpg";
             document.getElementById("powerline").checked = false;

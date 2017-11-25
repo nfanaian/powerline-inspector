@@ -336,8 +336,9 @@ img.source-image {
         font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
         font-weight: 600;
         position: absolute;
-        top: 47px;
-        top: 90px; /*SET THIS WHEN ADDING NAV MENU*/
+        //top: 47px;
+       // top: 130px; /*SET THIS WHEN ADDING NAV MENU*/
+          top: 90px;
         right: 5px;
         z-index: 1;
         border-radius: 3px;
