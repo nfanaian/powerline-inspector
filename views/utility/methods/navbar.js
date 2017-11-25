@@ -14,5 +14,5 @@ function deleteAllCookies() {
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
 
-    document.location.href = "login2.html";
+    document.location.href = "http://squibotics.com/utility/login/";
 }

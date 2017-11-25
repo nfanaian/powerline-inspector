@@ -1,19 +1,25 @@
 <?php
-
+require_once('controllers/Controller.php');
 
 /**
  * Class SeniorDesignController
  */
 
-require_once('controllers/Controller.php');
+
 
 class UtilityController extends Controller
 {
 	public function __construct()
 	{
 		require_once('models/utility/Utility.php');
-		require_once('views/UtilityView.php');
+		require_once('views/utilityView.php');
 		parent::__construct(new Utility(), new UtilityView());
+	}
+
+	public function home()
+	{
+		$this->model->output['status'] = "Hello World";
+		$this->view->output();
 	}
 
 	/**
@@ -44,13 +50,19 @@ class UtilityController extends Controller
 
 	}
 
+	public function upload()
+	{
+		$this->view->uploadView();
+
+	}
+
 	/**
 	 * @return int
 	 */
 	public function logout()
 	{
 		$this->model->clearKeys();
-		return call('seniordesign', 'userview');
+		return call('utility', 'login');
 	}
 }
 

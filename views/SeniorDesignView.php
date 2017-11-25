@@ -14,7 +14,7 @@ class SeniorDesignView extends View
 		$this->HTMLprefix();
 		$this->HTMLheader();
 		$this->HTMLmain();
-		require_once('views/seniordesign/mapViewer.php');
+		require_once('views/seniordesign/mapView.php');
 		$this->HTMLpostfix();
 	}
 

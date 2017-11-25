@@ -16,10 +16,10 @@ function authRequest($controller, $action)
 	if (($controller === 'api') && !($action === 'auth')) {
 		require_once('models/api/Auth.php');
 		if ((new Auth())->verifyToken())
-			return 1;
-		return 0;
+			return true;
+		return false;
 	}
-	return 1;
+	return true;
 }
 
 function call($controller, $action)
@@ -36,14 +36,11 @@ function call($controller, $action)
         case 'api':
             $controller = new APIController();
             break;
-        case 'seniordesign':
+        case 'demo':
 	        $controller = new DemoController();
 	        break;
 	    case 'utility':
 		    $controller = new UtilityController();
-		    break;
-        case 'tiktik':
-	        $controller = new TikTikController();
 	        break;
         case 'error':
 	        $controller = new ErrorController();
@@ -58,9 +55,7 @@ function call($controller, $action)
 //                    CONTROLLERS                ACTIONS
 $controllers = array(   'api'           =>  ['auth', 'marker', 'upload', 'tf', 'user', 'test'],
                         'demo'          =>  ['mapviewer', 'userviewer', 'imageviewer'],
-						'utility'       =>  ['mapviewer', 'login', 'log'],
-                        'tiktik'        =>  ['ticket', 'traffic'],
-						'navid'         =>  ['home', 'about', 'contact', 'projects']
+						'utility'       =>  ['home', 'mapviewer', 'login', 'log', 'upload']
 );
 
 // Retrieve Controller/Action from requestParser

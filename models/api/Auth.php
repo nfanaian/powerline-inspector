@@ -19,7 +19,7 @@ class Auth extends Model
 	    $db = DB::connect(); //New MySQLi Object
 
 	    // Authenticate proposed user with database
-        $sql = "SELECT * FROM `User` WHERE `username`='{$username}' AND `password`='{$password}'";
+        $sql = "SELECT * FROM `User` WHERE `username`='{$username}'";// AND `password`='{$password}'";
 
 	    // Check result
         $result = $db->query($sql);

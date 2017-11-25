@@ -43,24 +43,22 @@ var maxZoom = 11;
 //var root = 'http://107.170.23.85/';
 var root = 'http://squibotics.com/';
 var url = root + 'API/Marker/getAll/'
-var token = readToken();
+token = readToken();
 console.log(token);
 var markers;
 
 $.post(
   url,
   {
-    //token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoidGVzdCIsInJlcXVlc3QiOnsicmVxdWVzdCI6ImFwaS0-YXV0aC0-bG9naW4tPnRlc3QtPjVmNGRjYzNiNWFhNzY1ZDYxZDgzMjdkZWI4ODJjZjk5LT4iLCJ0aW1lIjoiMDg6MDE6MDMgUE0iLCJkYXRlIjoiMTAtMjMtMjAxNyJ9LCJjbGllbnRJUCI6eyJpcCI6IjczLjI0Ljk5LjUxIiwiaG9zdG5hbWUiOiJjLTczLTI0LTk5LTUxLmhzZDEuZmwuY29tY2FzdC5uZXQiLCJjaXR5IjoiS2lzc2ltbWVlIiwicmVnaW9uIjoiRmxvcmlkYSIsImNvdW50cnkiOiJVUyIsImxvYyI6IjI4LjMyNjAsLTgxLjM1MTMiLCJvcmciOiJBUzc5MjIgQ29tY2FzdCBDYWJsZSBDb21tdW5pY2F0aW9ucywgTExDIiwicG9zdGFsIjoiMzQ3NDMifX0.LNcIO5MKP5hPUtoy17Ccwren3cbMI6wMeagWa2Ssyp8"
       token: token
   },
   function(data) {
-    if(data.status == "Authorization Failed"){
-      document.location.href = "login2.html";
-    }else{
-    console.log(data);
-    markers = data.markers;
-    console.log(markers);
-	  initMap();
+    if(data.success == true)
+    {
+        console.log(data);
+        markers = data.markers;
+        console.log(markers);
+        initMap();
     }
   }
 );

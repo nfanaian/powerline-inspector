@@ -1,8 +1,4 @@
 <?php
-
-// DEFAULT TIMEZONE
-date_default_timezone_set('America/New_York');
-
 // Global Resources
 require_once('resources/DB.php');
 require_once('resources/requestParser.php');
@@ -14,10 +10,10 @@ function is_ajax() {
 }
 
 // Parse request
-if (!requestParser::parseURL()) {
-	requestParser::setController("api");
-	requestParser::setAction("test");
-	requestParser::setAPIFunc("hello");
+if (!requestParser::parseURL())
+{
+	requestParser::setController('utility');
+	requestParser::setAction('home');
 }
 
 // ROUTE THE REQUEST

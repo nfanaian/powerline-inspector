@@ -12,7 +12,7 @@ class DemoController extends Controller
 	public function __construct()
 	{
 		require_once('models/seniordesign/SeniorDesign.php');
-		require_once('views/SeniorDesignView.php');
+		require_once('views/seniorDesignView.php');
 		parent::__construct(new SeniorDesign(), new SeniorDesignView());
 	}
 

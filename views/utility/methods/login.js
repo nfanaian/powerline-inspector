@@ -1,19 +1,16 @@
-
-function checkLogin(){
+function checkLogin()
+{
 	var uName = document.getElementById("username").value;
 	var pWord = document.getElementById("password").value;
 	var passHash;
 	
 	passHash = md5(pWord);
 	
-	var root = 'http://squibotics.com/api/auth/login/';
-	var url = root// + 'API/Marker/getAll/'
-	
+	var url = 'http://squibotics.com/api/auth/login/';
 
 	$.post(
 	  url,
 	  {
-	    //token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoidGVzdCIsInJlcXVlc3QiOnsicmVxdWVzdCI6ImFwaS0-YXV0aC0-bG9naW4tPnRlc3QtPjVmNGRjYzNiNWFhNzY1ZDYxZDgzMjdkZWI4ODJjZjk5LT4iLCJ0aW1lIjoiMDg6MDE6MDMgUE0iLCJkYXRlIjoiMTAtMjMtMjAxNyJ9LCJjbGllbnRJUCI6eyJpcCI6IjczLjI0Ljk5LjUxIiwiaG9zdG5hbWUiOiJjLTczLTI0LTk5LTUxLmhzZDEuZmwuY29tY2FzdC5uZXQiLCJjaXR5IjoiS2lzc2ltbWVlIiwicmVnaW9uIjoiRmxvcmlkYSIsImNvdW50cnkiOiJVUyIsImxvYyI6IjI4LjMyNjAsLTgxLjM1MTMiLCJvcmciOiJBUzc5MjIgQ29tY2FzdCBDYWJsZSBDb21tdW5pY2F0aW9ucywgTExDIiwicG9zdGFsIjoiMzQ3NDMifX0.LNcIO5MKP5hPUtoy17Ccwren3cbMI6wMeagWa2Ssyp8"
 	    user: uName,
 	    pw: passHash,
 	  },
@@ -24,30 +21,25 @@ function checkLogin(){
 		}else{
 			console.log(data);
 			setToken(data.jwt);
-			//console.log(readToken());
-			window.location.href = "Mapview2.html";
-			//window.location.href = "navbar.html";
+			window.location.href = "http://squibotics.com/utility/mapviewer/";
 		}
 	  }
 	);
-
-	//console.log(readToken("token"));
-	
 }
 
 // Sets Token returned by server
-function setToken(tValue) {
-	var exdays = 1;
-	var d = new Date();
+function setToken(tValue)
+{
+    var exdays = 1;
+    var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     var expires = "expires="+ d.toUTCString();
-    document.cookie = "token=" + tValue + ";" + expires + ";";
-
-    //document.cookie = "token=" + tValue + ";";
+    document.cookie = "token=" + tValue + ";path=/";//";" + expires + ";path=/";
 }
+
 // Reads Token returned by server
-function readToken(){
-	var name = "token" + "=";
+function readToken() {
+    var name = "token=";
     var decodedCookie = decodeURIComponent(document.cookie);
     var ca = decodedCookie.split(';');
     for(var i = 0; i <ca.length; i++) {
@@ -60,7 +52,4 @@ function readToken(){
         }
     }
     return "";
-    
-    
 }
-

@@ -18,7 +18,7 @@ class Model
         $this->output = array();
 
 	    // HTTP Request Made (disabled)
-	    if (0&& !is_null($request = requestParser::getRequest()))
+	    if (!is_null($request = requestParser::getRequest()))
 	    {
 		    $request = implode("->", $request);
 		    // Let's make it look nice

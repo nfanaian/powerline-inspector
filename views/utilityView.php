@@ -8,13 +8,19 @@ require_once('views/View.php');
 
 class UtilityView extends View
 {
+
+	protected function HTMLheader()
+	{
+		require_once 'views/utility/navbar.php';
+	}
+	
 	public function mapView()
 	{
 		http_response_code($this->model->http_response_code);
 		$this->HTMLprefix();
 		$this->HTMLheader();
 		$this->HTMLmain();
-		//require_once('views/utility/mapViewer.php');
+		require_once('views/utility/mapView.php');
 		$this->HTMLpostfix();
 	}
 
@@ -23,7 +29,7 @@ class UtilityView extends View
 		http_response_code($this->model->http_response_code);
 		$this->HTMLprefix();
 		$this->HTMLmain();
-		//require_once('views/seniordesign/userViewer.php');
+		require_once('views/utility/loginView.php');
 		$this->HTMLpostfix();
 	}
 
@@ -33,7 +39,16 @@ class UtilityView extends View
 		$this->HTMLprefix();
 		$this->HTMLheader();
 		$this->HTMLmain();
-		//require_once('views/utility/.php');
+		require_once('views/utility/logView.php');
+		$this->HTMLpostfix();
+	}
+
+	public function uploadView()
+	{
+		http_response_code($this->model->http_response_code);
+		$this->HTMLprefix();
+		$this->HTMLmain();
+		require_once('views/utility/uploadView.php');
 		$this->HTMLpostfix();
 	}
 }

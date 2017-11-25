@@ -3,7 +3,7 @@
 		<!-- Site Footer -->
 		<div class="site-footer">
 			<div id="copyright">
-				Copyright &copy Team Dragon
+				Copyright &copy Squibotics
 			</div>
 		</div>
 	</body>

@@ -7,7 +7,7 @@ if (true)
 {
 	?>
 	<script type="application/javascript">
-		console.log("Status: " + <?= $this->model->output["status"]; ?>);
+		console.log("Status: " + "<?= $this->model->output["status"]; ?>");
 	</script>
 	<?php
 }
