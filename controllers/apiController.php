@@ -12,12 +12,11 @@ class APIController extends Controller
 	// Remember: API Has its own controller, therefore its $action is a controller of the API
 	private function validRequest($action)
 	{
-		$api = array(   'auth'      =>  ['login', 'register', 'authpage'],
-						'marker'    =>  ['foo', 'getmarker', 'getnearby', 'getall', 'getimage', 'updatemarker'],
+		$api = array(   'auth'      =>  ['login', 'register', 'authpage', 'decode'],
+						'marker'    =>  ['foo', 'getmarker', 'getnearby', 'getall', 'getimage', 'updatemarker', 'getlog'],
 						'upload'    =>  ['upload'],
 						'tf'        =>  ['foo', 'fixhashdirs', 'massagedataset'],
-						'user'      =>  ['foo'],
-						'test'      =>  ['hello', 'decode']
+						'user'      =>  ['foo']
 		);
 
 		$func = requestParser::getAPIFunc();
@@ -57,17 +56,6 @@ class APIController extends Controller
 		if (!($func = $this->validRequest('marker'))) return 0;
 
 		(new MarkerController())->{ $func }();
-
-		return 0;
-	}
-
-	public function test()
-	{
-		require_once('controllers/apiController/testController.php');
-
-		if (!($func = $this->validRequest('test'))) return 0;
-
-		(new TestController())->{ $func }();
 
 		return 0;
 	}

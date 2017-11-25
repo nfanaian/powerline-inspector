@@ -1,11 +1,13 @@
 <?php
-require_once('controllers/Controller.php');
+
 
 /**
  * Class SeniorDesignController
  */
 
-class SeniorDesignController extends Controller
+require_once('controllers/Controller.php');
+
+class DemoController extends Controller
 {
 	public function __construct()
 	{
@@ -88,3 +90,6 @@ class SeniorDesignController extends Controller
 		$this->view->imageView();
 	}
 }
+
+?>
+

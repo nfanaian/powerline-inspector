@@ -95,4 +95,11 @@ class ErrorController extends Controller
 		$this->model->output["status"] = "Missing username|password parameters";
 		$this->view->output();
 	}
+
+	public function error_nearbyMarkers()
+	{
+		$this->model->http_response_code = 200;
+		$this->model->output["status"] = "Missing latitude, longitude parameters";
+		$this->view->output();
+	}
 }

@@ -87,8 +87,7 @@ class AuthController extends Controller
 	    $this->view->output();
     }
 	
-	// NOTE: This controller has no Action for Token Verification
-	// IT DOES NOW FOR PAGES
+	// Authenticate token (for AJAX)
 	public function authPage()
 	{
 		if ($this->model->verifyToken()) {
@@ -98,6 +97,12 @@ class AuthController extends Controller
 			$this->model->output["status"] = "Invalid Token";
 			$this->model->output["success"] = false;
 		}
+		$this->view->output();
+	}
+	
+	public function decode()
+	{
+		$this->model->decode();
 		$this->view->output();
 	}
 }

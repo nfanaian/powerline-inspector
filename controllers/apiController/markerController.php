@@ -51,17 +51,27 @@ class MarkerController extends Controller
      */
     public function getNearby()
     {
-        /*
-        if (($latitude = urlParser::getParam(1)) !=null) {
-        $latitude = urlParser::getParam(1);
-        $longitude = urlParser::getParam(2);
-        $distance = urlParser::getParam(3);*/
+        $latitude = requestParser::getParam(0);
+        $longitude = requestParser::getParam(1);
+        $distance = requestParser::getParam(2);
+	    $limit = requestParser::getParam(3);
+	    
+	    if (is_null($latitude) || is_null($longitude))
+		    return call('error', 'error_nearbyMarkers');
 
-        $latitude = 28.605163389828;
-        $longitude = -81.191489942556;
-        $distance = 2000000000;
+	    $latitude = (double)$latitude;
+	    $longitude = (double)$longitude;
 
-        $this->model->getNearby($latitude, $longitude, $distance);
+	    if (is_null($distance))
+		    $distance = 25;
+
+	    if (is_null($limit))
+		    $limit = 1000;
+
+	    $distance = (int)$distance;
+	    $limit = (int)$limit;
+
+        $this->model->getNearby($latitude, $longitude, $distance, $limit);
         $this->view->output();
     }
 
@@ -102,13 +112,14 @@ class MarkerController extends Controller
 	{
 		$file = requestParser::getParam(0);
 		$values = array();
-		$values[] = (int)requestParser::getParam(1);
-		$values[] = (int)requestParser::getParam(2);
-		$values[] = (int)requestParser::getParam(3);
-		$values[] = (int)requestParser::getParam(4);
+		$values[] = requestParser::getParam(1);
+		$values[] = requestParser::getParam(2);
+		$values[] = requestParser::getParam(3);
+		$values[] = requestParser::getParam(4);
+		$comment = requestParser::getParam(5);
 
 
-		$this->model->updateMarker($file, $values);
+		$this->model->updateMarker($file, $values, $comment);
 		$this->view->output();
 	}
 
@@ -133,11 +144,11 @@ class MarkerController extends Controller
 	 * Sanitize user input, add comment, and display results
 	 * Return JSON of success of the comment insertion
 	 */
-	public function getComment()
+	public function getLog()
 	{
 		$filename = requestParser::getParam(0);
 
-		$this->model->getComment($filename);
+		$this->model->getLog($filename);
 		$this->view->output();
 	}
 }

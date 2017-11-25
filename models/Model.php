@@ -14,11 +14,11 @@ class Model
 	 */
     public function __construct()
     {
-        $this->http_response_code = 200; // Auto-good; becareful as any 400 code aborts request
+        $this->http_response_code = 200; // Auto-good; be careful as any 400/500 code aborts request
         $this->output = array();
 
-	    // HTTP Request Made
-	    if (!is_null($request = requestParser::getRequest()))
+	    // HTTP Request Made (disabled)
+	    if (0&& !is_null($request = requestParser::getRequest()))
 	    {
 		    $request = implode("->", $request);
 		    // Let's make it look nice
@@ -32,7 +32,7 @@ class Model
 	    if (!is_null($t = requestParser::getToken()))
 	        $this->output["token_passed"] = $t;
 
-		$this->output["status"] = "Hello World!"; // Debug
+		$this->output["status"] = "Hello World! ";
 	    $this->output["success"] = false; //default false, so only upon a successful request is it set to true
         //$this->output["clientIP"] = $this->getRealIpAddr(); // If you want it
     }

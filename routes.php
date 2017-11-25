@@ -37,8 +37,11 @@ function call($controller, $action)
             $controller = new APIController();
             break;
         case 'seniordesign':
-	        $controller = new SeniorDesignController();
+	        $controller = new DemoController();
 	        break;
+	    case 'utility':
+		    $controller = new UtilityController();
+		    break;
         case 'tiktik':
 	        $controller = new TikTikController();
 	        break;
@@ -54,7 +57,7 @@ function call($controller, $action)
 
 //                    CONTROLLERS                ACTIONS
 $controllers = array(   'api'           =>  ['auth', 'marker', 'upload', 'tf', 'user', 'test'],
-                        'seniordesign'  =>  ['mapviewer', 'userviewer', 'imageviewer'],
+                        'demo'          =>  ['mapviewer', 'userviewer', 'imageviewer'],
 						'utility'       =>  ['mapviewer', 'login', 'log'],
                         'tiktik'        =>  ['ticket', 'traffic'],
 						'navid'         =>  ['home', 'about', 'contact', 'projects']

@@ -18,7 +18,7 @@ class UploadController extends Controller
 	 */
 	public function upload()
 	{
-
+		$this->model->upload();
 	}
 }
 
