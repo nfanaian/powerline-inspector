@@ -1,7 +1,7 @@
 <header>
 	<div class="container">
 		<link href="/views/utility/styles/navStyle.css" rel="stylesheet" type="text/css">
-		<img src="/views/utility/images/smallLogo.png" alt="logo" class="logo" style="height:60px;">
+		<img src="/views/utility/images/logo_large_banner.png" alt="logo" class="logo" style="height:60px;">
 		<script src="/views/utility/methods/navbar.js"></script>
 
 		<nav>
