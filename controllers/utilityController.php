@@ -55,18 +55,18 @@ class UtilityController extends Controller
 	 *
 	 */
 	public function log()
-	{
+	{/*
 		if (!$this->model->authenticate())
-			return call('error', 'error_authPage');
+			return call('error', 'error_authPage');*/
 
 		$this->view->logView();
 
 	}
 
 	public function upload()
-	{
+	{/*
 		if (!$this->model->authenticate())
-			return call('error', 'error_authPage');
+			return call('error', 'error_authPage');*/
 
 		$this->view->uploadView();
 

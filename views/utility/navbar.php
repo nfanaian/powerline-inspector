@@ -3,18 +3,18 @@
 
 <!-- Site Header -->
 <div class="site-header">
-<header>
-	<div class="container">
-		<img src="/views/utility/images/smallLogo.png" alt="logo" class="logo" style="height:60px;">
-		<nav>
-			<ul>
-				<li><a href="http://squibotics.com/utility/mapviewer/">Map View</a></li>
-				<li><a href="http://squibotics.com/utility/log/">List View</a></li>
-				<li><a href="http://squibotics.com/utility/upload/">Upload Page</a></li>
-				<li><a href="http://squibotics.com/utility/logout/" id="logout">Log Out</a></li>
-			</ul>
-		</nav>
+	<header>
+		<div class="container">
+			<img src="/views/utility/images/logo_large_banner.png" alt="logo" class="logo" style="height:60px;">
+			<nav>
+				<ul>
+					<li><a href="http://squibotics.com/utility/mapviewer/">Map View</a></li>
+					<li><a href="http://squibotics.com/utility/log/">List View</a></li>
+					<li><a href="http://squibotics.com/utility/upload/">Upload Page</a></li>
+					<li><a href="http://squibotics.com/utility/logout/" id="logout">Log Out</a></li>
+				</ul>
+			</nav>
 
-	</div>
-</header>
+		</div>
+	</header>
 </div>
