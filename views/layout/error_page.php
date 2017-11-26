@@ -7,6 +7,7 @@ if (true)
 {
 	?>
 	<script type="application/javascript">
+		alert("Status: " + "<?= $this->model->output["status"]; ?>");
 		console.log("Status: " + "<?= $this->model->output["status"]; ?>");
 	</script>
 	<?php
@@ -16,7 +17,7 @@ if (true)
 <!-- Add a javascript redirect onload -->
 <?php
 	// Check 'redirect' has been set & is true
-	$r = $this->model->output["redirect"];
+	$r = $this->model->output['redirect'];
 
 	if (isset($r)? ($r? true: false): false)
 	{
@@ -25,7 +26,7 @@ if (true)
 			function redirect()
 			{
 				var url = window.location.href.split("/")[0] + "//" + window.location.href.split("/")[2] + "/";
-				window.location.href = url;
+				window.location.href = "http://squibotics.com/utility/login/"; //url + "utility/login/";
 			}
 			window.onload = redirect();
 		</script>

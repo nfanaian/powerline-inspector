@@ -1,10 +1,8 @@
 <title>Upload Page</title>
-<link rel="stylesheet" href="styles/loginStyle1.css">
-<link rel="stylesheet" href="styles/uploadStyle.css">
+<link rel="stylesheet" href="/views/utility/styles/loginStyle1.css">
+<link rel="stylesheet" href="/views/utility/styles/uploadStyle.css">
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-<!--Authenticates token-->
-<script src="/views/utility/methods/authToken.js"></script>
 <script src="/views/utility/methods/login.js"></script>
 <script src="/views/utility/methods/upload.js"></script>
 <img class="source-image" src="/views/utility/images/PowerLinesBackgroundColor.jpg" alt=""/>
@@ -21,7 +19,6 @@
 			<button class="button" id="loginButton" type="button" onclick="submitFile()" disabled='true' ><span>Submit File</span></button>
 		</div>
 	</div>
-
 </div>
 
 <script type="text/javascript">

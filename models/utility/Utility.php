@@ -54,15 +54,15 @@ class Utility extends Model
 		return 1; */
 
 		if (!isset($_COOKIE["token"]) || ($_COOKIE["token"] === ""))
-			return 0;
+			return false;
 
-		// SetToken from Cookie TODO bad design style
+		// SetToken from Cookie
 		requestParser::setToken($_COOKIE["token"]);
 
 		require_once('models/Auth.php');
 		if ((new Auth())->verifyToken())
-			return 1;
-		return 0;
+			return true;
+		return false;
 	}
 
 	/** Delete cookie

@@ -55,7 +55,7 @@ function call($controller, $action)
 //                    CONTROLLERS                ACTIONS
 $controllers = array(   'api'           =>  ['auth', 'marker', 'upload', 'tf', 'user', 'test'],
                         'demo'          =>  ['mapviewer', 'userviewer', 'imageviewer'],
-						'utility'       =>  ['home', 'mapviewer', 'login', 'log', 'upload']
+						'utility'       =>  ['home', 'mapviewer', 'login', 'logout', 'log', 'upload']
 );
 
 // Retrieve Controller/Action from requestParser

@@ -1,5 +1,5 @@
 @font-face{
-	font-family: 'icons';
+	font-family: sans-serif;
 	src:url('fonts/icons.eot');
 	src:  url('fonts/icons.eot') format('embedded-opentype'),
    		url('fonts/icons.ttf') format('truetype'),
@@ -90,7 +90,7 @@ h2{
 	padding:0px;
 	content:"\e900";
 	font-size:24px;
-	font-family: 'icons';
+	font-family: sans-serif;
 	color: #bdc3d1;
 }
 .file-input > input[type="file"]{

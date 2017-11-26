@@ -3,8 +3,6 @@
 
 <!--jquery library -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-<!--Authenticates token-->
-<script src="/views/utility/methods/authToken.js"></script>
 <!--Contains token reading functions -->
 <script src="/views/utility/methods/login.js"></script>
 <!--Creates global variables and contains getAll Ajax Call -->
@@ -59,7 +57,7 @@
 	<img class ="shadow-z-2" id="myImg" src="/views/utility/images/awaitingImage.jpg">
 
 
-	<div class ="shadow-z-2" id= 'infoBox'>
+	<div class ="shadow-z-2" id='infoBox'>
 
 		<input class='css-checkbox' type="checkbox" name="powerline" id="powerline" value="False">
 		<label for='powerline' class='css-label'>Powerline</label>

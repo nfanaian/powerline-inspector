@@ -35,9 +35,10 @@ class ErrorController extends Controller
 	public function error_authPage()
 	{
 		//$this->model->http_response_code = 200;
-		$this->model->output["status"] = "JSON Web Token invalid or missing";
-		$this->model->output["redirect"] = true;
-		$this->view->error();
+		$this->model->output['status'] = "JSON Web Token invalid or missing";
+		$this->model->output['redirect'] = true;
+		$this->view->output();
+		//$this->view->error();
 	}
 
 	/** API Errors */

@@ -13,6 +13,18 @@ function deleteAllCookies() {
         var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
+}
 
-    document.location.href = "http://squibotics.com/utility/login/";
+function delCookie()
+{
+    var d = new Date();
+    d.setTime(d.getTime() - (24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = "token=" + ";path=/";//";" + expires + ";path=/";
+}
+
+function logout()
+{
+    window.delCookie();
+    window.location.href = "http://squibotics.com/utility/login/";
 }

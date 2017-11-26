@@ -1,9 +1,6 @@
 <link href="/views/utility/styles/tableStyle.css" rel="stylesheet" type="text/css">
-<link href="https://honts.googleapis.com/css?family=Work+Sans:400" rel="">
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
-<!--Authenticates token-->
-<script src="/views/utility/methods/authToken.js"></script>
 <script src="/views/utility/methods/login.js"></script>
 <script src="/views/utility/methods/table.js"></script>
 <img class="source-image" src="/views/utility/images/PowerLinesBackgroundColor.jpg" alt=""/>
@@ -22,9 +19,7 @@
 			<br>
 			<input class='css-checkbox' type="checkbox" name="oversag" id="oversagFilter" value="False">
 			<label for='oversagFilter' class='css-label'>Oversag?</label>
-			<!-- <br>
-			 <input class='css-checkbox' type="checkbox" name="hasComment" id="hasCommentFilter" value="False">
-			 <label for='hasCommentFilter' class='css-label' >Location Comment?</label> -->
+
 			<br>
 			<input class='css-checkbox' type="checkbox" name="hasDate" id="hasDateFilter" value="False">
 			<label for='hasDateFilter' class='css-label' id="dateLabel" >Date:</label>

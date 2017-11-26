@@ -23,17 +23,6 @@ class UtilityController extends Controller
 	}
 
 	/**
-	 * @return int
-	 */
-	public function mapViewer()
-	{
-		//if (!$this->model->authenticate())
-		//return call('error', 'error_authPage');
-
-		$this->view->mapView();
-	}
-
-	/**
 	 *
 	 */
 	public function login()
@@ -44,25 +33,43 @@ class UtilityController extends Controller
 	/**
 	 *
 	 */
+	public function logout()
+	{
+		$this->model->clearKeys();
+		header("Location: http://squibotics.com/utility/login/");
+	}
+
+	/**
+	 * @return int
+	 */
+	public function mapViewer()
+	{
+		/*
+		if (!$this->model->authenticate())
+			return call('error', 'error_authPage');*/
+
+		$this->view->mapView();
+	}
+
+	/**
+	 *
+	 */
 	public function log()
 	{
+		if (!$this->model->authenticate())
+			return call('error', 'error_authPage');
+
 		$this->view->logView();
 
 	}
 
 	public function upload()
 	{
+		if (!$this->model->authenticate())
+			return call('error', 'error_authPage');
+
 		$this->view->uploadView();
 
-	}
-
-	/**
-	 * @return int
-	 */
-	public function logout()
-	{
-		$this->model->clearKeys();
-		return call('utility', 'login');
 	}
 }
 
