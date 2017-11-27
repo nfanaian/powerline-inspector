@@ -7,12 +7,49 @@ require_once("models/Model.php");
  */
 class Upload extends Model
 {
+	private $uploadDir = '/usr/local/project_dragon/upload/';
+
 	public function __construct()
 	{
 		parent::__construct();
 	}
+
+	public function uploadFile($file)
+	{
+		// Check for errors
+		if($_FILES['file']['error'] > 0){
+			$this->output['status'] = 'An error ocurred when uploading.';
+		}
+
+		if(!getimagesize($_FILES['file']['tmp_name'])){
+			$this->output['status'] = 'Please ensure you are uploading an image.';
+		}
+
+		// Check filetype
+		if($_FILES['file']['type'] != 'image/jpeg'){
+			$this->output['status'] = 'Unsupported filetype uploaded.';
+		}
+
+		// Check filesize
+		if($_FILES['file']['size'] > 2097152){
+			$this->output['status'] = 'File uploaded exceeds maximum upload size.';
+		}
+
+		// Check if the file exists
+		if(file_exists($this->uploadDir . $_FILES['file']['name'])){
+			$this->output['status'] = 'File with that name already exists.';
+		}
+
+		// Upload file
+		if(!move_uploaded_file($_FILES['file']['tmp_name'], $this->uploadDir . $_FILES['file']['name'])){
+			$this->output['status'] = 'Error uploading file - check destination is writeable.';
+		}
+
+		$this->output['status'] = 'File uploaded successfully to "' . $this->uploadDir . $_FILES['file']['name'];
+		$this->output['success'] = true;
+	}
 	
-	public function upload($file)
+	public function uploadOld($file)
 	{
 		$this->output['success'] = false;
 		$this->output['status'] = "We got the file, script started";

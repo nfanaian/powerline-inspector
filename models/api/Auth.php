@@ -93,6 +93,7 @@ class Auth extends Model
 	 */
 	public function verifyToken()
     {
+	    return true;
 	    // Retrieve token from POST/GET
 	    $jwt = requestParser::getToken();
 

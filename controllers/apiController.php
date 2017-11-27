@@ -28,10 +28,10 @@ class APIController extends Controller
 			if (in_array($func, $api[$action]))
 				return $func;
 			else
-				return call('error', 'error_api_function_dne');
+				call('error', 'error_api_function_dne');
 		}
 		else
-			return call('error', 'error_api_function_dne');
+			call('error', 'error_api_function_dne');
 	}
 
 	public function auth()
@@ -42,8 +42,6 @@ class APIController extends Controller
 		if (!($func = $this->validRequest('auth'))) return 0;
 
 		(new AuthController())->{ $func }();
-
-		return 0;
 	}
 
 	public function marker()
@@ -55,8 +53,6 @@ class APIController extends Controller
 		if (!($func = $this->validRequest('marker'))) return 0;
 
 		(new MarkerController())->{ $func }();
-
-		return 0;
 	}
 
 	public function upload()
@@ -64,8 +60,6 @@ class APIController extends Controller
 		require_once('controllers/apiController/uploadController.php');
 
 		(new UploadController())->upload();
-
-		return 0;
 	}
 
 	public function user()
@@ -75,8 +69,6 @@ class APIController extends Controller
 		if (!($func = $this->validRequest('user'))) return 0;
 
 		(new UserController())->{ $func }();
-
-		return 0;
 	}
 
 	public function tf()
@@ -86,7 +78,5 @@ class APIController extends Controller
 		if (!($func = $this->validRequest('tf'))) return 0;
 
 		(new tensorflowController())->{ $func }();
-
-		return 0;
 	}
 }

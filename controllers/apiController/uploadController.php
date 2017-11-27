@@ -18,10 +18,12 @@ class UploadController extends Controller
 	 */
 	public function upload()
 	{
+		$this->model->output['status'] = "In controller";
+		/*
 		if (!isset($_FILES['file']))
-			return call('error', 'error_upload_missing');
+			return call('error', 'error_upload_missing');*/
 		
-		$this->model->upload($_FILES['file']);
+		$this->model->uploadFile($_FILES['file']);
 		$this->view->output();
 	}
 }

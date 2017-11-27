@@ -34,6 +34,7 @@
 			console.log(inputValue.name);
 			$('.input-value').html(inputValue.name);
 			document.getElementById("loginButton").disabled = false;
+			document.getElementById("loginButton").innerHTML = "Submit File";
 		});
 	});
 </script>

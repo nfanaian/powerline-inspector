@@ -1,11 +1,12 @@
 function submitFile()
 {
+    var loginButton = document.getElementById("loginButton");
 	//disable submit button
-	document.getElementById("loginButton").disabled = true;
+	loginButton.disabled = true;
 	// get file submitted from user
 	var submittedFile = document.getElementById("file");
 	// change text on button to inform user
-	document.getElementById("loginButton").innerHTML = "Submitting File...";
+	loginButton.innerHTML = "Submitting File...";
 
     var _progress = document.getElementById('_progress');
 
@@ -14,7 +15,7 @@ function submitFile()
     }
 
     var data = new FormData();
-    data.append('SelectedFile', submittedFile.files[0]);
+    data.append('file', submittedFile.files[0]);
 
     var request = new XMLHttpRequest();
     request.onreadystatechange = function(){
@@ -32,10 +33,15 @@ function submitFile()
     };
 
     request.upload.addEventListener('progress', function(e){
-        _progress.style.width = Math.ceil(e.loaded/e.total) * 100 + '%';
+        loginButton.innerHTML = "Uploading...\t" + Math.ceil(e.loaded/e.total) * 100 + '%';
     }, false);
 
-    request.open('POST', 'upload.php');
+    request.upload.addEventListener('load', function(e){
+        loginButton.innerHTML = "File successfully uploaded";
+    }, false);
+
+
+    request.open('POST', 'http://squibotics.com/api/upload/');
     request.send(data);
 
 //alert("File has been uploaded successfully.");

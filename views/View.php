@@ -34,19 +34,14 @@ class View
 	    header("Content-Type: application/json");
 
 	    // If view has no model, then there's nothing to render
-	    if (is_null($this->model)) {
-		    echo json_encode(array("Response" => "No Model Loaded"));
-		    return;
-	    }
+	    if (is_null($this->model))
+		    echo die(json_encode(array("Response" => "No Model Loaded")));
 
 	    // Response code
 	    http_response_code($this->model->http_response_code);
 
 	    // Display output
-	    if (is_array($this->model->output))
-            echo json_encode($this->model->output); // Encode arrays as JSON
-        else
-            echo json_encode(array("Response" => $this->model->output)); // (token)
+        echo die(json_encode($this->model->output)); // Encode arrays as JSON
     }
 
 
