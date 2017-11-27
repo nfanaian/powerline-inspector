@@ -17,6 +17,9 @@
 				<span class="input-value" id="inputBox">Browse Files</span>
 			</div>
 			<button class="button" id="loginButton" type="button" onclick="submitFile()" disabled='true' ><span>Submit File</span></button>
+			<div class='progress_outer'>
+				<div id='_progress' class='progress'></div>
+			</div>
 		</div>
 	</div>
 </div>

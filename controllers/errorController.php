@@ -104,4 +104,10 @@ class ErrorController extends Controller
 		$this->model->output["status"] = "Missing latitude, longitude parameters";
 		$this->view->output();
 	}
+
+	public function error_upload_missing()
+	{
+		$this->model->output['status'] = "Missing uploaded file";
+		$this->model->output();
+	}
 }

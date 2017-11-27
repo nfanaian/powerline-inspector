@@ -14,7 +14,6 @@ class APIController extends Controller
 	{
 		$api = array(   'auth'      =>  ['login', 'register', 'authpage', 'decode'],
 						'marker'    =>  ['foo', 'getmarker', 'getnearby', 'getall', 'getimage', 'updatemarker', 'getlog'],
-						'upload'    =>  ['upload'],
 						'tf'        =>  ['foo', 'fixhashdirs', 'massagedataset'],
 						'user'      =>  ['foo']
 		);
@@ -56,6 +55,15 @@ class APIController extends Controller
 		if (!($func = $this->validRequest('marker'))) return 0;
 
 		(new MarkerController())->{ $func }();
+
+		return 0;
+	}
+
+	public function upload()
+	{
+		require_once('controllers/apiController/uploadController.php');
+
+		(new UploadController())->upload();
 
 		return 0;
 	}

@@ -34,7 +34,9 @@ class Controller
 			$this->view->setModel($model);
 	}
 
-	/**
+	/** Set's controller's view to passed view
+	 *  If view passed is null (constructor will pass null if no View provided)
+	 *  Then default View() (parent class of all views) will be initiated
 	 * @param $view
 	 */
 	protected function setView($view)
