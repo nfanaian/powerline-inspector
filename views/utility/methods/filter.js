@@ -53,6 +53,41 @@ Rcheckbox.addEventListener( 'change', function() {
     }
 });
 
+var Ocheckbox = document.querySelector("input[id=poi-Orange]");
+Ocheckbox.checked = true;
+Ocheckbox.addEventListener( 'change', function() {
+    if(this.checked) {
+        for(var x in markerArray){
+          if(markerArray[x].status == "orange" && markerArray[x].timeFiltered == false){
+            markerArray[x].setVisible(true);
+          } 
+      }
+    } else {
+        for(var x in markerArray){
+          if(markerArray[x].status == "orange" && markerArray[x].timeFiltered == false){
+            markerArray[x].setVisible(false);
+          }
+      }
+    }
+});
+
+var Pcheckbox = document.querySelector("input[id=poi-Purple]");
+Pcheckbox.checked = true;
+Pcheckbox.addEventListener( 'change', function() {
+    if(this.checked) {
+        for(var x in markerArray){
+          if(markerArray[x].status == "purple" && markerArray[x].timeFiltered == false){
+            markerArray[x].setVisible(true);
+          } 
+      }
+    } else {
+        for(var x in markerArray){
+          if(markerArray[x].status == "purple" && markerArray[x].timeFiltered == false){
+            markerArray[x].setVisible(false);
+          }
+      }
+    }
+});
 
 function timeFilter(){
     

@@ -1,6 +1,3 @@
-
-
-
 function nextGreenMarker(){
 	var selectedMarkerIndex;
 	if(selMarker  == null){
@@ -199,6 +196,137 @@ function previousRedMarker(){
 	}
 }
 
+function nextOrangeMarker(){
+	var selectedMarkerIndex;
+	if(selMarker  == null){
+		selectedMarkerIndex = -1;
+	}else{
+		selectedMarkerIndex = selMarker.index;
+	}
+
+	var Index = orangePointer;
+	var size = markerArray.length;
+	
+	console.log("index is: " + Index);
+	console.log("size is: " + size);
+	for(Index;Index<size;Index++){
+		if(markerArray[Index].status == "orange" && selectedMarkerIndex != Index ){ //&& selMarker.index != greenIndex
+			//PRESENTS MARKER
+			nextEvent(Index);
+			orangePointer = Index;
+			console.log(markerArray[Index].url);
+			console.log(Index);
+			break;
+		}
+		if(Index>=size-1){
+			orangePointer = 0;
+			alert("No more Orange Markers Found");
+		}
+	}
+}
+
+function previousOrangeMarker(){
+	var selectedMarkerIndex;
+	if(selMarker  == null){
+		selectedMarkerIndex = -1;
+	}else{
+		selectedMarkerIndex = selMarker.index;
+	}
+
+	var Index;
+	if(orangePointer == 0){
+		Index = markerArray.length-1;
+	}else{
+		Index = orangePointer;
+	}
+
+	console.log("index is: " + Index);
+	for(Index;Index >= 0;Index--){
+		if(markerArray[Index].status == "orange" && selectedMarkerIndex != Index){
+			//PRESENTS MARKER
+			nextEvent(Index);
+			orangePointer = Index;
+			console.log(markerArray[Index].url);
+			console.log(Index);
+			if(Index == 0){
+			orangePointer = 0;
+			alert("No more Orange Markers Found");
+			}
+			break;
+		}
+
+		if(Index == 0){
+			orangePointer = 0;
+			alert("No more Orange Markers Found");
+		}
+	}
+}
+
+function nextPurpleMarker(){
+	var selectedMarkerIndex;
+	if(selMarker  == null){
+		selectedMarkerIndex = -1;
+	}else{
+		selectedMarkerIndex = selMarker.index;
+	}
+
+	var Index = purplePointer;
+	var size = markerArray.length;
+	
+	console.log("index is: " + Index);
+	console.log("size is: " + size);
+	for(Index;Index<size;Index++){
+		if(markerArray[Index].status == "purple" && selectedMarkerIndex != Index ){ //&& selMarker.index != greenIndex
+			//PRESENTS MARKER
+			nextEvent(Index);
+			purplePointer = Index;
+			console.log(markerArray[Index].url);
+			console.log(Index);
+			break;
+		}
+		if(Index>=size-1){
+			purplePointer = 0;
+			alert("No more Purple Markers Found");
+		}
+	}
+}
+
+function previousPurpleMarker(){
+	var selectedMarkerIndex;
+	if(selMarker  == null){
+		selectedMarkerIndex = -1;
+	}else{
+		selectedMarkerIndex = selMarker.index;
+	}
+
+	var Index;
+	if(purplePointer == 0){
+		Index = markerArray.length-1;
+	}else{
+		Index = purplePointer;
+	}
+
+	console.log("index is: " + Index);
+	for(Index;Index >= 0;Index--){
+		if(markerArray[Index].status == "purple" && selectedMarkerIndex != Index){
+			//PRESENTS MARKER
+			nextEvent(Index);
+			purplePointer = Index;
+			console.log(markerArray[Index].url);
+			console.log(Index);
+			if(Index == 0){
+			purplePointer = 0;
+			alert("No more Purple Markers Found");
+			}
+			break;
+		}
+
+		if(Index == 0){
+			greenPointer = 0;
+			alert("No more Purple Markers Found");
+		}
+	}
+}
 // displays marker information when using search arrows
 function nextEvent(index){
 		console.log(markerArray[index].url);
