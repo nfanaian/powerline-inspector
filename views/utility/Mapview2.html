@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Utility Inspection</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link href="styles/style1.css" rel="stylesheet" type="text/css">
+
+  </head>
+
+  <body>
+    <!--jquery library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+    <!--Contains token reading functions -->
+    <script src=methods/login.js></script>
+    <!--Creates global variables and contains getAll Ajax Call -->
+    <script src=methods/global.js></script>
+    <!--Creates map object -->
+    <script src=methods/initMap.js></script>
+    <!--Creates Marker objects/Contains functions and event listeners-->
+    <script src=methods/addMarker++.js></script>
+    <!--Creates Next Buttons -->
+    <script src=methods/nextMarker.js></script>
+    
+    <!-- Does a callback. Not sure if needed. Further testing required!!!
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdB8aLpUldzTnezuHqo8T0_YKSa2vIS-o&callback=initMap"
+        async defer></script> -->
+
+    <!--Same as above but without callback --> 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdB8aLpUldzTnezuHqo8T0_YKSa2vIS-o"
+        async defer></script>
+   <!-- <img class="source-image" src="images/PowerLinesBackgroundColor.jpg" alt=""/> -->
+    
+  <h3 id="header"></h3>
+
+  <!--Filter boxes -->
+  <nav id="filter-group" class="filter-group shadow-z-2">
+        
+        <div id="timeEntryLabel">
+          <textarea class ="shadow-z-1" id="dateArea" rows="1"  placeholder="yyyy-mm-dd" maxlength="10"></textarea>
+        </div>
+        <input type="checkbox" id="poi-Green">
+        <label for="poi-Green">Powerpole</label>
+        <input type="checkbox" id="poi-Yellow">
+        <label for="poi-Yellow">Powerline</label>
+        <input type="checkbox" id="poi-Red">
+        <label for="poi-Red">Overgrowth</label>
+        <input type="checkbox" id="poi-Orange">
+        <label for="poi-Orange">Cable Defect</label>
+        <input type="checkbox" id="poi-Purple">
+        <label for="poi-Purple">No Data Found</label>
+        
+        
+        <div id="selectButtons">
+          <button type="button" class="selectButtons" id="timeFilterButton" onclick="timeFilter()">&raquo;</button>
+          <button type="button" class="selectButtons" id="nextGreenButton" onclick="nextGreenMarker()">&raquo;</button>
+          <button type="button" class="selectButtons" id="previousGreenButton" onclick="previousGreenMarker()">&laquo;</button>
+          <button type="button" class="selectButtons" id="nextYellowButton" onclick="nextYellowMarker()">&raquo;</button>
+          <button type="button" class="selectButtons" id="previousYellowButton" onclick="previousYellowMarker()">&laquo;</button>
+          <button type="button" class="selectButtons" id="nextRedButton" onclick="nextRedMarker()">&raquo;</button>
+          <button type="button" class="selectButtons" id="previousRedButton" onclick="previousRedMarker()">&laquo;</button>
+          <button type="button" class="selectButtons" id="nextOrangeButton" onclick="nextOrangeMarker()">&raquo;</button>
+          <button type="button" class="selectButtons" id="previousOrangeButton" onclick="previousOrangeMarker()">&laquo;</button>
+          <button type="button" class="selectButtons" id="nextPurpleButton" onclick="nextPurpleMarker()">&raquo;</button>
+          <button type="button" class="selectButtons" id="previousPurpleButton" onclick="previousPurpleMarker()">&laquo;</button>
+        </div>
+  </nav>
+    
+            
+
+    <div id="box">
+
+    <!-- Old unedited image -->
+    <!--<img id="myImg" src="https://craftsmanproperties.net/wp-content/uploads/sf_img/default.jpg"> -->
+    <img class ="shadow-z-2" id="myImg" src="images/awaitingImage.jpg">
+    
+
+    <div class ="shadow-z-2" id= 'infoBox'>
+      <div id="markerInfo">
+      <input class='css-checkbox' type="checkbox" name="powerline" id="powerline" value="False">
+      <label for='powerline' class='css-label'>Powerline</label>
+      
+      <input class='css-checkbox' type="checkbox" name="powerpole" id="powerpole" value="False">
+      <label for='powerpole' class='css-label'>Powerpole</label>
+      
+      <input class='css-checkbox' type="checkbox" name="overgrowth" id="overgrowth" value="False">
+      <label for='overgrowth' class='css-label'>Vegetation Overgrowth</label>
+      
+      <input class='css-checkbox' type="checkbox" name="oversag" id="oversag" value="False">
+      <label for='oversag' class='css-label'>Cable Defect</label><br><br>
+      <label id="latitudeLabel">Latitude: </label>
+      <label id="Latitude"></label>
+      <br>
+      <label id="longitudeLabel">Longitude: </label>
+      <label id="Longitude"></label>
+      <br>
+      <label id="timeLabel">Date Captured: </label>
+      <label id="time"></label>
+      <br><br>
+      </div>
+      <div id="comments">
+      <div id="commentDiv">
+      <label>Location Comment:</label>
+      <br>
+      <textarea class ="" id="commentArea" rows="3"  placeholder="Enter notes about the current location."></textarea>
+      </div>
+      <div id="prevCommentDiv">
+      <label id="prevCommentLabel">Previous Comments:</label>
+      <br>
+      <textarea class ="" id="prevCommentArea" rows="3"  placeholder="Previous entries for location will be found here." readonly></textarea>
+      </div>
+      <br>
+      
+      </div>
+      <div id="buttonDiv">
+      <button id="button" type="button">Update</button>
+      </div>
+    </div><!--End of infoBox --> 
+    
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- The Close Button -->
+      <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+      
+      <!-- Modal Content (The Image) -->
+      <img class="modal-content" id="img01">
+
+      <!-- Modal Caption (Image Text) -->
+      <div id="caption"></div>
+    </div><!--End of Modal --> 
+
+    </div><!--End of box --> 
+    
+    
+    <!-- <div id="map" class ="shadow-z-2"></div> -->
+    <div id="map" class =""></div>
+    <!-- javascript for modal operation -->
+    <script src="methods/modal.js"></script>
+    <!-- javascript for filter operation -->
+    <script src="methods/filter.js"></script>
+
+  </body>
+</html>

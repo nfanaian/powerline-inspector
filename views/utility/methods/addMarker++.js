@@ -1,21 +1,17 @@
 
     function createStatus(powerline,powerpole,overgrowth,oversag){
-   /* var status = "yellow";
-      // creates "Status" based on received data
-      if((powerline == 1)&&(powerpole == 1)){
-        if((overgrowth == 1)||(oversag == 1)){
-          status = "red";
-        }else{
-          status = "green";
-        }
-
-      }*/
-      var status = "green";
-      if(powerline == 0 && powerpole == 1){
+     var status = "purple";
+      if((powerline == 1 && powerpole == 1) || (powerline == 0 && powerpole == 1)){
+        status = "green";
+      }
+      if((powerline == 1 && powerpole == 0)){
         status = "yellow";
       }
-      if((overgrowth == 1)||(oversag == 1)){
+      if(overgrowth == 1){
         status = "red";
+      }
+      if((oversag == 1 && overgrowth == 1)||(oversag == 1)){
+        status = "orange";
       }
           return status;
     }

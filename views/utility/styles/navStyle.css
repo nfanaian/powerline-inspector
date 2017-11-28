@@ -9,7 +9,13 @@ body{
 }
 
 header{
+	//background: #e1f5fe;
+	//background-color: #cccccc;
+	//background-image: url("http://www.yooter.com/wp-content/uploads/2014/09/power-lines-skyscapes-359132-2560x1600.jpg");
+	//background-image: rgba(255, 255, 255, 0.5);
+	background-color: #5b9bbe;
 	font-weight: 400;
+	color: white;
 }
 
 header::after{
@@ -37,41 +43,38 @@ nav ul {
 nav li{
 	display: inline-block;
 	margin-left: 30px;
-	margin-top: 10px;
+	margin-top: 30px;
 	padding-top: 23px;
 
 	position: relative;
 }
 
 nav ul li a {
-	color: #444;
+	color: white;
 	text-decoration: none;
-	text-transform: uppercase;
+	
 
-	font-size: 14px;
+	font-size: 16px;
 	padding: 40px 0;
 }
 
 nav a:hover{
-	color: #000;
+	
 }
 
-nav a::before
-{
+nav a::before{
 	content: '';
 	display: block;
 	height: 5px;
-	background-color:#444;
-	margin-top: -10px; /*whatever you add to li add opposite here*/
+	background-color:white; 
+	margin-top: 53px; /*whatever you add to li add opposite here*/
 	position: absolute;
 	top:0;
 	width: 0%;
-
 	transition: all ease-in-out 250ms;
 }
 
-nav a:hover::before
-{
+nav a:hover::before {
 	width: 100%;
 }
 

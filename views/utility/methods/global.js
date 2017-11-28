@@ -16,6 +16,8 @@ var greenimage ='http://maps.google.com/mapfiles/ms/icons/green-dot.png';
 var yellowimage ='http://maps.google.com/mapfiles/ms/icons/yellow-dot.png';
 var redimage ='http://maps.google.com/mapfiles/ms/icons/red-dot.png';
 var blueimage = 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png';
+var orangeimage ='http://maps.google.com/mapfiles/ms/icons/orange-dot.png';
+var purpleimage = 'http://maps.google.com/mapfiles/ms/icons/purple-dot.png';
 // shape of clickable area on markers
 var shape = {
     coords: [1, 1, 1, 20, 18, 20, 18, 1],
@@ -30,6 +32,8 @@ var markerArray = [];
 var redPointer = 0;
 var yellowPointer = 0;
 var greenPointer = 0;
+var orangePointer = 0;
+var purplePointer = 0;
 
 // Values of current Marker(used for update call)
 var currentPowerline;
@@ -43,22 +47,24 @@ var maxZoom = 11;
 //var root = 'http://107.170.23.85/';
 var root = 'http://squibotics.com/';
 var url = root + 'API/Marker/getAll/'
-token = readToken();
+var token = readToken();
 console.log(token);
 var markers;
 
 $.post(
   url,
   {
+    //token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoidGVzdCIsInJlcXVlc3QiOnsicmVxdWVzdCI6ImFwaS0-YXV0aC0-bG9naW4tPnRlc3QtPjVmNGRjYzNiNWFhNzY1ZDYxZDgzMjdkZWI4ODJjZjk5LT4iLCJ0aW1lIjoiMDg6MDE6MDMgUE0iLCJkYXRlIjoiMTAtMjMtMjAxNyJ9LCJjbGllbnRJUCI6eyJpcCI6IjczLjI0Ljk5LjUxIiwiaG9zdG5hbWUiOiJjLTczLTI0LTk5LTUxLmhzZDEuZmwuY29tY2FzdC5uZXQiLCJjaXR5IjoiS2lzc2ltbWVlIiwicmVnaW9uIjoiRmxvcmlkYSIsImNvdW50cnkiOiJVUyIsImxvYyI6IjI4LjMyNjAsLTgxLjM1MTMiLCJvcmciOiJBUzc5MjIgQ29tY2FzdCBDYWJsZSBDb21tdW5pY2F0aW9ucywgTExDIiwicG9zdGFsIjoiMzQ3NDMifX0.LNcIO5MKP5hPUtoy17Ccwren3cbMI6wMeagWa2Ssyp8"
       token: token
   },
   function(data) {
-    if(data.success == true)
-    {
-        console.log(data);
-        markers = data.markers;
-        console.log(markers);
-        initMap();
+    if(data.status == "Authorization Failed"){
+      document.location.href = "login2.html";
+    }else{
+    console.log(data);
+    markers = data.markers;
+    console.log(markers);
+	  initMap();
     }
   }
 );
